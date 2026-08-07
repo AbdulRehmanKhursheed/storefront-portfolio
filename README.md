@@ -50,6 +50,25 @@ themselves. If the entry still has a `prototypePath`, the card additionally show
 
 No component or route changes are needed in either case.
 
+## Prototype URLs — read this before changing them
+
+`prototypePath` must be `/prototypes/<slug>/` — extensionless, **with** the trailing
+slash. This is not a style preference; three other forms are all broken:
+
+| URL form | Result |
+|---|---|
+| `/prototypes/popbar/` | ✅ works in dev and on Vercel |
+| `/prototypes/popbar/index.html` | ❌ 404 on Vercel — it strips `/index.html` |
+| `/prototypes/popbar` | ❌ loads, but renders **unstyled**: the handoff's relative paths (`popbar.css`, `assets/logo.png`) resolve against `/prototypes/` instead of `/prototypes/popbar/` |
+| bare folder, default config | ❌ 404 under `next dev`, which won't resolve a public/ directory to its index |
+
+Two pieces of config make the one good form work everywhere, both in
+`next.config.ts`: `trailingSlash: true` stops Vercel stripping the slash, and a
+dev-only rewrite makes `next dev` resolve the folder. The registry test enforces
+the format.
+
+Verify with a **render**, not a status code — the unstyled failure above returns 200.
+
 ## Handoff folder rules
 
 - Rename the entry file to `index.html` so the URL is a clean `/prototypes/<slug>/`.
