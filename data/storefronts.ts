@@ -23,9 +23,9 @@ export type Storefront = {
   thumbnail: string;
   /**
    * Static handoff served verbatim, or null if this storefront never had one.
-   * Points at the index.html explicitly: neither `next dev` nor `next start`
-   * resolves a public/ directory to its index file, so a bare folder URL 404s
-   * locally even though Vercel would serve it. The explicit path works everywhere.
+   * Extensionless and with no trailing slash (`/prototypes/popbar`) — the only
+   * form Vercel serves. A dev-only rewrite in next.config.ts makes the same URL
+   * resolve under `next dev`. See that file for the full reasoning.
    */
   prototypePath: string | null;
   /** Set this to promote the storefront to live. */
@@ -71,7 +71,7 @@ export const STOREFRONTS: Storefront[] = [
     tagline: "Artisanal ice creams",
     vertical: "Ice-cream e-commerce",
     thumbnail: "/thumbs/popbar.webp",
-    prototypePath: "/prototypes/popbar/index.html",
+    prototypePath: "/prototypes/popbar",
     liveUrl: null,
     poster: "linear-gradient(140deg, #E21B57 0%, #B3164A 50%, #88186E 100%)",
     accent: "#C10E45",
@@ -83,7 +83,7 @@ export const STOREFRONTS: Storefront[] = [
     tagline: "Specialty coffee, delivered",
     vertical: "Coffee ordering",
     thumbnail: "/thumbs/down-south.webp",
-    prototypePath: "/prototypes/down-south/index.html",
+    prototypePath: "/prototypes/down-south",
     liveUrl: null,
     poster: "linear-gradient(140deg, #8AC2FF 0%, #5387C0 50%, #376AA0 100%)",
     accent: "#2F6398",

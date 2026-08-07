@@ -37,19 +37,19 @@ test("every card has something to open", () => {
   }
 });
 
-test("every prototype points at an index.html that exists", () => {
+test("every prototype resolves to an index.html that exists", () => {
   for (const s of STOREFRONTS) {
     if (s.prototypePath === null) continue;
 
-    // The explicit index.html is required: a bare folder URL 404s under
-    // `next dev`/`next start`, which would hide the break until a pitch.
+    // Extensionless, no trailing slash — the only form Vercel serves. Appending
+    // /index.html here mirrors how Vercel and the dev rewrite both resolve it.
     assert.equal(
       s.prototypePath,
-      `/prototypes/${s.slug}/index.html`,
-      `"${s.slug}" prototypePath must be /prototypes/${s.slug}/index.html`,
+      `/prototypes/${s.slug}`,
+      `"${s.slug}" prototypePath must be /prototypes/${s.slug} (no extension, no trailing slash)`,
     );
 
-    const file = resolveInPublic(s.prototypePath);
+    const file = resolveInPublic(`${s.prototypePath}/index.html`);
     assert.ok(
       existsSync(file),
       `"${s.slug}" prototype is missing: ${file} — rename the handoff entry file to index.html`,
