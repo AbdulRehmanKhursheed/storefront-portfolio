@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Popbar — Artisanal Ice Creams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&amp;family=Dongle:wght@400;700&amp;family=Piedra&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="popbar.css">
+<link rel="stylesheet" href="order.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<script src="image-slot.js"></script>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" data-screen-label="Navigation">
+  <a href="#hero"><img class="nav-logo" src="assets/logo.png" alt="Popbar"></a>
+  <span class="nav-credit"><span class="by">INNOVATION BY</span><span class="cow">PURPLE COW</span></span>
+  <button class="nav-search" id="navSearch" aria-label="Search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+  </button>
+  <button class="nav-icon" id="navCart" aria-label="Cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle><path d="M2 3h3l2.6 12.4a1 1 0 0 0 1 .6h9.7a1 1 0 0 0 1-.7L22 7H6"></path></svg>
+    <span class="nav-cart-badge" id="navCartBadge" hidden>0</span>
+  </button>
+  <button class="nav-icon" id="navProfile" aria-label="Profile">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"></path></svg>
+  </button>
+  <button class="nav-burger" id="navToggle" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+  </button>
+  <nav class="nav-tabs" id="navTabs">
+    <button class="drawer-close" id="navClose" aria-label="Close menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    <a class="nav-tab active" href="#hero">Home</a>
+    <a class="nav-tab" href="#faqs">FAQs</a>
+    <div class="nav-drop">
+      <a class="nav-tab" href="#shop">Products
+        <svg class="chev" width="12" height="12" viewBox="0 0 8 5" fill="currentColor"><path d="M.3.3a1 1 0 0 1 1.4 0L3.8 2.4 5.9.3a1 1 0 1 1 1.4 1.4L4.5 4.5a1 1 0 0 1-1.4 0L.3 1.7a1 1 0 0 1 0-1.4Z"></path></svg>
+      </a>
+      <div class="nav-menu">
+        <a class="nav-sub" href="#category/popbar">Pop Bars</a>
+        <a class="nav-sub" href="#category/tub">Pop Bar Tubs</a>
+        <a class="nav-sub" href="#category/iqf">IQF Fruits &amp; Vegetables</a>
+      </div>
+    </div>
+    <a class="nav-tab" href="#stores">Store location</a>
+  </nav>
+  <button class="nav-area" id="navArea" aria-label="Delivery area">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+    <span id="navAreaTxt">Select area</span>
+  </button>
+</header>
+<div class="nav-scrim" id="navScrim"></div>
+
+<!-- ============ ANNOUNCEMENT ============ -->
+<div class="announce home-only" data-screen-label="Announcement bar">
+  <div class="announce-track">
+    <span>Please note: Same-day delivery for orders we receive until 6:00 PM. Orders placed after 6:00 PM will be delivered the next day</span>
+    <span>Please note: Same-day delivery for orders we receive until 6:00 PM. Orders placed after 6:00 PM will be delivered the next day</span>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero home-only" id="hero" data-screen-label="Hero">
+  <h1 class="hero-title">
+    <span class="line">Your destination for</span>
+    <span class="line">premium, all-natural ice cream</span>
+  </h1>
+  <div class="hero-stage">
+    <div class="hero-ellipse"></div>
+    <div class="hero-row">
+      <div class="hero-pop" data-pop="ice" data-product="strawberry-raspberry" style="--i:0">
+        <div class="float">
+          <img decoding="async" src="assets/crop-pop-ice.png" alt="Strawberry Raspberry popbar">
+          <div class="pop-pill"><span>Strawberry Raspberry</span><svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h18M15 2l5 5-5 5"></path></svg></div>
+        </div>
+      </div>
+      <div class="hero-pop" data-pop="mix" data-product="mixed-berries" style="--i:1">
+        <div class="float">
+          <img decoding="async" src="assets/crop-pop-mix.png" alt="Mixed Berries popbar">
+          <div class="pop-pill"><span>Mixed Berries</span><svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h18M15 2l5 5-5 5"></path></svg></div>
+        </div>
+      </div>
+      <div class="hero-pop" data-pop="falsa" data-product="falsa" style="--i:2">
+        <div class="float">
+          <img decoding="async" src="assets/crop-pop-falsa.png" alt="Falsa popbar">
+          <div class="pop-pill"><span>Falsa</span><svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h18M15 2l5 5-5 5"></path></svg></div>
+        </div>
+      </div>
+      <div class="hero-pop" data-pop="choc" data-product="chocolate-brownie" style="--i:3">
+        <div class="float">
+          <img decoding="async" src="assets/crop-pop-choc.png" alt="Chocolate Brownie popbar">
+          <div class="pop-pill"><span>Chocolate Brownie</span><svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h18M15 2l5 5-5 5"></path></svg></div>
+        </div>
+      </div>
+      <div class="hero-pop" data-pop="orange" data-product="mango" style="--i:4">
+        <div class="float">
+          <img decoding="async" src="assets/crop-pop-orange.png" alt="Mango popbar">
+          <div class="pop-pill"><span>Mango</span><svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h18M15 2l5 5-5 5"></path></svg></div>
+        </div>
+      </div>
+      <div class="hero-pop" data-pop="strawlime" data-product="blackberry-raspberry" style="--i:5">
+        <div class="float">
+          <img decoding="async" src="assets/crop-pop-strawlime.png" alt="Blackberry Raspberry popbar">
+          <div class="pop-pill"><span>Blackberry Raspberry</span><svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h18M15 2l5 5-5 5"></path></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-actions">
+    <button class="hero-scroll" id="scrollFlavours">
+      SCROLL TO FLAVOURS
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+    </button>
+    <button class="hero-search" id="searchBtn" aria-label="Search flavours">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ============ TRAVELER (leftmost hero pop flies to the about fold) ============ -->
+<div id="traveler" aria-hidden="true"><img src="assets/crop-pop-ice.png" alt=""></div>
+
+<!-- ============ ABOUT CAROUSEL (compact) ============ -->
+<section class="about home-only" id="story" data-screen-label="Our story">
+  <div class="about-viewport">
+    <div class="about-track" id="aboutTrack">
+      <div class="about-slide">
+      <div class="about-img">
+        <div class="masked-pop" id="aboutPop">
+          <img class="pop-base" src="assets/crop-pop-choc.png" alt="Popbar flavour">
+          <div class="flav-skin on" data-skin style="background-image:url('assets/ing-falsa.jpg')"></div>
+          <div class="flav-skin" data-skin></div>
+        </div>
+      </div>
+        <div class="about-copy">
+          <h2>It all started with a handful of berries...</h2>
+          <p>While working with fresh berries at Wholesome Foods, inspiration struck. These vibrant berries deserved a unique presentation. Thus, PopBar was born&mdash;to craft all-natural ice cream that celebrates rich ingredients.</p>
+        </div>
+      </div>
+      <div class="about-slide about-slide--promo">
+        <div class="promo-card">
+          <img loading="lazy" decoding="async" src="assets/banner-choc.jpg" alt="Matcha ice cream bar — new on the menu">
+        </div>
+        <div class="promo-products">
+          <article class="mini-sku" data-product="matcha">
+            <span class="mini-thumb"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/1755121388813_ee166ef0-5ec9-488a-ba58-cab51011aa3e.jpg?v=1755121488&width=200" alt="Matcha" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></span>
+            <span class="mini-info"><span class="mini-name">Matcha</span><span class="mini-price">Rs. 348.00</span></span>
+            <span class="mini-dot" style="background-image:url('assets/flav-matcha.jpg')"></span>
+            <button class="mini-add" data-add="matcha" aria-label="Add Matcha to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button>
+          </article>
+        </div>
+      </div>
+      <div class="about-slide about-slide--promo">
+        <div class="promo-card">
+          <img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/Premium_Artisanal_Ice_Creams.jpg?v=1726132954&width=1600" alt="Premium artisanal ice creams" onerror="this.onerror=null;this.src='assets/banner-choc.jpg'">
+        </div>
+        <div class="promo-products">
+          <article class="mini-sku" data-product="chocolate-brownie">
+            <span class="mini-thumb"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/6.png?v=1724148726&width=200" alt="Chocolate Brownie Tub" onerror="this.onerror=null;this.src='assets/tub-choc.png'"></span>
+            <span class="mini-info"><span class="mini-name">Chocolate Brownie Tub</span><span class="mini-price">From Rs. 360.00</span></span>
+            <span class="mini-dot" style="background-image:url('assets/ing-brownie.jpg')"></span>
+            <button class="mini-add" data-add="chocolate-brownie" aria-label="Add Chocolate Brownie Tub to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button>
+          </article>
+          <article class="mini-sku" data-product="strawberry-raspberry">
+            <span class="mini-thumb"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/3.png?v=1724148735&width=200" alt="Strawberry Raspberry Tub" onerror="this.onerror=null;this.src='assets/tub-choc.png'"></span>
+            <span class="mini-info"><span class="mini-name">Strawberry Raspberry Tub</span><span class="mini-price">From Rs. 350.00</span></span>
+            <span class="mini-dot mini-dot--2" style="background-image:url('assets/ing-strawberry.jpg')"><i style="background-image:url('assets/ing-raspberry.jpg')"></i></span>
+            <button class="mini-add" data-add="strawberry-raspberry" aria-label="Add Strawberry Raspberry Tub to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="about-arrow about-prev" id="aboutPrev" aria-label="Previous"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></button>
+  <button class="about-arrow about-next" id="aboutNext" aria-label="Next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></button>
+  <div class="about-dots" id="aboutDots"><span class="active"></span><span></span><span></span></div>
+</section>
+
+<!-- ============ SHOP ============ -->
+<section class="shop home-only" id="shop" data-screen-label="Shop now">
+  <div class="shop-header">
+    <h2>shop now</h2>
+    <span class="swoosh"></span>
+  </div>
+  <div class="shop-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+    <input type="text" id="shopSearch" placeholder="Search icecreams, flavour" autocomplete="off" aria-label="Search products">
+  </div>
+  <div class="shop-body">
+    <aside class="shop-side">
+      <p class="label">Choose type</p>
+      <div class="type-row">
+        <button class="type-chip active" data-type="all"><span class="ticons"><span class="fi fi-lolly"></span><span class="fi fi-cup"></span></span>All</button>
+        <button class="type-chip" data-type="popbar"><span class="ticons"><span class="fi fi-lolly"></span></span>Pop Bars</button>
+        <button class="type-chip" data-type="tub"><span class="ticons"><span class="fi fi-cup"></span></span>Tubs</button>
+        <button class="type-chip" data-type="iqf"><span class="ticons"><span class="fi fi-snow"></span></span>IQF Fruits</button>
+      </div>
+      <p class="label">Choose flavour</p>
+      <div class="flav-grid" id="flavGrid">
+        <button class="flav active" data-key="all" style="--d:0.050s"><span class="swatch" style="background-image:url('assets/fl-raspberry.jpg'); background-position:50% 50%;"></span><span><span class="fname">All flavours</span><span class="ficons" data-icons="cup,flake,pop"></span></span></button>
+        <button class="flav" data-key="chocolate" style="--d:0.085s"><span class="swatch" style="background-image:url('assets/fl-chocolate.jpg'); background-position:50% 50%;"></span><span><span class="fname">Chocolate</span><span class="ficons" data-icons="cup,pop"></span></span></button>
+        <button class="flav" data-key="mango" style="--d:0.120s"><span class="swatch" style="background-image:url('assets/fl-mango.jpg'); background-position:50% 50%;"></span><span><span class="fname">Mango</span><span class="ficons" data-icons="cup,pop"></span></span></button>
+        <button class="flav" data-key="berry" style="--d:0.155s"><span class="swatch" style="background-image:url('assets/fl-berrymix.jpg'); background-position:50% 50%;"></span><span><span class="fname">Berry Mix</span><span class="ficons" data-icons="flake,pop"></span></span></button>
+        <button class="flav" data-key="blueberry" style="--d:0.190s"><span class="swatch" style="background-image:url('assets/fl-blueberry.jpg'); background-position:50% 50%;"></span><span><span class="fname">Blueberry</span><span class="ficons" data-icons="cup,flake,pop"></span></span></button>
+        <button class="flav" data-key="coffee" style="--d:0.225s"><span class="swatch" style="background-image:url('assets/fl-coffee.jpg'); background-position:50% 50%;"></span><span><span class="fname">Coffee</span><span class="ficons" data-icons="flake,pop"></span></span></button>
+        <button class="flav" data-key="strawberry" style="--d:0.260s"><span class="swatch" style="background-image:url('assets/fl-strawberry.jpg'); background-position:50% 50%;"></span><span><span class="fname">Strawberry</span><span class="ficons" data-icons="flake,pop"></span></span></button>
+        <button class="flav" data-key="falsa" style="--d:0.295s"><span class="swatch" style="background-image:url('assets/fl-falsa.jpg'); background-position:50% 50%;"></span><span><span class="fname">Falsa</span><span class="ficons" data-icons="pop"></span></span></button>
+        <button class="flav" data-key="pomegranate" style="--d:0.330s"><span class="swatch" style="background-image:url('assets/fl-pomegranate.jpg'); background-position:50% 50%;"></span><span><span class="fname">Pomegranate</span><span class="ficons" data-icons="pop"></span></span></button>
+        <button class="flav" data-key="honey" style="--d:0.365s"><span class="swatch" style="background-image:url('assets/fl-honey.jpg'); background-position:50% 50%;"></span><span><span class="fname">Honeycomb</span><span class="ficons" data-icons="pop"></span></span></button>
+        <button class="flav" data-key="matcha" style="--d:0.400s"><span class="swatch" style="background-image:url('assets/fl-matcha.jpg'); background-position:50% 50%;"></span><span><span class="fname">Matcha</span><span class="ficons" data-icons="pop"></span></span></button>
+        <button class="flav" data-key="lemon" style="--d:0.435s"><span class="swatch" style="background-image:url('assets/fl-lemon.jpg'); background-position:50% 50%;"></span><span><span class="fname">Lemon</span><span class="ficons" data-icons="cup,flake,pop"></span></span></button>
+        <button class="flav" data-key="orange" style="--d:0.470s"><span class="swatch" style="background-image:url('assets/fl-orange.jpg'); background-position:50% 50%;"></span><span><span class="fname">Orange</span><span class="ficons" data-icons="pop"></span></span></button>
+        <button class="flav" data-key="raspberry" style="--d:0.505s"><span class="swatch" style="background-image:url('assets/fl-raspberry.jpg'); background-position:50% 50%;"></span><span><span class="fname">Raspberry</span><span class="ficons" data-icons="flake,pop"></span></span></button>
+        <button class="flav" data-key="chai" style="--d:0.540s"><span class="swatch" style="background-image:url('assets/fl-chai.jpg'); background-position:50% 50%;"></span><span><span class="fname">Chai-biscuit</span><span class="ficons" data-icons="cup,pop"></span></span></button>
+      </div>
+    </aside>
+    <div class="sku-wrap">
+      <div class="sku-grid" id="skuGrid">
+        <article class="sku" data-flavs="chocolate" data-type="popbar" style="--d:0.08s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/file_2.png?v=1724148388&width=600" alt="Premium Belgian Chocolate Bar" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Premium Belgian Chocolate Bar</span><span class="sku-dots"><span style="background-image:url('assets/ing-brownie.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">Rs. 435.00</span></span><button class="sku-add" aria-label="Add Premium Belgian Chocolate Bar to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="berry" data-type="popbar" style="--d:0.13s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/BlackBerryrasberry_1.png?v=1724147821&width=600" alt="Blackberry Raspberry" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Blackberry Raspberry</span><span class="sku-dots"><span style="background-image:url('assets/ing-raspberry.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">Rs. 196.00</span><span class="sku-was">Rs. 245.00</span></span><button class="sku-add" aria-label="Add Blackberry Raspberry to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="blueberry" data-type="popbar" style="--d:0.17s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/BlueBerry.png?v=1724147854&width=600" alt="Blueberry Ice Cream Bar" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Blueberry Ice Cream Bar</span><span class="sku-dots"><span style="background-image:url('assets/ing-blueberry.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">Rs. 300.00</span><span class="sku-was">Rs. 375.00</span></span><button class="sku-add" aria-label="Add Blueberry Ice Cream Bar to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="coffee" data-type="popbar" style="--d:0.22s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/CafeMocha.png?v=1724147877&width=600" alt="Cafe Mocha Bar" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Cafe Mocha Bar</span><span class="sku-dots"><span style="background-image:url('assets/ing-coffee.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">Rs. 348.00</span><span class="sku-was">Rs. 435.00</span></span><button class="sku-add" aria-label="Add Cafe Mocha Bar to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="falsa" data-type="popbar" style="--d:0.26s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/file.png?v=1724148229&width=600" alt="Falsa" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Falsa</span><span class="sku-dots"><span style="background-image:url('assets/ing-falsa.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">Rs. 196.00</span><span class="sku-was">Rs. 245.00</span></span><button class="sku-add" aria-label="Add Falsa to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="mango" data-type="popbar" style="--d:0.30s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/Mango.png?v=1724147807&width=600" alt="Mango" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Mango</span><span class="sku-dots"><span style="background-image:url('assets/ing-mango.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">Rs. 196.00</span><span class="sku-was">Rs. 245.00</span></span><button class="sku-add" aria-label="Add Mango to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="mango" data-type="popbar" style="--d:0.35s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/file_3.png?v=1724148512&width=600" alt="Mango Ice Cream Bar" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Mango Ice Cream Bar</span><span class="sku-dots"><span style="background-image:url('assets/ing-mango.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">Rs. 260.00</span><span class="sku-was">Rs. 325.00</span></span><button class="sku-add" aria-label="Add Mango Ice Cream Bar to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="matcha" data-type="popbar" style="--d:0.40s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/1755121388813_ee166ef0-5ec9-488a-ba58-cab51011aa3e.jpg?v=1755121488&width=600" alt="Matcha" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <span class="sku-new">NEW</span>
+            <div class="sku-name"><span>Matcha</span><span class="sku-dots"><span style="background-image:url('assets/flav-matcha.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">Rs. 348.00</span><span class="sku-was">Rs. 435.00</span></span><button class="sku-add" aria-label="Add Matcha to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="berry" data-type="popbar" style="--d:0.44s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/file_1_3b271cfc-f984-45f0-a69d-09cb4f611441.png?v=1724839958&width=600" alt="Mixed Berries" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Mixed Berries</span><span class="sku-dots"><span style="background-image:url('assets/ing-raspberry.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">Rs. 196.00</span><span class="sku-was">Rs. 245.00</span></span><button class="sku-add" aria-label="Add Mixed Berries to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="pomegranate" data-type="popbar" style="--d:0.48s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/MixedBarries_24558826-4362-44ae-837f-d6c63af5fd46.png?v=1724839950&width=600" alt="Pure Pomegranate" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Pure Pomegranate</span><span class="sku-dots"><span style="background-image:url('assets/ing-pomegranate.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">Rs. 245.00</span></span><button class="sku-add" aria-label="Add Pure Pomegranate to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="strawberry,berry" data-type="tub" style="--d:0.53s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/3.png?v=1724148735&width=600" alt="Strawberry Raspberry Tub" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Strawberry Raspberry Tub</span><span class="sku-dots"><span style="background-image:url('assets/ing-strawberry.jpg')"></span><span style="background-image:url('assets/ing-raspberry.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">From Rs. 350.00</span></span><button class="sku-add" aria-label="Add Strawberry Raspberry Tub to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="chocolate" data-type="tub" style="--d:0.57s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/6.png?v=1724148726&width=600" alt="Chocolate Brownie Tub" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Chocolate Brownie Tub</span><span class="sku-dots"><span style="background-image:url('assets/ing-brownie.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">From Rs. 360.00</span><span class="sku-was">Rs. 450.00</span></span><button class="sku-add" aria-label="Add Chocolate Brownie Tub to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="coffee" data-type="tub" style="--d:0.62s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/4.png?v=1724148730&width=600" alt="Coffee Tub" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Coffee Tub</span><span class="sku-dots"><span style="background-image:url('assets/ing-coffee.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">From Rs. 360.00</span><span class="sku-was">Rs. 450.00</span></span><button class="sku-add" aria-label="Add Coffee Tub to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="honey" data-type="tub" style="--d:0.66s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/5.png?v=1724148719&width=600" alt="Honeycomb Tub" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Honeycomb Tub</span><span class="sku-dots"><span style="background-image:url('assets/ing-honey.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">From Rs. 280.00</span><span class="sku-was">Rs. 350.00</span></span><button class="sku-add" aria-label="Add Honeycomb Tub to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="mango" data-type="tub" style="--d:0.71s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/1.png?v=1724148722&width=600" alt="Mango Tub" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Mango Tub</span><span class="sku-dots"><span style="background-image:url('assets/ing-mango.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">From Rs. 280.00</span><span class="sku-was">Rs. 350.00</span></span><button class="sku-add" aria-label="Add Mango Tub to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="blueberry" data-type="tub" style="--d:0.75s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/7.png?v=1732882843&width=600" alt="Blueberry Ice Cream Tub" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Blueberry Ice Cream Tub</span><span class="sku-dots"><span style="background-image:url('assets/ing-blueberry.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">From Rs. 280.00</span><span class="sku-was">Rs. 350.00</span></span><button class="sku-add" aria-label="Add Blueberry Ice Cream Tub to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="berry" data-type="iqf" style="--d:0.80s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/BlackBerries-min.png?v=1724685507&width=600" alt="Blackberries (IQF)" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Blackberries (IQF)</span><span class="sku-dots"><span style="background-image:url('assets/ing-raspberry.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">From Rs. 1,320.00</span><span class="sku-was">Rs. 1,650.00</span></span><button class="sku-add" aria-label="Add Blackberries (IQF) to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+        <article class="sku" data-flavs="blueberry" data-type="iqf" style="--d:0.84s">
+          <div class="sku-img"><img loading="lazy" decoding="async" src="https://popbar.com.pk/cdn/shop/files/Blueberries-min.png?v=1724685509&width=600" alt="Blueberries (IQF)" onerror="this.onerror=null;this.src='assets/pop-choc.png'"></div>
+          <div class="sku-meta">
+            <div class="sku-name"><span>Blueberries (IQF)</span><span class="sku-dots"><span style="background-image:url('assets/ing-blueberry.jpg')"></span></span></div>
+            <div class="sku-price-row"><span class="sku-prices"><span class="sku-price">From Rs. 1,320.00</span><span class="sku-was">Rs. 1,650.00</span></span><button class="sku-add" aria-label="Add Blueberries (IQF) to cart"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEALS ============ -->
+<section class="deals home-only" id="deals" data-screen-label="Deals">
+  <div class="deals-head"><h2>deals to drool over</h2></div>
+  <div class="deals-rail" id="dealsRail">
+    <article class="deal-card">
+      <div class="deal-drip"></div>
+      <img class="deal-art-pop" decoding="async" src="assets/pop-choc.png" alt="">
+      <img class="deal-art-tub" decoding="async" src="assets/tub-choc.png" alt="Chocolate brownie tub">
+      <div class="deal-copy">
+        <div class="t1">CHOCOLATE</div>
+        <div class="t2">FANTASY</div>
+        <div class="deal-check"><span class="box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4.2 3.6 6.8 9 1.2"></path></svg></span>1 Belgian Chocolate Popbar</div>
+        <div class="deal-check"><span class="box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4.2 3.6 6.8 9 1.2"></path></svg></span>1 Chocolate Brownie Tub<span class="ml">475 ML</span></div>
+        <div class="deal-price">
+          <span class="now">RS. 1,450</span>
+          <span class="meta"><span class="save">SAVE RS. 325</span><span class="was">RS. 1,775</span></span>
+        </div>
+        <button class="btn-pill deal-add">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle><path d="M2 3h2.5l2.6 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 7H6"></path></svg>
+          ADD TO CART
+        </button>
+      </div>
+    </article>
+    <article class="deal-card">
+      <div class="deal-drip"></div>
+      <img class="deal-art-pop" decoding="async" src="assets/pop-choc.png" alt="">
+      <img class="deal-art-tub" decoding="async" src="assets/tub-choc.png" alt="Chocolate brownie tub">
+      <div class="deal-copy">
+        <div class="t1">CHOCOLATE</div>
+        <div class="t2">FANTASY</div>
+        <div class="deal-check"><span class="box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4.2 3.6 6.8 9 1.2"></path></svg></span>1 Belgian Chocolate Popbar</div>
+        <div class="deal-check"><span class="box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4.2 3.6 6.8 9 1.2"></path></svg></span>1 Chocolate Brownie Tub<span class="ml">475 ML</span></div>
+        <div class="deal-price">
+          <span class="now">RS. 1,450</span>
+          <span class="meta"><span class="save">SAVE RS. 325</span><span class="was">RS. 1,775</span></span>
+        </div>
+        <button class="btn-pill deal-add">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle><path d="M2 3h2.5l2.6 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 7H6"></path></svg>
+          ADD TO CART
+        </button>
+      </div>
+    </article>
+  </div>
+  <div class="deals-nav">
+    <button class="deal-arrow" id="dealPrev" aria-label="Previous deal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></button>
+    <span class="deal-dot active"></span>
+    <span class="deal-dot"></span>
+    <button class="deal-arrow" id="dealNext" aria-label="Next deal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></button>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer home-only" id="footer" data-screen-label="Footer">
+  <div class="half-l"></div>
+  <div class="half-r"></div>
+  <nav class="footer-links">
+    <a href="#faqs">FAQs</a>
+    <a href="#deals">Deals</a>
+    <a href="#shop">Products</a>
+    <a href="#stores">Store location</a>
+  </nav>
+  <div class="footer-brand">
+    <div class="big">POP BAR</div>
+    <div class="sub">ARTISANAL ICE CREAMS</div>
+  </div>
+  <div class="footer-contact">
+    <p>To place your orders call or Whatsapp us on</p>
+    <p class="phone">+92 326 8331643</p>
+    <div class="footer-social">
+      <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"></path></svg></a>
+      <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="3.6"></circle><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"></circle></svg></a>
+    </div>
+  </div>
+  <form class="subscribe" id="subscribe">
+    <input type="email" placeholder="Subscribe to our email list" aria-label="Email">
+    <button class="btn-pill" type="submit"><span class="sub-label">SUBSCRIBE</span></button>
+  </form>
+</footer>
+
+
+<!-- ============ ROUTED VIEWS ============ -->
+<main id="detailView" class="view"></main>
+<main id="checkoutView" class="view"></main>
+<main id="orderView" class="view"></main>
+<main id="storesView" class="view"></main>
+<main id="categoryView" class="view"></main>
+<main id="faqsView" class="view"></main>
+
+<!-- ============ SEARCH OVERLAY ============ -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-panel" role="dialog" aria-label="Search">
+    <div class="search-head">
+      <svg class="search-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+      <input id="searchInput" type="text" placeholder="Search flavours, tubs, fruits…" autocomplete="off">
+      <button class="search-close" id="searchClose" aria-label="Close search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<!-- ============ CART MODAL ============ -->
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-panel" role="dialog" aria-label="My cart">
+    <button class="cart-close" id="cartClose" aria-label="Close cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    <h2>My cart</h2>
+    <div class="free-bar" id="freeBar"><i></i></div>
+    <p class="free-note" id="freeNote"></p>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot" id="cartFoot">
+      <div class="cart-subtotal"><span>Subtotal</span><span class="amt">Rs. 0</span></div>
+      <button class="btn-block" id="cartCheckout">CHECKOUT</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DELIVERY AREA MODAL ============ -->
+<div class="area-overlay" id="areaOverlay">
+  <div class="area-panel" role="dialog" aria-label="Select delivery area" style="flex-wrap: wrap; display: flex">
+    <img class="area-logo" src="assets/logo.png" alt="Popbar">
+    <button class="area-fetch" id="areaFetch" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path><circle cx="12" cy="12" r="8"></circle></svg>
+    <span id="areaFetchTxt">Use Current Location</span>
+    </button>
+    <label class="area-label" for="areaSelect">Select City / Region</label>
+    <div class="area-select-wrap">
+      <select id="areaSelect">
+        <option value="" selected disabled>Select City / Region</option>
+        <option>Karachi</option>
+        <option>Lahore</option>
+        <option>Islamabad</option>
+        <option>Rawalpindi</option>
+        <option>Faisalabad</option>
+        <option>Multan</option>
+        <option>Hyderabad</option>
+      </select>
+      <svg class="area-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+    </div>
+    <button class="area-go" id="areaGo" disabled>Select</button>
+  </div>
+</div>
+
+<!-- ============ LOADER ============ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-pop">
+    <div class="loader-ring"></div>
+    <img class="lp-img" src="assets/pop-ice.png" alt="">
+    <div class="loader-drips"><span></span><span></span><span></span></div>
+  </div>
+  <div class="loader-text" id="loaderText">Scooping it up…</div>
+  <div class="loader-bar" id="loaderBar"><i></i></div>
+</div>
+
+<!-- ============ STICKY CART DOCK ============ -->
+<div class="cart-dock" id="cartDock" aria-hidden="true">
+  <button class="cart-bar" id="cartBtn">
+    <span class="cart-bar-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle><path d="M2 3h2.5l2.6 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 7H6"></path></svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </span>
+    <span class="cart-bar-label">YOUR CART</span>
+    <span class="cart-bar-total"><span class="cart-empty" id="cartEmpty">No items yet</span><span class="cart-sum" id="cartSum">Rs. 0.00</span></span>
+  </button>
+  <button class="dock-search" id="dockSearch" aria-label="Search flavours">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+  </button>
+</div>
+
+<!-- ============ WHATSAPP FLOAT ============ -->
+<a class="wa-float" href="https://wa.me/923268331643" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <img src="assets/wa.png" alt="WhatsApp">
+</a>
+
+<div id="tweaks-root"></div>
+
+<script src="popbar.js"></script>
+<script src="order.js"></script>
+
+<!-- Tweaks panel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "motion": 1,
+    "cycleSec": 2.8,
+    "heroBg": "#F9EDE3"
+  }/*EDITMODE-END*/;
+
+  function TweaksApp() {
+    const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+    React.useEffect(() => {
+      document.documentElement.style.setProperty("--motion", t.motion);
+      document.documentElement.style.setProperty("--hero-bg", t.heroBg);
+      window.dispatchEvent(new CustomEvent("popbar-tweaks", { detail: { motion: t.motion, cycleSec: t.cycleSec } }));
+    }, [t]);
+    return (
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="Motion" />
+        <TweakSlider label="Motion intensity" value={t.motion} min={0.2} max={1.6} step={0.1}
+                     onChange={(v) => setTweak("motion", v)} />
+        <TweakSlider label="Flavour cycle" value={t.cycleSec} min={1.5} max={6} step={0.1} unit="s"
+                     onChange={(v) => setTweak("cycleSec", v)} />
+        <TweakSection label="Theme" />
+        <TweakColor label="Hero background" value={t.heroBg}
+                    options={["#F7E8DB", "#F9EDE3", "#F9EBF6", "#FBE3EA"]}
+                    onChange={(v) => setTweak("heroBg", v)} />
+      </TweaksPanel>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("tweaks-root")).render(<TweaksApp />);
+</script>
+</body>
+</html>

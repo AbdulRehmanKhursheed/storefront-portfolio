@@ -1,0 +1,46 @@
+/* ===========================================================================
+   Down South — Effects: radii, shadows, borders, motion, textures
+   Vibe: rounded & bubbly (echoes the chunky logo), soft warm shadows,
+   confident black outlines, breezy motion.
+   =========================================================================== */
+:root {
+  /* Corner radii — generous & rounded */
+  --radius-xs:  6px;
+  --radius-sm:  10px;
+  --radius-md:  16px;
+  --radius-lg:  24px;
+  --radius-xl:  36px;
+  --radius-pill: 999px;   /* buttons, chips, straws */
+
+  /* Borders — bold outline language */
+  --border-hairline: 1px solid var(--border-subtle);
+  --border-bold:     2.5px solid var(--ds-ink);
+  --border-bold-w:   2.5px;
+
+  /* Shadows — soft, warm, low-contrast (sun-bleached) */
+  --shadow-sm:  0 1px 2px rgba(58, 36, 23, 0.08);
+  --shadow-md:  0 6px 18px rgba(58, 36, 23, 0.10);
+  --shadow-lg:  0 18px 44px rgba(58, 36, 23, 0.14);
+  --shadow-pop: 4px 4px 0 var(--ds-ink);   /* playful hard offset shadow */
+
+  /* Motion — breezy, slightly springy */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);    /* @kind other */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* @kind other */
+  --dur-fast:    120ms;  /* @kind other */
+  --dur:         220ms;  /* @kind other */
+  --dur-slow:    420ms;  /* @kind other */
+
+  /* Textures & patterns */
+  --texture-sand: url("../assets/textures/sand-grain.png");  /* @kind other */
+  --texture-beach-sand: url("../assets/textures/beach-sand.png");  /* @kind other */
+  /* yellow + white diagonal straw stripes */
+  /* vertical "beach-umbrella" stripes — soft cream + pale-sunlight bands.
+     Exact tones & geometry from the brand Figma (Frame 11): ~56px bands. */
+  --pattern-straw: repeating-linear-gradient(
+      90deg,
+      var(--ds-cream-warm) 0 56px,
+      var(--surface-sunlight) 56px 112px);
+  /* sunny radial glow for hero washes */
+  --glow-sun: radial-gradient(120% 90% at 50% -10%,
+      var(--ds-yellow-300) 0%, transparent 60%);
+}

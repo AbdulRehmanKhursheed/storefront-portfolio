@@ -1,0 +1,4 @@
+# The catalog contains concept designs for merchants who have not launched.
+# It is shared deliberately by link, never indexed.
+User-agent: *
+Disallow: /

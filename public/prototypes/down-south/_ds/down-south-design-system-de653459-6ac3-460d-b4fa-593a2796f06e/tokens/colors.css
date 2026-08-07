@@ -1,0 +1,117 @@
+/* ===========================================================================
+   Down South — Color tokens
+   Brand palette (brand book):
+     #fadc55  Mellow Yellow   — sunshine, optimism, energy (PRIMARY)
+     #8ac2ff  Ocean Breeze    — clear tropical water, freshness, relaxation
+     #d9b49d  Warm Sand       — driftwood / latte foam, grounding neutral
+     #000000  Midnight Palm   — contrast, elegance, bold definition (INK)
+   =========================================================================== */
+:root {
+  /* ---- Raw brand palette (= step 5 anchor of each ramp) ---- */
+  --ds-yellow: #fadc55;        /* Mellow Yellow  */
+  --ds-blue:   #8ac2ff;        /* Ocean Breeze   */
+  --ds-sand:   #d9b49d;        /* Warm Sand      */
+  --ds-ink:    #000000;        /* Midnight Palm  */
+
+  /* =========================================================================
+     OFFICIAL TONAL RAMPS (0 = white → 10 = darkest; step 5 = brand anchor).
+     Token number = step × 100 (e.g. step 1.5 → -150). These are canonical —
+     reconfirmed against the brand palette sheet, exact hex.
+     ========================================================================= */
+  /* Ocean Breeze */
+  --ds-blue-0:   #ffffff;
+  --ds-blue-50:  #f3f9ff;
+  --ds-blue-100: #e8f3ff;
+  --ds-blue-150: #dcedff;
+  --ds-blue-200: #d0e7ff;
+  --ds-blue-300: #b9daff;
+  --ds-blue-400: #a1ceff;
+  --ds-blue-500: #8ac2ff;   /* anchor */
+  --ds-blue-600: #6ea5df;
+  --ds-blue-700: #5387c0;
+  --ds-blue-800: #376aa0;
+  --ds-blue-850: #295b90;
+  --ds-blue-900: #1c4c81;
+  --ds-blue-950: #0e3e71;
+  --ds-blue-1000:#002f61;
+
+  /* Mellow Yellow */
+  --ds-yellow-0:   #ffffff;
+  --ds-yellow-50:  #fffcee;
+  --ds-yellow-100: #fef8dd;
+  --ds-yellow-150: #fef5cc;
+  --ds-yellow-200: #fdf1bb;
+  --ds-yellow-300: #fcea99;
+  --ds-yellow-400: #fbe377;
+  --ds-yellow-500: #fadc55;  /* anchor */
+  --ds-yellow-600: #d0b644;
+  --ds-yellow-700: #a59033;
+  --ds-yellow-800: #7b6b23;
+  --ds-yellow-850: #66581a;
+  --ds-yellow-900: #504512;
+  --ds-yellow-950: #3b3209;
+  --ds-yellow-1000:#261f01;
+
+  /* Warm Sand */
+  --ds-sand-0:   #fffefd;
+  --ds-sand-50:  #fbf8f5;
+  --ds-sand-100: #f7f0eb;
+  --ds-sand-150: #f4e9e2;
+  --ds-sand-200: #f0e1d8;
+  --ds-sand-300: #e8d2c4;
+  --ds-sand-400: #e1c3b1;
+  --ds-sand-500: #d9b49d;   /* anchor */
+  --ds-sand-600: #b99782;
+  --ds-sand-700: #997a67;
+  --ds-sand-800: #785d4c;
+  --ds-sand-850: #684f3f;
+  --ds-sand-900: #584031;
+  --ds-sand-950: #483224;
+  --ds-sand-1000:#382316;
+
+  --ds-cream:      #fbf7f0;    /* off-white paper base      */
+  --ds-cream-warm: #fefbee;    /* warm cream (stripe band)  */
+  --ds-white:      #ffffff;
+  --ds-ink-700:    #2b2722;    /* warm near-black           */
+  --ds-ink-500:    #6b645b;    /* muted brown-grey text     */
+
+  /* ---- Coffee accents (delicious-coffee visuals) ---- */
+  --ds-espresso:   #3a2417;    /* dark roast  */
+  --ds-latte:      #c9a07a;    /* iced latte  */
+  --ds-mocha:      #5a3a26;    /* mocha       */
+
+  /* =========================================================================
+     Semantic aliases — use THESE in components.
+     ========================================================================= */
+  --color-primary:        var(--ds-yellow);
+  --color-primary-press:  var(--ds-yellow-600);
+  --color-primary-wash:   var(--ds-yellow-100);
+  --color-accent:         var(--ds-blue);
+  --color-accent-wash:    var(--ds-blue-100);
+
+  --surface-base:    var(--ds-cream);     /* default page background */
+  --surface-card:    var(--ds-white);     /* cards / sheets          */
+  --surface-sand:    var(--ds-sand-100);  /* warm panel              */
+  --surface-ink:     var(--ds-ink);       /* dark sections / iced-coffee blocks */
+  --surface-sky:     var(--ds-blue-100);
+
+  /* Marketing scheme — pale sunlight ground + ocean-blue type (per palette sheet) */
+  --surface-sunlight: #fdf4cc;            /* pale yellow page background */
+  --text-main:        var(--ds-blue-800); /* #376aa0 — primary text on sunlight */
+  --text-caption:     var(--ds-blue-700); /* #5387c0 — captions / secondary    */
+
+  --text-primary:    var(--ds-ink);       /* headlines & body on light */
+  --text-muted:      var(--ds-ink-500);
+  --text-on-dark:    var(--ds-cream);     /* text on ink/photo         */
+  --text-on-primary: var(--ds-ink);       /* ink reads best on yellow  */
+
+  --border-subtle:   rgba(0, 0, 0, 0.10);
+  --border-strong:   var(--ds-ink);       /* bold outline language     */
+
+  --focus-ring:      var(--ds-blue-600);
+
+  /* status (kept on-brand, used sparingly) */
+  --color-success:   #1f8a5b;
+  --color-warning:   var(--ds-yellow-600);
+  --color-danger:    #d8563b;
+}

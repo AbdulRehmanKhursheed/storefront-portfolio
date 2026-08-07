@@ -1,0 +1,50 @@
+/* ===========================================================================
+   Down South — Fonts
+   ---------------------------------------------------------------------------
+   Display / headline : "Culonite" (the brand's CF Culo / CF Sulo display face).
+   Real font files supplied by the brand — shipped here as @font-face binaries.
+   Chunky, rounded, bubbly; for hooks, headlines, category titles — short bursts.
+
+   Body / UI : "Helvetica Neue" (brand book). Used via the native font stack so
+   Apple devices render true Helvetica Neue; Arial is the metric-compatible
+   fallback elsewhere. No webfont is shipped for body by design.
+   =========================================================================== */
+
+@font-face {
+  font-family: "Culonite";
+  src: url("../assets/fonts/Culonite-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Culonite";
+  src: url("../assets/fonts/Culonite-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Culonite";
+  src: url("../assets/fonts/Culonite-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Culonite";
+  src: url("../assets/fonts/Culonite-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Script / handwriting accent — "DesMontilles". Postcards, signatures,
+   handwritten notes. Use sparingly for warmth; never for body or UI. */
+@font-face {
+  font-family: "DesMontilles";
+  src: url("../assets/fonts/DesMontilles-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

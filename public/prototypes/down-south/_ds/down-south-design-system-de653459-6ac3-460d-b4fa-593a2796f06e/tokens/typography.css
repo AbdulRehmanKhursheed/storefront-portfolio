@@ -1,0 +1,40 @@
+/* ===========================================================================
+   Down South — Typography tokens
+   Pairing (brand book): CF Sulo display  +  Helvetica Neue body.
+     Headline  CF Sulo        75pt
+     Subtitle  Helvetica Bold 35pt
+     Body      Helvetica      18pt
+   Display uses the brand's real Culonite face (see fonts.css).
+   =========================================================================== */
+:root {
+  --font-display: "Culonite", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+  --font-script: "DesMontilles", "Segoe Script", cursive;
+
+  /* Weights */
+  --fw-body:        400;   /* @kind font */
+  --fw-body-bold:   700;   /* @kind font */
+  --fw-display:     700;   /* @kind font */
+  --fw-display-xb:  700;   /* @kind font */
+
+  /* Type scale (rem, 1rem = 16px) — generous, beachy, confident */
+  --fs-display-2xl: 5.25rem;  /* 84px hero hook        */
+  --fs-display-xl:  3.75rem;  /* 60px page headline    */
+  --fs-display-lg:  2.75rem;  /* 44px section title    */
+  --fs-display-md:  2rem;     /* 32px card title       */
+  --fs-title:       1.5rem;   /* 24px subtitle         */
+  --fs-body-lg:     1.25rem;  /* 20px lead body        */
+  --fs-body:        1.0625rem;/* 17px default body     */
+  --fs-small:       0.875rem; /* 14px caption          */
+  --fs-micro:       0.75rem;  /* 12px label / legal    */
+
+  /* Line heights */
+  --lh-tight:   1.02;   /* @kind other */
+  --lh-snug:    1.18;   /* @kind other */
+  --lh-normal:  1.55;   /* @kind other */
+
+  /* Letter spacing */
+  --ls-display: -0.01em;  /* @kind other */
+  --ls-label:    0.14em;  /* @kind other */
+  --ls-body:     0;       /* @kind other */
+}
