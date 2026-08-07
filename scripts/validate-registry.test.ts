@@ -41,15 +41,15 @@ test("every prototype resolves to an index.html that exists", () => {
   for (const s of STOREFRONTS) {
     if (s.prototypePath === null) continue;
 
-    // Extensionless, no trailing slash — the only form Vercel serves. Appending
-    // /index.html here mirrors how Vercel and the dev rewrite both resolve it.
+    // Trailing slash is required so the prototype's relative asset paths resolve
+    // against its own folder rather than the parent. See next.config.ts.
     assert.equal(
       s.prototypePath,
-      `/prototypes/${s.slug}`,
-      `"${s.slug}" prototypePath must be /prototypes/${s.slug} (no extension, no trailing slash)`,
+      `/prototypes/${s.slug}/`,
+      `"${s.slug}" prototypePath must be /prototypes/${s.slug}/ (trailing slash, no extension)`,
     );
 
-    const file = resolveInPublic(`${s.prototypePath}/index.html`);
+    const file = resolveInPublic(`${s.prototypePath}index.html`);
     assert.ok(
       existsSync(file),
       `"${s.slug}" prototype is missing: ${file} — rename the handoff entry file to index.html`,
