@@ -40,10 +40,12 @@ function StatusBadge({ live }: { live: boolean }) {
 function Chip({ children, outlined }: { children: string; outlined?: boolean }) {
   return (
     <span
+      // Neutral translucent fills rather than fixed greys, so chips sit correctly
+      // on whichever brand tint the card is using.
       className={
         outlined
-          ? "rounded-micro border border-line px-2.5 py-[5px] text-xs font-semibold text-muted"
-          : "rounded-micro bg-line-soft px-2.5 py-[5px] text-xs font-semibold text-ink-soft"
+          ? "rounded-micro border border-black/10 px-2.5 py-[5px] text-xs font-semibold text-muted"
+          : "rounded-micro bg-black/[.045] px-2.5 py-[5px] text-xs font-semibold text-ink-soft"
       }
     >
       {children}
@@ -59,7 +61,12 @@ export function StorefrontCard({ storefront }: { storefront: Storefront }) {
   const conceptLink = live ? storefront.prototypePath : null;
 
   return (
-    <article className="group border-line rounded-card bg-card shadow-amb ease-hover relative flex w-full flex-col overflow-hidden border transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-1 hover:border-transparent hover:shadow-fl focus-within:outline-[3px] focus-within:outline-offset-[3px] focus-within:outline-brand">
+    <article
+      // Each card carries its storefront's own colour, so the grid reads as four
+      // distinct brands rather than four identical white boxes.
+      style={{ background: storefront.tint }}
+      className="group border-line rounded-card shadow-amb ease-hover relative flex w-full flex-col overflow-hidden border transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-1 hover:border-transparent hover:shadow-fl focus-within:outline-[3px] focus-within:outline-offset-[3px] focus-within:outline-brand"
+    >
       <div
         className="relative flex aspect-16/10 items-end overflow-hidden p-[18px] text-white"
         style={{ background: storefront.poster }}
@@ -93,16 +100,16 @@ export function StorefrontCard({ storefront }: { storefront: Storefront }) {
         </div>
       </div>
 
-      <div className="border-line-soft mt-auto flex items-center justify-between gap-3 border-t px-[18px] py-3.5 text-sm font-bold">
+      <div className="mt-auto flex items-center justify-between gap-3 border-t border-black/5 px-[18px] py-3.5 text-sm font-bold">
         {/* The stretched ::after makes the whole card the primary click target
-            while keeping the markup a single, valid anchor. */}
+            while keeping the markup a single, valid anchor. The live/concept
+            signal stays on the badge, which frees this link to carry the brand. */}
         <a
           href={target}
           target="_blank"
           rel="noopener noreferrer"
-          className={`inline-flex items-center gap-2 after:absolute after:inset-0 focus-visible:outline-none ${
-            live ? "text-live" : "text-brand"
-          }`}
+          style={{ color: storefront.accent }}
+          className="inline-flex items-center gap-2 after:absolute after:inset-0 focus-visible:outline-none"
           aria-label={`${storefront.name} — opens the ${live ? "live site" : "design"} in a new tab`}
         >
           <span>{live ? "Open live site" : "Open prototype"}</span>

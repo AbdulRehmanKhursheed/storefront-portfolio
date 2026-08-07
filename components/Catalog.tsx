@@ -71,7 +71,9 @@ export function Catalog() {
         </div>
       </nav>
 
-      <main className="grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-[clamp(18px,2.4vw,28px)] px-[clamp(18px,5vw,56px)] pt-[clamp(26px,4vw,44px)] pb-20">
+      {/* Three columns on a laptop: previews stay large enough to read in a pitch
+          without any single card dominating the screen. */}
+      <main className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,380px),1fr))] gap-[clamp(18px,2.2vw,26px)] px-[clamp(18px,5vw,56px)] pt-[clamp(26px,4vw,44px)] pb-20">
         {visible.map((storefront) => (
           <StorefrontCard key={storefront.slug} storefront={storefront} />
         ))}

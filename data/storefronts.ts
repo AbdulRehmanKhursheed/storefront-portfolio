@@ -32,6 +32,10 @@ export type Storefront = {
   liveUrl: string | null;
   /** Gradient shown behind the cover while it loads. */
   poster: string;
+  /** The storefront's own colour, used for its card's action link. Must read on `tint`. */
+  accent: string;
+  /** Pale wash of `accent` used as the card background, so the grid reads as four brands. */
+  tint: string;
 };
 
 export const STOREFRONTS: Storefront[] = [
@@ -46,6 +50,8 @@ export const STOREFRONTS: Storefront[] = [
     prototypePath: null,
     liveUrl: "https://www.sirocpk.com/",
     poster: "linear-gradient(140deg, #C9803F 0%, #9C5A2C 55%, #6E3D22 100%)",
+    accent: "#A2571F",
+    tint: "#FBF3EB",
   },
   {
     slug: "if-you-like-cheese",
@@ -56,6 +62,8 @@ export const STOREFRONTS: Storefront[] = [
     prototypePath: null,
     liveUrl: "https://ifyoulikecheese.com/",
     poster: "linear-gradient(140deg, #E9C79A 0%, #C98A4B 50%, #7A4A24 100%)",
+    accent: "#9A6528",
+    tint: "#FCF6EB",
   },
   {
     slug: "popbar",
@@ -66,6 +74,8 @@ export const STOREFRONTS: Storefront[] = [
     prototypePath: "/prototypes/popbar/index.html",
     liveUrl: null,
     poster: "linear-gradient(140deg, #E21B57 0%, #B3164A 50%, #88186E 100%)",
+    accent: "#C10E45",
+    tint: "#FDEFF3",
   },
   {
     slug: "down-south",
@@ -76,6 +86,8 @@ export const STOREFRONTS: Storefront[] = [
     prototypePath: "/prototypes/down-south/index.html",
     liveUrl: null,
     poster: "linear-gradient(140deg, #8AC2FF 0%, #5387C0 50%, #376AA0 100%)",
+    accent: "#2F6398",
+    tint: "#EFF5FC",
   },
 ];
 

@@ -1,4 +1,5 @@
 import { Catalog } from "@/components/Catalog";
+import { HeroCovers } from "@/components/HeroCovers";
 import { KeenuLogo } from "@/components/KeenuLogo";
 import { countLive, STOREFRONTS } from "@/data/storefronts";
 
@@ -30,17 +31,20 @@ export default function Home() {
           aria-hidden="true"
           className="pointer-events-none absolute -top-[30%] right-[-12%] left-[45%] h-[420px] bg-[radial-gradient(circle_at_70%_30%,rgba(248,120,48,.12),transparent_60%)]"
         />
-        <div className="relative max-w-[760px]">
+        <HeroCovers />
+        <div className="relative max-w-[560px] lg:max-w-[680px]">
           <p className="bg-concept-bg text-brand-deep mb-5 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold tracking-[.08em] uppercase">
             <span className="bg-accent size-1.5 rounded-full" />
             Built on Keenu One
           </p>
-          <h1 className="mb-3.5 text-[clamp(2rem,5.2vw,3.35rem)] leading-[1.04] font-extrabold tracking-[-.02em] text-balance">
+          {/* The line break is deliberate — keep the type small enough that
+              "Storefronts we build," survives on one line at every width. */}
+          <h1 className="mb-4 text-[clamp(2.1rem,4.6vw,3.6rem)] leading-[1.02] font-extrabold tracking-[-.03em]">
             Storefronts we build,
             <br />
             <span className="text-muted font-semibold">ready to show.</span>
           </h1>
-          <p className="max-w-[60ch] text-[clamp(1rem,2vw,1.16rem)] leading-[1.55] text-ink-soft">
+          <p className="max-w-[46ch] text-[clamp(1rem,2vw,1.16rem)] leading-[1.55] text-ink-soft">
             A live catalog of branded restaurant storefronts on the Keenu One
             platform — from concept designs to production sites already taking
             orders. Tap any storefront to walk a client straight through it.
