@@ -59,6 +59,8 @@ export default function Home() {
         <b className="font-semibold text-muted">Live</b> cards open the real
         deployed site; <b className="font-semibold text-muted">concept</b> cards
         open the full design in a new tab.
+        <br />
+        made by Wajiha Fatima
       </footer>
     </>
   );
