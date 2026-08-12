@@ -69,13 +69,10 @@ export default function NotFound() {
                     <span className="min-w-0">
                       <span className="block font-bold">{s.name}</span>
                       <span className="block text-[13px] text-muted">
-                        {s.vertical}
+                        {s.category}
                       </span>
                     </span>
-                    <span
-                      style={{ color: s.accent }}
-                      className="ml-auto inline-flex shrink-0 items-center gap-2 text-[13.5px] font-bold"
-                    >
+                    <span className="ml-auto inline-flex shrink-0 items-center gap-2 text-[13.5px] font-bold text-brand">
                       {live ? "Open live site" : "Open prototype"}
                       <svg
                         width="15"

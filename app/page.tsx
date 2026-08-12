@@ -1,67 +1,258 @@
 import { Catalog } from "@/components/Catalog";
-import { HeroCovers } from "@/components/HeroCovers";
+import { Icon } from "@/components/Icon";
 import { KeenuLogo } from "@/components/KeenuLogo";
-import { countLive, STOREFRONTS } from "@/data/storefronts";
+import { countLive, featuredStorefront, primaryUrl, STOREFRONTS } from "@/data/storefronts";
+
+const EASE_HOVER = "cubic-bezier(0.25,0.46,0.45,0.94)";
 
 export default function Home() {
   const total = STOREFRONTS.length;
   const live = countLive();
+  const featured = featuredStorefront();
 
   return (
-    <>
-      <div className="border-b-line sticky top-0 z-20 flex items-center justify-between gap-4 border-b bg-[rgba(250,249,252,.82)] px-[clamp(18px,5vw,56px)] py-3.5 backdrop-blur-[14px]">
-        <div className="flex items-center gap-3">
-          <KeenuLogo className="block h-[26px] w-auto" />
-          <span className="bg-line h-[22px] w-px" />
-          <span className="text-xs font-semibold tracking-[.06em] text-muted uppercase">
-            Storefronts
-          </span>
-        </div>
-        <span className="font-mono text-[12.5px] text-muted tabular-nums">
-          {total} storefronts · {live} live
+    <div style={{ minHeight: "100vh", background: "#FAF9FC", overflowX: "hidden" }}>
+      <header
+        className="page-pad"
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 40,
+          display: "flex",
+          alignItems: "center",
+          gap: 16,
+          padding: "14px 48px",
+          background: "rgba(255,255,255,0.82)",
+          backdropFilter: "blur(12px)",
+          borderBottom: "1px solid #E8E6E4",
+        }}
+      >
+        <KeenuLogo style={{ height: 22, width: "auto", display: "block" }} />
+        <span style={{ width: 1, height: 18, background: "#E8E6E4" }} />
+        <span style={{ fontSize: 13, fontWeight: 600, color: "#413B50" }}>
+          Storefronts
         </span>
-      </div>
-
-      <header className="relative overflow-hidden px-[clamp(18px,5vw,56px)] pt-[clamp(40px,7vw,84px)] pb-7">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -inset-x-[10%] -top-[40%] right-[40%] h-[460px] bg-[radial-gradient(circle_at_30%_30%,rgba(116,90,252,.16),transparent_62%)]"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-[30%] right-[-12%] left-[45%] h-[420px] bg-[radial-gradient(circle_at_70%_30%,rgba(248,120,48,.12),transparent_60%)]"
-        />
-        <HeroCovers />
-        <div className="relative max-w-[560px] lg:max-w-[680px]">
-          <p className="bg-concept-bg text-brand-deep mb-5 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold tracking-[.08em] uppercase">
-            <span className="bg-accent size-1.5 rounded-full" />
-            Built on Keenu One
-          </p>
-          {/* The line break is deliberate — keep the type small enough that
-              "Storefronts we build," survives on one line at every width. */}
-          <h1 className="mb-4 text-[clamp(2.1rem,4.6vw,3.6rem)] leading-[1.02] font-extrabold tracking-[-.03em]">
-            Storefronts we build,
-            <br />
-            <span className="text-muted font-semibold">ready to show.</span>
-          </h1>
-          <p className="max-w-[46ch] text-[clamp(1rem,2vw,1.16rem)] leading-[1.55] text-ink-soft">
-            A live catalog of branded restaurant storefronts on the Keenu One
-            platform — from concept designs to production sites already taking
-            orders. Tap any storefront to walk a client straight through it.
-          </p>
-        </div>
+        <span
+          style={{
+            marginLeft: "auto",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 8,
+            fontSize: 11,
+            fontWeight: 600,
+            letterSpacing: "0.03em",
+            textTransform: "uppercase",
+            color: "#8E8985",
+          }}
+        >
+          <span
+            style={{
+              width: 7,
+              height: 7,
+              borderRadius: 9999,
+              background: "#22C55E",
+              boxShadow: "0 0 0 3px rgba(34,197,94,0.15)",
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "'IBM Plex Mono',monospace",
+              fontVariantNumeric: "tabular-nums",
+              color: "#413B50",
+            }}
+          >
+            {live}
+          </span>{" "}
+          live now
+        </span>
       </header>
+
+      <section
+        className="page-pad"
+        style={{
+          position: "relative",
+          padding: "76px 48px 60px",
+          background:
+            "radial-gradient(1100px 520px at 12% -10%,#EDE7FF 0%,rgba(237,231,255,0) 60%),radial-gradient(760px 420px at 88% 0%,#FFE9D8 0%,rgba(255,233,216,0) 62%),linear-gradient(180deg,#FBFAFE 0%,#FAF9FC 100%)",
+          borderBottom: "1px solid #EDE8FF",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            top: -90,
+            left: 0,
+            width: 520,
+            height: 520,
+            borderRadius: 9999,
+            background:
+              "radial-gradient(circle at 40% 40%,rgba(183,160,255,0.26),rgba(214,203,255,0.12) 55%,rgba(214,203,255,0) 75%)",
+            filter: "blur(48px)",
+            pointerEvents: "none",
+            animation: "orbitA 26s ease-in-out infinite",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            bottom: -160,
+            left: 0,
+            width: 420,
+            height: 420,
+            borderRadius: 9999,
+            background:
+              "radial-gradient(circle at 50% 50%,rgba(255,224,140,0.26),rgba(255,238,186,0.12) 55%,rgba(255,238,186,0) 75%)",
+            filter: "blur(52px)",
+            pointerEvents: "none",
+            animation: "orbitB 34s ease-in-out infinite",
+          }}
+        />
+
+        <div style={{ position: "relative", maxWidth: 1440 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "flex-start",
+              gap: 56,
+              flexWrap: "wrap",
+            }}
+          >
+            <div style={{ maxWidth: 660 }}>
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 7,
+                  background: "#FFFFFF",
+                  border: "1px solid #FFD6B8",
+                  color: "#C14B12",
+                  fontSize: 11,
+                  fontWeight: 600,
+                  letterSpacing: "0.03em",
+                  textTransform: "uppercase",
+                  padding: "7px 13px",
+                  borderRadius: 9999,
+                  boxShadow: "0 1px 3px rgba(116,90,252,0.04)",
+                }}
+              >
+                <Icon name="shop-2-bold" size={14} color="#F87830" />
+                Built on Keenu One
+              </span>
+
+              <h1
+                style={{
+                  marginTop: 22,
+                  fontSize: 60,
+                  fontWeight: 800,
+                  lineHeight: 1.03,
+                  letterSpacing: "-0.035em",
+                  color: "#1A1A1F",
+                  textWrap: "balance",
+                }}
+              >
+                Real storefronts,
+                <br />
+                <span
+                  style={{
+                    background:
+                      "linear-gradient(96deg,#745AFC 0%,#9B7BFF 44%,#F87830 100%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  ready to walk through.
+                </span>
+              </h1>
+
+              <p
+                style={{
+                  marginTop: 20,
+                  fontSize: 18,
+                  lineHeight: 1.55,
+                  color: "#5A5653",
+                  textWrap: "pretty",
+                  maxWidth: 560,
+                }}
+              >
+                Every branded ordering site we&rsquo;ve shipped on the platform
+                — concept designs and production sites already taking orders.
+                Open any one and demo it live.
+              </p>
+
+              <div
+                style={{
+                  marginTop: 28,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 12,
+                  flexWrap: "wrap",
+                }}
+              >
+                <a
+                  href={primaryUrl(featured)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 8,
+                    padding: "13px 22px",
+                    background: "#745AFC",
+                    color: "#FFFFFF",
+                    borderRadius: 12,
+                    fontSize: 14.5,
+                    fontWeight: 600,
+                    boxShadow: "0 4px 16px rgba(116,90,252,0.18)",
+                    transition: `all 180ms ${EASE_HOVER}`,
+                  }}
+                >
+                  Open the featured build
+                  <Icon name="arrow-right-up-linear" size={17} />
+                </a>
+                <a
+                  href="#grid"
+                  className="btn-ghost"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 8,
+                    padding: "13px 20px",
+                    background: "rgba(255,255,255,0.7)",
+                    backdropFilter: "blur(12px)",
+                    border: "1px solid #E8E6E4",
+                    color: "#575065",
+                    borderRadius: 12,
+                    fontSize: 14.5,
+                    fontWeight: 600,
+                    transition: `all 180ms ${EASE_HOVER}`,
+                  }}
+                >
+                  <Icon name="widget-4-linear" size={17} />
+                  Browse all {total}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <Catalog />
 
-      <footer className="border-t-line border-t px-[clamp(18px,5vw,56px)] pt-6 pb-12 text-[12.5px] text-faint">
-        Keenu One · Storefront Portfolio — a living catalog.{" "}
-        <b className="font-semibold text-muted">Live</b> cards open the real
-        deployed site; <b className="font-semibold text-muted">concept</b> cards
-        open the full design in a new tab.
-        <br />
+      <footer
+        className="page-pad"
+        style={{
+          padding: "0 48px 40px",
+          fontSize: 12.5,
+          color: "#8E8985",
+        }}
+      >
         made by Wajiha Fatima
       </footer>
-    </>
+    </div>
   );
 }

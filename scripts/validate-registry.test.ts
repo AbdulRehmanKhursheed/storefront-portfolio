@@ -14,7 +14,7 @@ import { isLive, STOREFRONTS } from "../data/storefronts.ts";
 const PUBLIC_DIR = join(fileURLToPath(import.meta.url), "..", "..", "public");
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
-/** Maps a public-root URL path like "/thumbs/popbar.webp" to its file on disk. */
+/** Maps a public-root URL path like "/shots/popbar.jpg" to its file on disk. */
 function resolveInPublic(urlPath: string): string {
   return join(PUBLIC_DIR, urlPath);
 }
@@ -58,11 +58,25 @@ test("every prototype resolves to an index.html that exists", () => {
   }
 });
 
-test("every thumbnail exists", () => {
+test("every screenshot exists", () => {
   for (const s of STOREFRONTS) {
-    const file = resolveInPublic(s.thumbnail);
-    assert.ok(existsSync(file), `missing thumbnail for "${s.slug}": ${file}`);
-    assert.ok(statSync(file).isFile(), `thumbnail is not a file: ${file}`);
+    const file = resolveInPublic(s.shot);
+    assert.ok(existsSync(file), `missing screenshot for "${s.slug}": ${file}`);
+    assert.ok(statSync(file).isFile(), `screenshot is not a file: ${file}`);
+  }
+});
+
+test("every card has the copy the design renders", () => {
+  for (const s of STOREFRONTS) {
+    // The featured panel's spec table and the card chips have no empty state —
+    // a blank here renders as a dangling label in front of a merchant.
+    for (const field of ["name", "tagline", "category", "location", "modules"] as const) {
+      assert.ok(
+        s[field].trim().length > 0,
+        `"${s.slug}" has an empty ${field}`,
+      );
+    }
+    assert.ok(s.tags.length > 0, `"${s.slug}" has no tags to chip`);
   }
 });
 

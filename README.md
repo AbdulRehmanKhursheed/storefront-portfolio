@@ -37,15 +37,19 @@ never stored:
 ### Promote a concept to live
 
 Set `liveUrl` on its existing entry and push. The badge, the button label, the
-`N storefronts · M live` header count and the Live/Concept tab counts all update
-themselves. If the entry still has a `prototypePath`, the card additionally shows a
-"View original concept" link.
+`M live now` header count and the Live/Concept tab counts all update themselves.
+The first live entry in the registry is also what the featured build panel shows,
+so promoting the top entry re-headlines the page.
 
 ### Add a new storefront
 
 1. Copy the handoff into `public/prototypes/<slug>/`, following the rules below.
-2. Add a cover image at `public/thumbs/<slug>.webp` (16:10 works best).
-3. Append one entry to `data/storefronts.ts`.
+2. Add a full-page screenshot at `public/shots/<slug>.jpg` (~1200px wide). It is
+   letterboxed inside the card's frame with `object-fit: contain`, so its aspect
+   ratio does not have to match anything.
+3. Append one entry to `data/storefronts.ts`, including `mockBg` and `mockGlow` —
+   the storefront's own colour, which is what stops the grid reading as four
+   identical white boxes.
 4. `npm test` to confirm nothing is dangling, then push.
 
 No component or route changes are needed in either case.
@@ -107,6 +111,25 @@ serverless functions, so nothing can cold-start during a pitch.
 
 ## Design
 
-The visual design is documented in `docs/superpowers/specs/2026-08-07-storefront-portfolio-design.md`.
-Design tokens live in the `@theme` block of `app/globals.css` and are consumed as Tailwind
-utilities (`bg-brand`, `rounded-card`, `shadow-fl`, …).
+The architecture and its rationale are documented in
+`docs/superpowers/specs/2026-08-07-storefront-portfolio-design.md`.
+
+The current visual design is a port of the `Keenu Storefronts` handoff bundle — a hero,
+a featured build panel, filter chips with search and sort, and the card grid. That handoff
+styles every element inline, so the components state the same values inline rather than
+re-deriving them as utilities; the point is that a value can be diffed against the handoff
+by eye. The pieces inline styles cannot express live in `app/globals.css`: `@font-face`,
+the `riseIn` / `toastIn` / `orbitA` / `orbitB` keyframes, and the `:hover` rules the handoff
+wrote as `style-hover` attributes.
+
+Two deliberate departures from the handoff:
+
+- **Icons are committed, not fetched.** The handoff pulled Solar icons through Iconify's
+  CDN at runtime. They are inlined in `components/Icon.tsx` instead — a pitch should not
+  wait on a third-party request.
+- **It has breakpoints.** The handoff is desktop-only with fixed 48px gutters. Media queries
+  at 900px and 620px stack the featured panel and tighten the gutters; above 900px the
+  rendering is exactly as drawn.
+
+Design tokens still live in the `@theme` block of `app/globals.css` and remain available as
+Tailwind utilities (`bg-brand`, `rounded-card`, …), but the page does not depend on them.
