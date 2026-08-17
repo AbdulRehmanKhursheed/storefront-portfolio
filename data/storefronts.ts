@@ -101,6 +101,36 @@ export const STOREFRONTS: Storefront[] = [
     mockGlow:
       "radial-gradient(circle,rgba(34,71,95,0.16),rgba(34,71,95,0) 70%)",
   },
+  {
+    slug: "croissant-guy",
+    name: "The Croissant Guy",
+    tagline: "Fresh artisanal croissants, baked daily.",
+    category: "Bakery e-commerce",
+    location: "Karachi",
+    modules: "Ordering · Payments · Delivery",
+    tags: ["Bakery e-commerce"],
+    shot: "/shots/croissant-guy.jpg",
+    prototypePath: "/prototypes/croissant-guy/",
+    liveUrl: null,
+    mockBg: "linear-gradient(160deg,#FBF0F4 0%,#EBCEDA 100%)",
+    mockGlow:
+      "radial-gradient(circle,rgba(127,24,67,0.16),rgba(127,24,67,0) 70%)",
+  },
+  {
+    slug: "kaya",
+    name: "Kaya",
+    tagline: "Where every bite becomes a memory.",
+    category: "Restaurant ordering",
+    location: "Karachi",
+    modules: "Ordering · Delivery · Table booking",
+    tags: ["Restaurant ordering"],
+    shot: "/shots/kaya.jpg",
+    prototypePath: "/prototypes/kaya/",
+    liveUrl: null,
+    mockBg: "linear-gradient(160deg,#FBF3EC 0%,#E8D7B4 100%)",
+    mockGlow:
+      "radial-gradient(circle,rgba(227,193,119,0.20),rgba(227,193,119,0) 70%)",
+  },
 ];
 
 export type StatusFilter = "all" | "live" | "concept";
