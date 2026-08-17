@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  featuredStorefront,
   isLive,
   matchesFilter,
   matchesQuery,
@@ -12,7 +11,6 @@ import {
   type StatusFilter,
   type Storefront,
 } from "@/data/storefronts";
-import { FeaturedBuild } from "./FeaturedBuild";
 import { Icon } from "./Icon";
 import { StorefrontCard } from "./StorefrontCard";
 
@@ -120,15 +118,10 @@ export function Catalog() {
     sort,
   );
 
-  const featured = featuredStorefront();
-  // The featured panel stands down once the presenter narrows the view — a search
-  // or the Concept tab means they are looking for something specific.
-  const showFeatured = filter !== "concept" && query.trim() === "";
-  const cards = showFeatured
-    ? matched.filter((s) => s !== featured)
-    : matched;
+  // Every storefront gets the same card. Nothing is promoted out of the grid.
+  const cards = matched;
 
-  useParallax([cards.map((s) => s.slug).join(), showFeatured]);
+  useParallax([cards.map((s) => s.slug).join()]);
 
   return (
     <>
@@ -270,10 +263,6 @@ export function Catalog() {
       </section>
 
       <main className="page-pad" style={{ padding: "36px 48px 96px" }}>
-        {showFeatured && (
-          <FeaturedBuild storefront={featured} onCopy={copy} />
-        )}
-
         <div
           style={{
             display: "flex",

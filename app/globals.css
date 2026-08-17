@@ -211,14 +211,8 @@
 }
 
 /* The handoff is a desktop design with no breakpoints. These only engage below
-   the width at which its fixed 48px gutters and two-up featured panel break,
-   so the desktop rendering stays exactly as drawn. */
-@media (max-width: 900px) {
-  .featured-panel {
-    grid-template-columns: 1fr !important;
-  }
-}
-
+   the width at which its fixed 48px gutters break, so the desktop rendering
+   stays exactly as drawn. */
 @media (max-width: 620px) {
   .page-pad {
     padding-left: 20px !important;
