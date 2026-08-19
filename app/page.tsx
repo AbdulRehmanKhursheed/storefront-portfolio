@@ -251,7 +251,7 @@ export default function Home() {
           color: "#8E8985",
         }}
       >
-        made by Bazaar
+        made by Eesha Naweed
       </footer>
     </div>
   );
