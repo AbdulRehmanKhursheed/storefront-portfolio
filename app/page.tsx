@@ -251,7 +251,7 @@ export default function Home() {
           color: "#8E8985",
         }}
       >
-        made by Wajiha Fatima
+        made by Bazaar
       </footer>
     </div>
   );
