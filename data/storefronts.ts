@@ -44,7 +44,7 @@ export const STOREFRONTS: Storefront[] = [
   {
     slug: "siroc",
     name: "Siroc",
-    tagline: "Winds of the Middle East, plated in Clifton.",
+    tagline: "Winds of the Middle East, plated in Clifton, Karachi.",
     category: "Middle Eastern café",
     location: "Clifton, Karachi",
     modules: "Ordering · Payments · KOT",
