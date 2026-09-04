@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'Mirtha Display'; src: url('./assets/fonts/mirtha-bold.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  * { box-sizing: border-box; }
+  a { color: #6E6660; text-decoration: none; }
+  a:hover { color: #14110F; }
+  @media (max-width: 767px) {
+    [data-foot-cols] { flex-direction: column !important; align-items: center !important; gap: 30px !important; }
+    [data-foot-cols] > div { align-items: center !important; text-align: center; }
+    [data-skyline] { height: auto !important; object-fit: contain; }
+    [data-foot-bottom] { flex-direction: column !important; justify-content: center !important; gap: 10px !important; text-align: center; }
+  }
+</style>
+</helmet>
+<footer style="position: relative; background: #F1ECEB; color: #14110F; font-family: 'Montserrat', system-ui, sans-serif; overflow: hidden; display: flex; flex-direction: column; padding: 56px 0 0 0;">
+
+  <div aria-hidden="true" style="position: absolute; top: 0; left: 0; right: 0; height: 213px; z-index: 0; background: linear-gradient(180deg, #F1ECEB 0%, #F5F1EF 45%, #FAF7F5 75%, #FFFFFDEB)"></div>
+
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 0 48px;">
+    <img src="./assets/logo-praha.png" alt="Caffè Praha — Prague" style="width: min(300px, 52vw); height: auto; display: block; position: absolute">
+  </div>
+
+  
+
+  <div data-skyline-wrap="1" style="position: relative; z-index: 1; margin-top: 0; height: 120px">
+    
+  </div>
+
+  <img data-skyline="1" src="./assets/prague-skyline.png" alt="Watercolour illustration of the Prague skyline" style="display: block; width: 100%; height: 557px"><div data-foot-bottom="1" style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 20px 48px 26px 48px; background: #FFFFFF;">
+    <span style="font-family: Montserrat, sans-serif; font-size: 11px; letter-spacing: 0.14em; color: #A9A198;">{{ copyright }}</span>
+    <div style="display: flex; align-items: center; gap: 22px;">
+      <a href="#terms" style="font-family: Montserrat, sans-serif; font-size: 11px; letter-spacing: 0.14em; color: #A9A198;">TERMS</a>
+      <a href="#privacy" style="font-family: Montserrat, sans-serif; font-size: 11px; letter-spacing: 0.14em; color: #A9A198;">PRIVACY</a>
+    </div>
+  </div>
+<div data-foot-cols="1" style="position: absolute; z-index: 2; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 40px 88px; margin: 48px auto 0 auto; padding: 0 48px 64px 48px; left: 192px; top: 190px">
+    <div style="display: flex; flex-direction: column; gap: 18px; min-width: 180px;">
+      <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.01em; color: #14110F;">Contact</span>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <a href="mailto:{{ email }}" style="font-size: 16px; color: #6E6660;">{{ email }}</a>
+        <a href="tel:{{ phone }}" style="font-size: 16px; color: #6E6660;">{{ phone }}</a>
+      </div>
+    </div><div style="display: flex; flex-direction: column; gap: 18px; min-width: 180px;">
+      <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.01em; color: #14110F;">Quick Links</span>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <a href="#about" style="font-size: 16px; color: #6E6660;">About Us</a>
+        <a href="#gallery" style="font-size: 16px; color: #6E6660;">Gallery</a>
+        <a href="#locations" style="font-size: 16px; color: #6E6660;">Locations</a>
+      </div>
+    </div>
+
+    
+
+    <div style="display: flex; flex-direction: column; gap: 18px; min-width: 180px;">
+      <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.01em; color: #14110F;">Follow Us</span>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="#instagram" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 999px; background: #F2F0ED;" style-hover="background: #E6E2DD;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+            <rect x="3.6" y="3.6" width="16.8" height="16.8" rx="5" stroke="#4A443F" stroke-width="1.7"></rect>
+            <circle cx="12" cy="12" r="4.1" stroke="#4A443F" stroke-width="1.7"></circle>
+            <circle cx="17.2" cy="6.9" r="1.15" fill="#4A443F"></circle>
+          </svg>
+        </a>
+        <a href="#facebook" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 999px; background: #F2F0ED;" style-hover="background: #E6E2DD;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+            <path d="M14.6 4.4h2.6V7.6h-2.3c-.6 0-.9.4-.9 1v2.1h3l-.4 3.2h-2.6v6.7h-3.3v-6.7H8.4v-3.2h2.3V8.2c0-2.3 1.4-3.8 3.9-3.8z" fill="#4A443F"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div></footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1080},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;hello@caffepraha.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;phone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;+92 21 3718 1218&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;copyright&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;© 2026 CAFFÈ PRAHA — KARACHI · ISLAMABAD · LAHORE&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      email: this.props.email ?? "hello@caffepraha.com",
+      phone: this.props.phone ?? "+92 21 3718 1218",
+      copyright: this.props.copyright ?? "© 2026 CAFFÈ PRAHA — KARACHI · ISLAMABAD · LAHORE"
+    };
+  }
+}
+</script>
+</body>
+</html>

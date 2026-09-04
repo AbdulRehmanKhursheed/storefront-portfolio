@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=EB+Garamond:wght@400;500;600;700&amp;family=Lato:wght@400;700;900&amp;display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'Awaline'; src: url('./uploads/AwalineDemoRegular-wozjn.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'Mirtha Display'; src: url('./assets/fonts/mirtha-bold.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Stanberry'; src: url('./assets/fonts/Stanberry.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  html, body { margin: 0; padding: 0; background: #F9F1F1; }
+  [data-catnav]::-webkit-scrollbar { display: none; }
+  [data-catnav] { scrollbar-width: none; -ms-overflow-style: none; }
+  [data-bs-row]::-webkit-scrollbar { display: none; }
+  [data-bs-row] { scrollbar-width: none; -ms-overflow-style: none; }
+  * { box-sizing: border-box; }
+  input::placeholder, textarea::placeholder { color: #A9A198; opacity: 1; }
+  a { color: #2A2320; text-decoration: none; }
+  a:hover { color: #C05A48; }
+  @keyframes page-turn-a {
+    0%   { transform: perspective(2200px) rotateY(-62deg); opacity: 0.25; }
+    55%  { opacity: 1; }
+    74%  { transform: perspective(2200px) rotateY(4deg); }
+    100% { transform: perspective(2200px) rotateY(0deg); opacity: 1; }
+  }
+  @keyframes page-turn-b {
+    0%   { transform: perspective(2200px) rotateY(-62deg); opacity: 0.25; }
+    55%  { opacity: 1; }
+    74%  { transform: perspective(2200px) rotateY(4deg); }
+    100% { transform: perspective(2200px) rotateY(0deg); opacity: 1; }
+  }
+  @keyframes wiggle-a {
+    0%, 100% { transform: rotate(0deg) translateX(0); }
+    15% { transform: rotate(-0.9deg) translateX(-7px); }
+    35% { transform: rotate(0.9deg) translateX(6px); }
+    55% { transform: rotate(-0.6deg) translateX(-4px); }
+    78% { transform: rotate(0.4deg) translateX(2px); }
+  }
+  @keyframes wiggle-b {
+    0%, 100% { transform: rotate(0deg) translateX(0); }
+    15% { transform: rotate(-0.9deg) translateX(-7px); }
+    35% { transform: rotate(0.9deg) translateX(6px); }
+    55% { transform: rotate(-0.6deg) translateX(-4px); }
+    78% { transform: rotate(0.4deg) translateX(2px); }
+  }
+  [data-stage="ticket"] [data-sku-list][data-listmode="single"] { grid-template-columns: minmax(0, 1fr) !important; }
+  [data-stage="cards"] { grid-template-columns: minmax(0, 1fr) !important; }
+  [data-stage="cards"] [data-sku-list] { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px !important; align-content: start; }
+  [data-stage="cards"] [data-menu-head] { grid-column: 1 / -1; height: clamp(200px, 24vh, 300px) !important; justify-content: center !important; }
+  [data-stage="cards"] [data-menu-head] > div { margin: 0 auto !important; }
+  [data-stage="cards"] [data-list-pad] { display: none; }
+  @keyframes tile-in {
+    0%   { opacity: 0; transform: translateY(22px) rotate(-1.2deg); }
+    100% { opacity: 1; transform: translateY(0) rotate(0deg); }
+  }
+  @media (max-width: 767px) {
+    [data-plheader] { flex-wrap: wrap; padding: 12px 16px 14px 16px !important; gap: 10px !important; }
+    [data-plheader] > span { display: none !important; }
+    [data-plheader] [data-catnav] { padding-right: 8px !important; order: 1; }
+    [data-plheader] > a { order: 2; }
+    [data-plheader] input { order: 3; width: 100% !important; padding: 16px 22px !important; font-size: 13px !important; text-align: center; }
+    [data-stage] { grid-template-columns: minmax(0, 1fr) !important; padding: 0 16px !important; gap: 0 !important; }
+    [data-main-panel] { display: none !important; }
+    [data-menu-head] { display: none !important; }
+    [data-list-pad] { display: none !important; }
+    [data-sku-list] { grid-template-columns: minmax(0, 1fr) !important; }
+    [data-tile] { grid-template-columns: minmax(0, 1fr) 1px 96px !important; }
+    [data-tile] > *:nth-child(1), [data-tile] > *:nth-child(2) { display: none !important; }
+    [data-modal-overlay] { align-items: flex-end !important; padding: 0 !important; }
+    [data-modal-card] { display: flex !important; flex-direction: column !important; width: 100% !important; max-width: none !important; max-height: 92vh !important; border-radius: 22px 22px 0 0 !important; overflow-y: auto !important; }
+    [data-modal-img] { min-height: 220px !important; flex: none; }
+    [data-cart-card] { width: 100% !important; max-width: none !important; max-height: 92vh !important; border-radius: 22px 22px 0 0 !important; }
+    [data-modal-wrap], [data-cart-wrap] { width: 100% !important; max-width: none !important; }
+  }
+</style>
+</helmet>
+<div data-fontroot="1" style="min-height: 100vh; position: relative; background: transparent; color: #14110F; font-family: 'Montserrat', system-ui, sans-serif;">
+  <div style="position: relative; z-index: 2; display: flex; flex-direction: column;">
+  <header data-plheader="1" style="position: sticky; top: 0; z-index: 20; flex: none; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 56px 28px 56px; background-color: #F1ECEB">
+    <nav data-catnav="1" style="display: flex; align-items: center; gap: 4px; min-width: 0; flex: 1; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; padding-right: 72px;">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+        <sc-if value="{{ c.active }}" hint-placeholder-val="{{ false }}">
+          <button data-cat-pill="active" onClick="{{ c.pick }}" style="border: 0; cursor: pointer; font-size: clamp(10px, 0.85vw, 12px); font-weight: 600; letter-spacing: 0.06em; color: #914B4C; background: #FBC3C7; border-radius: 999px; padding: 8px clamp(9px, 1vw, 14px); white-space: nowrap; flex: none">{{ c.label }}</button>
+        </sc-if>
+        <sc-if value="{{ c.inactive }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ c.pick }}" style="border: 0; cursor: pointer; font-size: clamp(10px, 0.85vw, 12px); font-weight: 600; letter-spacing: 0.06em; color: #8F8880; background: transparent; border-radius: 999px; padding: 8px clamp(9px, 1vw, 14px); white-space: nowrap; flex: none;" style-hover="background: #E7E2D8; color: #14110F;">{{ c.label }}</button>
+        </sc-if>
+      </sc-for>
+    </nav>
+    <span style="flex: none; font-family: Montserrat, sans-serif; font-size: 14px; color: #A9A198; margin: 0 2px 0 -4px; pointer-events: none;">›››</span>
+    <div style="position: relative; flex: none; width: min(280px, 26vw);">
+      <input onInput="{{ onSearch }}" value="{{ q }}" type="text" placeholder="SEARCH THE MENU" style="background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 999px; padding: 11px 34px 11px 18px; font-family: Montserrat, sans-serif; font-size: 12px; letter-spacing: 0.08em; color: #14110F; width: 100%; outline: none;">
+      <sc-if value="{{ hasQuery }}" hint-placeholder-val="{{ false }}">
+        <a href="#clear" onClick="{{ clearSearch }}" aria-label="Clear search" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: #F1EDE7;" style-hover="background: #E7E2D8;">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6E6660" stroke-width="2.4" stroke-linecap="round"><path d="M5.5 5.5l13 13M18.5 5.5l-13 13"></path></svg>
+        </a>
+      </sc-if>
+    </div>
+    <a href="#cart" onClick="{{ openCart }}" aria-label="Cart" style="flex: none; display: flex; align-items: center; gap: 10px; background: rgb(95,30,31); border-radius: 12px; padding: 14px 26px 14px 20px; font-family: Montserrat, sans-serif; color: #914B4C;" style-hover="background: rgb(120,45,46);">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(233,187,188)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 4h2.2l2.4 11.2h10.1l2.3-8H6.1"></path>
+        <circle cx="9.4" cy="20" r="1.4"></circle>
+        <circle cx="16.6" cy="20" r="1.4"></circle>
+      </svg>
+      <span style="font-size: 14px; font-weight: 700; color: rgb(233,187,188);">Cart</span>
+      <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ true }}">
+        <span style="min-width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: rgb(233,187,188); font-size: 12px; font-weight: 700; color: rgb(95,30,31); padding: 0 6px;">{{ cartCount }}</span>
+      </sc-if>
+    </a>
+  </header>
+  <div data-stage="{{ stageMode }}" style="flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 590px); gap: 10px; padding: 0 clamp(24px, 4vw, 56px); background-color: transparent">
+
+    <sc-if value="{{ showTicketPanel }}" hint-placeholder-val="{{ true }}">
+    <section data-main-panel="1" style="position: sticky; top: 96px; align-self: start; height: calc(100vh - 150px); max-height: calc(100vh - 150px); padding: clamp(24px, 3.4vh, 36px) 0 0 0; order: 2;">
+      <div style="position: relative; height: 100%; background: #FFFFFF; border: 1px solid #ECE8E4; border-radius: 4px; box-shadow: 0 26px 54px rgba(20, 17, 15, 0.09); padding: clamp(18px, 3vw, 40px) 56px clamp(18px, 2.6vw, 34px) clamp(20px, 3.2vw, 44px); display: flex; flex-direction: column; gap: clamp(8px, 1.2vh, 16px); overflow-y: auto; width: 100%; max-width: 583px; margin-left: auto; animation: {{ wiggleAnim }} 0.5s ease both">
+        <img src="./assets/washi-dots.png" alt="" style="position: absolute; top: -17px; left: 50%; transform: translateX(-50%) rotate(-2deg); width: 210px; height: 36px; z-index: 5;">
+        <sc-if value="{{ panelCart }}" hint-placeholder-val="{{ false }}">
+          <div style="position: absolute; inset: 0; z-index: 9; background: #FFFFFF; border-radius: 4px; display: flex; flex-direction: column; padding: clamp(24px, 3vw, 40px);">
+            <div style="flex: none; display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: #14110F;">YOUR ORDER</span>
+              <a href="#close" onClick="{{ closeCart }}" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #A9A198;" style-hover="color: #914B4C;">BACK TO MENU</a>
+            </div>
+            <div style="flex: 1 1 auto; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; margin-top: 14px;">
+              <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ true }}">
+                <div style="text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #A9A198; padding: 26px 0;">YOUR CART IS EMPTY</div>
+              </sc-if>
+              <sc-for list="{{ cartItems }}" as="ci" hint-placeholder-count="2">
+                <div style="display: flex; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid #F1EDE7;">
+                  <div role="img" aria-label="{{ ci.name }}" style="width: 60px; height: 60px; border-radius: 12px; flex: none; background-color: #F4F1ED; background-image: url('{{ ci.img }}'); background-size: cover; background-position: center;"></div>
+                  <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+                    <span style="font-size: 14px; font-weight: 600; color: #914B4C;">{{ ci.name }}</span>
+                    <span style="font-size: 13px; color: #8F8880;">{{ ci.line }}</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 2px; background: #FBFAF8; border: 1px solid #ECE8E4; border-radius: 999px; padding: 2px; flex: none;">
+                    <button onClick="{{ ci.dec }}" aria-label="Decrease" style="cursor: pointer; border: 0; background: #FFFFFF; border-radius: 999px; width: 26px; height: 26px; font-size: 14px; color: #14110F;">−</button>
+                    <span style="min-width: 20px; text-align: center; font-size: 12px; font-weight: 700; color: #14110F;">{{ ci.qty }}</span>
+                    <button onClick="{{ ci.inc }}" aria-label="Increase" style="cursor: pointer; border: 0; background: #FBC3C7; border-radius: 999px; width: 26px; height: 26px; font-size: 14px; color: #14110F;">+</button>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="flex: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid #E9E5E1; margin-top: 12px; padding-top: 14px;">
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: #A9A198;">TOTAL</span>
+                <span style="font-size: 22px; font-weight: 800; color: #14110F;">{{ total }}</span>
+              </div>
+              <a href="./Checkout.dc.html" onClick="{{ goCheckout }}" style="display: flex; align-items: center; justify-content: center; background: #FBC3C7; color: #914B4C; border-radius: 12px; padding: 14px 30px; font-size: 15px; font-weight: 700;" style-hover="background: #F7B0B5;">Checkout</a>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px;">
+          <span style="font-family: Montserrat, sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; color: #14110F">{{ sel.cat }}</span>
+          
+        </div>
+
+        <div style="position: relative; flex: 1 1 auto; min-height: 0; height: auto; padding: 6px 0;">
+          <sc-if value="{{ sel.hasImg }}" hint-placeholder-val="{{ false }}">
+            <div role="img" aria-label="{{ sel.name }}" style="width: 100%; height: 100%; background-image: url('{{ sel.img }}'); background-size: contain; background-position: center; background-repeat: no-repeat;"></div>
+          </sc-if>
+          <sc-if value="{{ sel.noImg }}" hint-placeholder-val="{{ false }}">
+            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-image: repeating-linear-gradient(135deg, #EFEBE4 0 6px, #F8F6F2 6px 12px);">
+              <span style="font-family: Montserrat, sans-serif; font-size: 12px; letter-spacing: 0.16em; color: #A9A198;">PHOTO NEEDED — {{ sel.name }}</span>
+            </div>
+          </sc-if>
+        </div>
+
+        <h2 style="margin: 0; font-family: 'Awaline', serif; font-weight: 400; font-size: clamp(30px, 2.8vw, 42px); line-height: 1.04; letter-spacing: -0.02em; color: #914B4C; text-wrap: balance">{{ sel.name }}</h2>
+        <p style="margin: 0; font-size: clamp(13px, 1.15vw, 16px); line-height: 1.5; color: #8F8880; max-width: 560px; text-wrap: pretty; flex: none;">{{ sel.desc }}</p>
+
+        <div style="flex: none; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 2px;">
+          <div style="display: flex; flex-direction: column; min-width: 0;">
+            <select onChange="{{ onPickAddon }}" value="{{ addonSelect }}" style="width: 100%; appearance: none; background: #FBFAF8; border: 1px solid #ECE8E4; border-radius: 10px; padding: 11px 30px 11px 13px; font-family: 'Montserrat', sans-serif; font-size: 13px; color: {{ addonSummaryColor }}; outline: none; cursor: pointer; text-overflow: ellipsis; background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M1%201.5L6%206.5L11%201.5%22%20stroke%3D%22%238F8880%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E); background-repeat: no-repeat; background-position: right 12px center;" style-focus="border-color: #FBC3C7;">
+              <option value="">{{ addonSummary }}</option>
+              <sc-for list="{{ addons }}" as="a" hint-placeholder-count="6">
+                <option value="{{ a.id }}">{{ a.optionLabel }}</option>
+              </sc-for>
+            </select>
+          </div>
+          <div style="display: flex; flex-direction: column; min-width: 0;">
+            <input onInput="{{ onNote }}" value="{{ noteVal }}" type="text" placeholder="Special instructions..." style="width: 100%; background: #FBFAF8; border: 1px solid #ECE8E4; border-radius: 10px; padding: 11px 13px; font-family: 'Montserrat', sans-serif; font-size: 13px; color: #14110F; outline: none;" style-focus="border-color: #FBC3C7;">
+          </div>
+        </div>
+
+        <div style="height: 1px; background: #E9E5E1; margin-top: 4px;"></div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+          <div style="display: flex; align-items: center; gap: clamp(16px, 2vw, 26px);">
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+              <span style="font-family: Montserrat, sans-serif; font-size: 11px; letter-spacing: 0.18em; color: #B4ADA6;">PRICE</span>
+              <span style="font-size: clamp(24px, 2.2vw, 30px); font-weight: 800; letter-spacing: -0.01em; color: #14110F; white-space: nowrap;">{{ unitPriceLabel }}</span>
+            </div>
+          </div>
+          <sc-if value="{{ showBarcode }}" hint-placeholder-val="{{ true }}">
+            
+          </sc-if>
+          <sc-if value="{{ notAdded }}" hint-placeholder-val="{{ true }}">
+            <a href="#add" onClick="{{ addToOrder }}" style="display: flex; align-items: center; justify-content: center; background: #FBC3C7; color: #914B4C; border-radius: 14px; padding: clamp(13px, 1.5vw, 17px) clamp(22px, 2.6vw, 36px); font-size: clamp(14px, 1.3vw, 17px); font-weight: 600; letter-spacing: -0.01em; white-space: nowrap" style-hover="background: #F7A8AE;">Add to Cart</a>
+          </sc-if>
+          <sc-if value="{{ isDirty }}" hint-placeholder-val="{{ false }}">
+            <a href="#update" onClick="{{ updateOrder }}" style="display: flex; align-items: center; justify-content: center; background: #FBC3C7; color: #914B4C; border-radius: 14px; padding: clamp(13px, 1.5vw, 17px) clamp(22px, 2.6vw, 36px); font-size: clamp(14px, 1.3vw, 17px); font-weight: 600; letter-spacing: -0.01em; white-space: nowrap;" style-hover="background: #F7A8AE;">Update</a>
+          </sc-if>
+          <sc-if value="{{ isAddedClean }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; align-items: center; gap: 6px; background: #FBC3C7; border-radius: 14px; padding: 6px; flex: none;">
+              <button onClick="{{ addedDec }}" aria-label="Decrease quantity" style="cursor: pointer; border: 0; background: #FFFFFF; border-radius: 10px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-family: inherit; font-size: 18px; font-weight: 600; color: #914B4C;" style-hover="background: #FFF4F5;">−</button>
+              <span style="min-width: 30px; text-align: center; font-size: 16px; font-weight: 700; color: #914B4C;">{{ addedQty }}</span>
+              <button onClick="{{ addedInc }}" aria-label="Increase quantity" style="cursor: pointer; border: 0; background: #FFFFFF; border-radius: 10px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-family: inherit; font-size: 18px; font-weight: 600; color: #914B4C;" style-hover="background: #FFF4F5;">+</button>
+            </div>
+          </sc-if>
+        </div>
+
+        <sc-if value="{{ sheetOpen }}" hint-placeholder-val="{{ false }}">
+          <div data-addon-sheet="1" style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 8; background: #FFFFFF; border-top: 1px solid #ECE8E4; border-radius: 0 0 4px 4px; box-shadow: 0 -20px 44px rgba(20, 17, 15, 0.12); padding: 22px clamp(24px, 3.2vw, 44px) clamp(22px, 2.6vw, 34px) clamp(24px, 3.2vw, 44px); display: flex; flex-direction: column; gap: 14px; max-height: 100%; overflow: visible;">
+            <a href="#close" onClick="{{ closeSheet }}" aria-label="Close add ons" style="position: absolute; top: -52px; right: clamp(24px, 3.2vw, 44px); z-index: 9; width: 38px; height: 38px; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(20, 17, 15, 0.16);" style-hover="background: #FBC3C7;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#14110F" stroke-width="2.2" stroke-linecap="round"><path d="M5.5 5.5l13 13M18.5 5.5l-13 13"></path></svg>
+            </a>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
+              <span style="font-family: Montserrat, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: #14110F;">ADD ONS</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; flex: 0 1 auto; min-height: 0; overflow-y: auto; padding-right: 2px;">
+              <sc-for list="{{ addons }}" as="a" hint-placeholder-count="6">
+                <sc-if value="{{ a.on }}" hint-placeholder-val="{{ false }}">
+                  <button onClick="{{ a.toggle }}" style="cursor: pointer; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 10px; background: #FFF4F5; border: 1px solid #FBC3C7; border-radius: 10px; padding: 11px 13px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; color: #14110F;">
+                    <span>{{ a.label }}</span>
+                    <span style="font-family: Montserrat, sans-serif; font-size: 11px; color: #14110F;">+{{ a.priceLabel }}</span>
+                  </button>
+                </sc-if>
+                <sc-if value="{{ a.off }}" hint-placeholder-val="{{ true }}">
+                  <button onClick="{{ a.toggle }}" style="cursor: pointer; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 10px; background: #FFFFFF; border: 1px solid #ECE8E4; border-radius: 10px; padding: 11px 13px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 500; color: #6E6660;" style-hover="border-color: #DCD6CE; background: #FBFAF8;">
+                    <span>{{ a.label }}</span>
+                    <span style="font-family: Montserrat, sans-serif; font-size: 11px; color: #A9A198;">+{{ a.priceLabel }}</span>
+                  </button>
+                </sc-if>
+              </sc-for>
+            </div>
+
+            <div style="flex: none; display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-family: Montserrat, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: #14110F;">SPECIAL INSTRUCTIONS</span>
+              <textarea onInput="{{ onNote }}" rows="2" placeholder="No onions, extra spicy, cutlery not needed…" style="width: 100%; resize: none; background: #FBFAF8; border: 1px solid #ECE8E4; border-radius: 10px; padding: 11px 13px; font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.45; color: #14110F; outline: none;"></textarea>
+            </div>
+
+            <div style="flex: none; display: flex; align-items: center; justify-content: space-between; gap: 14px; border-top: 1px solid #F1EDE7; padding-top: 12px;">
+              <div style="display: flex; align-items: center; gap: 4px; background: #FBFAF8; border: 1px solid #ECE8E4; border-radius: 999px; padding: 3px; flex: none;">
+                <button onClick="{{ decQty }}" aria-label="Decrease quantity" style="cursor: pointer; border: 0; background: #FFFFFF; border-radius: 999px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-family: Montserrat, sans-serif; font-size: 15px; line-height: 1; color: #14110F; box-shadow: 0 1px 2px rgba(20, 17, 15, 0.06);" style-hover="background: #F2EFEA;">−</button>
+                <span style="min-width: 24px; text-align: center; font-size: 14px; font-weight: 700; color: #14110F;">{{ qty }}</span>
+                <button onClick="{{ incQty }}" aria-label="Increase quantity" style="cursor: pointer; border: 0; background: #FBC3C7; border-radius: 999px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-family: Montserrat, sans-serif; font-size: 15px; line-height: 1; color: #14110F;" style-hover="background: #F7A8AE;">+</button>
+              </div>
+              
+              <a href="#confirm" onClick="{{ confirmAdd }}" style="display: flex; align-items: center; justify-content: center; background: #FBC3C7; color: #914B4C; border-radius: 12px; padding: 14px 30px; font-size: 15px; font-weight: 600" style-hover="background: #F7A8AE;">Confirm — {{ total }}</a>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+
+    </section>
+    </sc-if>
+
+    <section style="display: flex; flex-direction: column; min-height: 0; position: relative; order: 1;">
+      
+
+      <div data-sku-list="1" data-listmode="{{ listMode }}" ref="{{ listRef }}" onScroll="{{ onListScroll }}" style="display: flex; flex-direction: column; gap: 32px; padding: 24px 30px 16px 28px; margin: -16px -26px;">
+        <sc-for list="{{ sections }}" as="sec" hint-placeholder-count="3">
+          <div data-section="{{ sec.label }}" style="display: flex; flex-direction: column; gap: 16px;">
+            <sc-if value="{{ sec.hasHeadImg }}" hint-placeholder-val="{{ true }}">
+              <img src="{{ sec.headImg }}" alt="{{ sec.label }}" style="display: block; height: 40px; width: auto; max-width: 100%; object-fit: contain; align-self: flex-start; margin-left: -16px;">
+            </sc-if>
+            <sc-if value="{{ sec.noHeadImg }}" hint-placeholder-val="{{ false }}">
+            <span style="font-family: Montserrat; font-size: 40px; font-weight: 700; letter-spacing: 0.02em; text-transform: capitalize; margin-left: 18px; color: #F1ECEB; text-shadow: 0.8px 0 0 #817878, -0.8px 0 0 #817878, 0 0.8px 0 #817878, 0 -0.8px 0 #817878, 0.6px 0.6px 0 #817878, -0.6px 0.6px 0 #817878, 0.6px -0.6px 0 #817878, -0.6px -0.6px 0 #817878">{{ sec.label }}</span>
+            </sc-if>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, 187px); gap: 24px; padding: 18px 10px 10px 18px; margin: -18px -10px -10px -18px;">
+              <sc-for list="{{ sec.items }}" as="p" hint-placeholder-count="4">
+                <div data-tile="{{ p.idx }}" onClick="{{ p.select }}" role="button" tabindex="0" style="flex: none; width: 187px; cursor: pointer; display: flex; flex-direction: column; gap: 10px; animation: tile-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: {{ p.delay }};">
+                  <div style="position: relative; width: 187px; height: 187px;">
+                    <div style="width: 100%; height: 100%; border-radius: 14px; overflow: hidden; background: #F4F1ED;">
+                      <div role="img" aria-label="{{ p.name }}" style="width: 100%; height: 100%; background-image: url('{{ p.img }}'); background-size: {{ p.fit }}; background-position: center; background-repeat: no-repeat; transform: scale({{ p.zoom }});"></div>
+                    </div>
+                    <sc-if value="{{ p.isSelFrame }}" hint-placeholder-val="{{ false }}">
+                      <img src="./assets/doodle-frame-square.png" alt="" aria-hidden="true" style="position: absolute; top: -8px; left: -8px; width: 203px; height: 203px; pointer-events: none;">
+                    </sc-if>
+                    <sc-if value="{{ p.isSelTape }}" hint-placeholder-val="{{ false }}">
+                      <img src="./assets/washi-dots.png" alt="" aria-hidden="true" style="position: absolute; top: 0; left: 50%; width: 96px; height: 17px; transform: translate(-50%, -50%) rotate(-2deg); pointer-events: none;">
+                    </sc-if>
+
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 3px;">
+                    <span style="font-family: Montserrat, sans-serif; font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; color: #914B4C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.6em;">{{ p.name }}</span>
+                    <span style="font-size: 13px; color: #161616; font-weight: 400">{{ p.price }}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+        <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align: center; font-family: Montserrat, sans-serif; font-size: 13px; letter-spacing: 0.1em; color: #A9A198; padding: 20px 0;">NO MATCHES — TRY ANOTHER SEARCH</div>
+        </sc-if>
+        <div data-list-pad="1" style="flex: none; height: 40px;"></div>
+      </div>
+    </section>
+  </div>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div data-modal-overlay="1" data-addon-sheet="1" style="position: absolute; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; padding: clamp(20px, 4vh, 48px) clamp(20px, 4vw, 56px); background: rgba(20, 17, 15, 0.34);">
+      <a href="#close" onClick="{{ closeModal }}" aria-label="Close" style="position: absolute; inset: 0;"></a>
+      <div data-modal-wrap="1" style="position: relative; z-index: 2; width: min(880px, 100%); max-height: 100%; display: flex;">
+        <img src="./assets/washi-dots.png" alt="" style="position: absolute; top: -14px; left: 8%; width: 160px; height: 28px; transform: rotate(-3deg); z-index: 5;">
+        <div data-modal-card="1" style="position: relative; width: 100%; max-height: 100%; min-height: 0; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); background: #FFFFFF; border-radius: 20px; box-shadow: 0 40px 90px rgba(20, 17, 15, 0.28); overflow: hidden;">
+        <div data-modal-img="1" style="position: relative; background: #F4F1ED; min-height: 260px;">
+          <div role="img" aria-label="{{ sel.name }}" style="position: absolute; inset: 0; background-image: url('{{ sel.img }}'); background-size: cover; background-position: center;"></div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; min-height: 0; padding: clamp(20px, 2.2vw, 30px);">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;">
+            <span style="font-family: Montserrat, sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: #A9A198;">{{ sel.cat }}</span>
+            <a href="#close" onClick="{{ closeModal }}" style="font-family: Montserrat, sans-serif; font-size: 11px; letter-spacing: 0.14em; color: #A9A198;" style-hover="color: #C05A48;">CLOSE ✕</a>
+          </div>
+          <h3 style="margin: 8px 0 6px 0; font-family: 'Mirtha Display', serif; font-weight: 700; font-size: clamp(24px, 2.2vw, 32px); line-height: 1.06; letter-spacing: -0.02em; color: #14110F;">{{ sel.name }}</h3>
+          <p style="margin: 0 0 14px 0; font-size: 13px; line-height: 1.5; color: #8F8880; text-wrap: pretty;">{{ sel.desc }}</p>
+
+          <span style="font-family: Montserrat, sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: #14110F; margin-bottom: 8px;">ADD ONS</span>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; flex: 0 1 auto; min-height: 0; overflow-y: auto; padding-right: 2px;">
+            <sc-for list="{{ addons }}" as="a" hint-placeholder-count="6">
+              <sc-if value="{{ a.on }}" hint-placeholder-val="{{ false }}">
+                <button onClick="{{ a.toggle }}" style="cursor: pointer; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 10px; background: #FFF4F5; border: 1px solid #FBC3C7; border-radius: 10px; padding: 10px 12px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; color: #14110F;">
+                  <span>{{ a.label }}</span>
+                  <span style="font-family: Montserrat, sans-serif; font-size: 10px;">+{{ a.priceLabel }}</span>
+                </button>
+              </sc-if>
+              <sc-if value="{{ a.off }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ a.toggle }}" style="cursor: pointer; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 10px; background: #FFFFFF; border: 1px solid #ECE8E4; border-radius: 10px; padding: 10px 12px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 500; color: #6E6660;" style-hover="border-color: #DCD6CE; background: #FBFAF8;">
+                  <span>{{ a.label }}</span>
+                  <span style="font-family: Montserrat, sans-serif; font-size: 10px; color: #A9A198;">+{{ a.priceLabel }}</span>
+                </button>
+              </sc-if>
+            </sc-for>
+          </div>
+
+          <div style="flex: none; display: flex; flex-direction: column; gap: 6px; padding-top: 14px;">
+            <span style="font-family: Montserrat, sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: #14110F;">SPECIAL INSTRUCTIONS</span>
+            <textarea onInput="{{ onNote }}" rows="2" placeholder="No onions, extra spicy, cutlery not needed…" style="width: 100%; resize: none; background: #FBFAF8; border: 1px solid #ECE8E4; border-radius: 10px; padding: 10px 12px; font-family: 'Montserrat', sans-serif; font-size: 12px; line-height: 1.45; color: #14110F; outline: none;"></textarea>
+          </div>
+
+          <div style="flex: none; display: flex; align-items: center; justify-content: space-between; gap: 14px; border-top: 1px solid #F1EDE7; margin-top: 14px; padding-top: 14px;">
+            <div style="display: flex; align-items: center; gap: 4px; background: #FBFAF8; border: 1px solid #ECE8E4; border-radius: 999px; padding: 3px; flex: none;">
+              <button onClick="{{ decQty }}" aria-label="Decrease quantity" style="cursor: pointer; border: 0; background: #FFFFFF; border-radius: 999px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-family: Montserrat, sans-serif; font-size: 15px; line-height: 1; color: #14110F; box-shadow: 0 1px 2px rgba(20, 17, 15, 0.06);" style-hover="background: #F2EFEA;">−</button>
+              <span style="min-width: 24px; text-align: center; font-size: 14px; font-weight: 700; color: #14110F;">{{ qty }}</span>
+              <button onClick="{{ incQty }}" aria-label="Increase quantity" style="cursor: pointer; border: 0; background: #FBC3C7; border-radius: 999px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-family: Montserrat, sans-serif; font-size: 15px; line-height: 1; color: #14110F;" style-hover="background: #F7A8AE;">+</button>
+            </div>
+            <a href="#confirm" onClick="{{ confirmModal }}" style="display: flex; align-items: center; justify-content: center; background: #FBC3C7; color: #14110F; border-radius: 12px; padding: 13px 26px; font-size: 14px; font-weight: 600; white-space: nowrap;" style-hover="background: #F7A8AE;">Add — {{ total }}</a>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ cartOpen }}" hint-placeholder-val="{{ false }}">
+    <div data-modal-overlay="1" data-addon-sheet="1" style="position: fixed; inset: 0; z-index: 40; display: flex; align-items: center; justify-content: center; padding: clamp(20px, 4vh, 48px) clamp(20px, 4vw, 56px); background: rgba(20, 17, 15, 0.34);">
+      <a href="#close" onClick="{{ closeCart }}" aria-label="Close" style="position: absolute; inset: 0;"></a>
+      <div data-cart-wrap="1" style="position: relative; z-index: 2; width: min(540px, 100%); height: 100%; display: flex;">
+        <img src="./assets/washi-dots.png" alt="" style="position: absolute; top: -13px; left: 50%; transform: translateX(-50%) rotate(-2deg); width: 170px; height: 30px; z-index: 5;">
+        <a href="#close" onClick="{{ closeCart }}" aria-label="Close cart" style="position: absolute; top: 0; right: -54px; z-index: 6; width: 40px; height: 40px; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(20, 17, 15, 0.18);" style-hover="background: #FBC3C7;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#14110F" stroke-width="2.2" stroke-linecap="round"><path d="M5.5 5.5l13 13M18.5 5.5l-13 13"></path></svg>
+        </a>
+        <div data-cart-card="1" style="position: relative; width: 100%; height: 100%; min-height: 0; display: flex; flex-direction: column; background: #FFFFFF; border-radius: 20px; box-shadow: 0 40px 90px rgba(20, 17, 15, 0.28); overflow: hidden;">
+        <div style="flex: none; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 24px 26px 0 26px;">
+          <span style="font-family: Montserrat, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; color: #14110F;">YOUR ORDER</span>
+        </div>
+
+        <div style="flex: 1 1 auto; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; padding: 8px 26px 0 26px;">
+          <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="text-align: center; font-family: Montserrat, sans-serif; font-size: 12px; letter-spacing: 0.1em; color: #A9A198; padding: 26px 0;">YOUR CART IS EMPTY</div>
+          </sc-if>
+          <sc-for list="{{ cartItems }}" as="ci" hint-placeholder-count="2">
+            <div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid #F1EDE7;">
+              <div style="width: 68px; height: 68px; border-radius: 14px; overflow: hidden; background: #F4F1ED; flex: none;">
+                <div role="img" aria-label="{{ ci.name }}" style="width: 100%; height: 100%; background-image: url('{{ ci.img }}'); background-size: 152% auto; background-position: center; background-repeat: no-repeat;"></div>
+              </div>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+                <span style="font-family: Montserrat, sans-serif; font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; color: #914B4C;">{{ ci.name }}</span>
+                <span style="font-family: Montserrat, sans-serif; font-size: 11px; color: #A9A198;">{{ ci.unitLabel }}</span>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 5px;">
+                  <span style="font-size: 13px; color: #161616; font-weight: 400;">{{ ci.line }}</span>
+                  <div style="display: flex; align-items: center; gap: 2px; background: #FBFAF8; border: 1px solid #ECE8E4; border-radius: 999px; padding: 2px; flex: none;">
+                    <button onClick="{{ ci.dec }}" aria-label="Decrease" style="cursor: pointer; border: 0; background: #FFFFFF; border-radius: 999px; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-family: Montserrat, sans-serif; font-size: 13px; line-height: 1; color: #14110F; box-shadow: 0 1px 2px rgba(20, 17, 15, 0.06);" style-hover="background: #F2EFEA;">−</button>
+                    <span style="min-width: 20px; text-align: center; font-size: 12px; font-weight: 700; color: #14110F;">{{ ci.qty }}</span>
+                    <button onClick="{{ ci.inc }}" aria-label="Increase" style="cursor: pointer; border: 0; background: #FBC3C7; border-radius: 999px; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-family: Montserrat, sans-serif; font-size: 13px; line-height: 1; color: #14110F;" style-hover="background: #F7A8AE;">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+
+          <span style="flex: none; font-family: Montserrat, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: #14110F; margin: auto 0 10px 0; padding-top: 22px;">BEST SELLERS</span>
+          <div data-bs-row="1" style="flex: none; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 14px;">
+            <sc-for list="{{ bestSellers }}" as="b" hint-placeholder-count="4">
+              <div style="flex: none; scroll-snap-align: start; width: 148px; display: flex; flex-direction: column; gap: 10px;">
+                <div role="img" aria-label="{{ b.name }}" style="width: 100%; aspect-ratio: 1; border-radius: 14px; overflow: hidden; background-color: #F4F1ED; background-image: url('{{ b.img }}'); background-size: 152% auto; background-position: center; background-repeat: no-repeat;"></div>
+                <span style="font-family: Montserrat, sans-serif; font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; color: #914B4C; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.6em;">{{ b.name }}</span>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                  <span style="font-size: 13px; color: #161616; font-weight: 400;">{{ b.priceLabel }}</span>
+                  <button onClick="{{ b.add }}" style="cursor: pointer; border: 0; background: #FBC3C7; border-radius: 999px; padding: 5px 12px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; color: #14110F;" style-hover="background: #F7A8AE;">Add</button>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="flex: none; display: flex; flex-direction: column; gap: 7px; border-top: 1px solid #F1EDE7; padding: 14px 26px 20px 26px; background: #FFFFFF;">
+          <div style="display: flex; flex-direction: column; gap: 8px; padding-bottom: 8px;">
+            <sc-if value="{{ freeDel }}" hint-placeholder-val="{{ false }}">
+              <span style="font-family: Montserrat, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: #14110F;">FREE DELIVERY UNLOCKED</span>
+            </sc-if>
+            <sc-if value="{{ notFreeDel }}" hint-placeholder-val="{{ true }}">
+              <span style="font-family: Montserrat, sans-serif; font-size: 11px; letter-spacing: 0.1em; color: #6E6660;">ADD {{ toFree }} MORE FOR FREE DELIVERY</span>
+            </sc-if>
+            <div style="height: 8px; border-radius: 999px; background: #F1EDE7; overflow: hidden;">
+              <div style="height: 100%; border-radius: 999px; background: #FBC3C7; width: {{ freePct }}; transition: width 0.4s ease;"></div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: baseline; justify-content: space-between; font-size: 13px; color: #6E6660;"><span>Subtotal</span><span>{{ subtotalLabel }}</span></div>
+          <div style="display: flex; align-items: baseline; justify-content: space-between; font-size: 13px; color: #6E6660;"><span>Delivery</span><span style="font-family: Montserrat, sans-serif; font-size: 12px;">{{ delivLabel }}</span></div>
+          <div style="display: flex; align-items: baseline; justify-content: space-between; font-size: 16px; font-weight: 800; color: #14110F; margin-top: 2px;"><span>Total</span><span>{{ cartTotalLabel }}</span></div>
+          <a href="./Checkout.dc.html" onClick="{{ goCheckout }}" style="display: flex; align-items: center; justify-content: center; background: #FBC3C7; color: #914B4C; border-radius: 12px; padding: 15px 28px; font-size: 15px; font-weight: 600; margin-top: 8px" style-hover="background: #F7A8AE;">Checkout — {{ cartTotalLabel }}</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:920},&quot;fontTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Modern — Mirtha + Inter&quot;,&quot;Classic — Lato + EB Garamond&quot;],&quot;default&quot;:&quot;Modern — Mirtha + Inter&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Typography&quot;},&quot;tileLayout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Barcode ticket&quot;,&quot;Restaurant card&quot;],&quot;default&quot;:&quot;Barcode ticket&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Tiles&quot;},&quot;listMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Two columns — click to select&quot;,&quot;Single column — scroll to select&quot;],&quot;default&quot;:&quot;Two columns — click to select&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Tiles&quot;},&quot;thumbStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Clean crop&quot;,&quot;Doodle frame&quot;],&quot;default&quot;:&quot;Clean crop&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Tiles&quot;},&quot;showBarcode&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Tiles&quot;},&quot;freeAbove&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:5000,&quot;min&quot;:0,&quot;unit&quot;:&quot;Rs&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Cart&quot;},&quot;deliveryFee&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:250,&quot;min&quot;:0,&quot;unit&quot;:&quot;Rs&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Cart&quot;},&quot;selectHighlight&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Doodle frame&quot;,&quot;Washi tape&quot;],&quot;default&quot;:&quot;Doodle frame&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Tiles&quot;},&quot;cartStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;In panel — replaces item detail&quot;,&quot;Modal overlay&quot;],&quot;default&quot;:&quot;Modal overlay&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Cart&quot;}}">
+class Component extends DCLogic {
+  state = { sel: 0, flip: 0, cat: "ALL", q: "", scrolled: false, sheetOpen: false, picked: [], note: "", wiggle: 0, qty: 1, added: {}, modalOpen: false, isMobile: false, cartOpen: false };
+  resetList() {
+    if (this._list) this._list.scrollTop = 0;
+  }
+  applyFontTheme() {
+    const classic = (this.props.fontTheme || "").indexOf("Classic") === 0;
+    let tag = document.getElementById("pl-font-theme");
+    if (classic) {
+      if (!tag) { tag = document.createElement("style"); tag.id = "pl-font-theme"; document.head.appendChild(tag); }
+      tag.textContent = `
+        [data-fontroot], [data-fontroot] *:not([style*="Plex Mono"]):not(p) { font-family: 'Lato', sans-serif !important; }
+        [data-fontroot] p { font-family: 'EB Garamond', Georgia, serif !important; }
+        [data-fontroot] h2, [data-fontroot] h3, [data-fontroot] [data-menu-head] span { font-weight: 900 !important; letter-spacing: -0.02em !important; }
+      `;
+    } else if (tag) { tag.remove(); }
+  }
+  componentDidMount() {
+    this.applyFontTheme();
+    this._onWinScroll = () => this.computeSel();
+    window.addEventListener("scroll", this._onWinScroll, { passive: true });
+    this._mq = window.matchMedia("(max-width: 767px)");
+    this._onMq = () => this.setState({ isMobile: this._mq.matches });
+    this._mq.addEventListener("change", this._onMq);
+    if (this._mq.matches) this.setState({ isMobile: true });
+    setTimeout(() => {
+      if (!this._list) this._list = document.querySelector("[data-sku-list]");
+      if (this._list && !this._bound) {
+        this._bound = true;
+        this._list.addEventListener("scroll", () => this.computeSel(), { passive: true });
+      }
+      this.computeSel();
+    }, 60);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this._onWinScroll);
+    if (this._mq) this._mq.removeEventListener("change", this._onMq);
+  }
+  componentDidUpdate(prevProps, prevState) {
+    this.applyFontTheme();
+    if (!prevState || prevState.sel !== this.state.sel) setTimeout(() => this.revealPill(), 0);
+  }
+  tween(el, axis, target, ms) {
+    const key = axis === "x" ? "scrollLeft" : "scrollTop";
+    const from = el[key];
+    const dist = target - from;
+    if (Math.abs(dist) < 1) return;
+    if (document.visibilityState === "hidden") { el[key] = target; return; }
+    const t0 = performance.now();
+    const step = (now) => {
+      const k = Math.min(1, (now - t0) / (ms || 300));
+      const e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+      el[key] = from + dist * e;
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  revealPill() {
+    const nav = document.querySelector("[data-catnav]");
+    const pill = nav && nav.querySelector('[data-cat-pill="active"]');
+    if (!nav || !pill) return;
+    const nr = nav.getBoundingClientRect();
+    const pr = pill.getBoundingClientRect();
+    const pad = 64;
+    let target = nav.scrollLeft + (pr.left + pr.width / 2) - (nr.left + nr.width / 2);
+    const max = nav.scrollWidth - nav.clientWidth;
+    target = Math.max(0, Math.min(target, max));
+    const rightGap = nr.right - pad - (pr.right + (target - nav.scrollLeft));
+    if (rightGap < 0) target = Math.max(0, Math.min(target - rightGap, max));
+    this.tween(nav, "x", target, 280);
+  }
+  tiles() {
+    if (!this._list) this._list = document.querySelector("[data-sku-list]");
+    const list = this._list;
+    if (!list) return [];
+    return Array.from(list.children).filter(el => el.hasAttribute && el.hasAttribute("data-tile"));
+  }
+  bumpWiggle() {
+    this.setState(s => ({ wiggle: s.wiggle + 1 }));
+  }
+  cardMode() {
+    return (this.props.tileLayout ?? "Barcode ticket") === "Restaurant card";
+  }
+  scrollSelectMode() {
+    return (this.props.listMode ?? "Two columns — click to select").indexOf("Single") === 0;
+  }
+  computeSel() {
+    if (this._rafPending) return;
+    this._rafPending = true;
+    requestAnimationFrame(() => {
+      this._rafPending = false;
+      const list = this._list;
+      if (!list) return;
+      if (!this._secs || !this._secs.length || !this._secs[0].isConnected) {
+        this._secs = Array.from(list.querySelectorAll("[data-section]"));
+      }
+      const secs = this._secs;
+      if (!secs.length) return;
+      const lr = list.getBoundingClientRect();
+      const line = Math.max(lr.top, 0) + Math.min(lr.height, window.innerHeight) * 0.28;
+      let activeCat = secs[0].getAttribute("data-section");
+      for (const el of secs) {
+        const r = el.getBoundingClientRect();
+        if (r.top <= line) activeCat = el.getAttribute("data-section");
+        else break;
+      }
+      if (activeCat && activeCat !== this._activeCat) {
+        this._activeCat = activeCat;
+        this.setState({ cat: activeCat });
+        /* an explicit pick owns the panel until the user picks something else */
+        if (this._userPicked) return;
+        const idx = this._prodByCat && this._prodByCat[activeCat];
+        if (idx != null && idx !== this.state.sel) this.setState({ sel: idx });
+      }
+    });
+  }
+  centerTile(i) {
+    this._userPicked = true;
+    if (this.cardMode()) return;
+    if (this.state.sheetOpen) { this.bumpWiggle(); return; }
+    if (i !== this.state.sel) this.setState(s => ({ sel: i, flip: s.flip + 1 }));
+    const tiles = this.tiles();
+    const list = this._list;
+    const el = tiles[i];
+    if (!list || !el) return;
+    if (i === 0) { this.tween(list, "y", 0, 320); return; }
+    const lr = list.getBoundingClientRect();
+    const r = el.getBoundingClientRect();
+    const delta = (r.top + r.height / 2) - (lr.top + lr.height / 2);
+    const max = list.scrollHeight - list.clientHeight;
+    this.tween(list, "y", Math.max(0, Math.min(list.scrollTop + delta, max)), 320);
+  }
+  renderVals() {
+    const R = p => (window.__resources && window.__resources[p]) || p;
+    const doodle = (this.props.thumbStyle ?? "Clean crop") === "Doodle frame";
+    const mob = this.state.isMobile;
+    const showBarcode = this.props.showBarcode ?? false;
+    const inPanelCart = (this.props.cartStyle ?? "In panel — replaces item detail").indexOf("In panel") === 0;
+    const data = [
+      { cat: "POPULAR ITEMS", name: "American Breakfast", desc: "Fried eggs, hash brown, sausages, baked beans, grilled tomato & toast", price: "Rs. 1,795", img: "", cut: false, code: "084839410024997" },
+      { cat: "POPULAR ITEMS", name: "Mediterranean Omelette", desc: "Three-egg omelette with olives, feta, peppers & fresh herbs", price: "Rs. 1,545", img: "", cut: false, code: "084839410028568" },
+      { cat: "POPULAR ITEMS", name: "Mushroom & Cheese Omelette", desc: "Three-egg omelette folded with sautéed mushrooms & melted cheese", price: "Rs. 1,495", img: "", cut: false, code: "084839410032139" },
+      { cat: "JAPANESE PANCAKES", name: "Lotus Pancake", desc: "Fluffy pancakes topped with lotus sauce & lotus biscuit crumbs", price: "Rs. 1,595", img: "", cut: false, code: "084839410035710" },
+      { cat: "JAPANESE PANCAKES", name: "Nutella Pancake", desc: "Fluffy soufflé pancakes with nutella, cream & chocolate crumbs", price: "Rs. 1,595", img: "", cut: false, code: "084839410039281" },
+      { cat: "JAPANESE PANCAKES", name: "Matcha Pancake", desc: "Soufflé pancakes with matcha cream & white chocolate shavings", price: "Rs. 1,645", img: "", cut: false, code: "084839410039282" },
+      { cat: "FRENCH TOAST", name: "Nutella French Toast", desc: "Battered bread, topped with nutella, cream & housemade granola", price: "Rs. 1,495", img: "./assets/frame-frenchtoast.png", cut: false, code: "084839410042852" },
+      { cat: "FRENCH TOAST", name: "Classic French Toast", desc: "Battered bread, cinnamon sugar, maple syrup & butter", price: "Rs. 1,295", img: "", cut: false, code: "084839410042853" },
+      { cat: "FRENCH TOAST", name: "Berry French Toast", desc: "Battered bread topped with mixed berries & vanilla cream", price: "Rs. 1,395", img: "", cut: false, code: "084839410042854" },
+      { cat: "LOADED FRIES", name: "Mexican Fries", desc: "Topped with sriracha mayo, cheese sauce, black beans bolognese sauce, tomato salsa, jalapeno & sour cream", price: "Rs. 1,445", img: "", cut: false, code: "084839410046423" },
+      { cat: "LOADED FRIES", name: "Loaded Cheese Fries", desc: "Crispy fries smothered in a rich cheese sauce & chives", price: "Rs. 1,145", img: "", cut: false, code: "084839410046424" },
+      { cat: "LOADED FRIES", name: "BBQ Chicken Fries", desc: "Fries topped with pulled BBQ chicken, cheese sauce & scallions", price: "Rs. 1,295", img: "", cut: false, code: "084839410046425" },
+      { cat: "STARTERS", name: "Nashville Chicken Tenders", desc: "4 Chicken Fingers in a Signature Flavor served Fries & Coleslaw", price: "Rs. 1,445", img: "", cut: true, code: "084839410049994" },
+      { cat: "STARTERS", name: "Salsa Chicken Tacos", desc: "Soft tacos filled with chicken, zesty tomato salsa & sour cream", price: "Rs. 1,395", img: "", cut: false, code: "084839410053565" },
+      { cat: "STARTERS", name: "Prawn to be Wild", desc: "Spiced prawns tossed in signature seasoning, served with dip", price: "Rs. 1,695", img: "", cut: false, code: "084839410057136" },
+      { cat: "SALADS", name: "Quinoa & Feta Cheese", desc: "Quinoa grains, mixed greens, orange segments, feta cheese, red cabbage & homemade balsamic zesty dressing", price: "from Rs. 1,595", img: "./assets/dish-salad-bowl.png", cut: true, code: "084839410060707" },
+      { cat: "SALADS", name: "Caesar Salad", desc: "Crisp romaine, parmesan, croutons & creamy caesar dressing", price: "Rs. 1,395", img: "", cut: false, code: "084839410060708" },
+      { cat: "SALADS", name: "Greek Salad", desc: "Cucumber, tomato, olives, red onion & feta with olive oil", price: "Rs. 1,345", img: "", cut: false, code: "084839410060709" },
+      { cat: "PASTA", name: "Creamy Sundried Tomato Rigatoni", desc: "Rich rigatoni in a creamy sauce with flavorful sundried tomatoes and herbs.", price: "Rs. 1,995", img: "./assets/frame-pasta.png", cut: false, code: "084839410064278" },
+      { cat: "PASTA", name: "Prahas Prawn Linguine Pasta", desc: "Olive oil based spicy tangy clear sauce, prawns & linguine pasta", price: "Rs. 2,045", img: "", cut: false, code: "084839410067849" },
+      { cat: "PASTA", name: "Mac and Cheese", desc: "Pasta in a rich, cheesy béchamel, baked till golden", price: "Rs. 1,595", img: "./assets/frame-mac.png", cut: false, code: "084839410071420" },
+      { cat: "PASTA", name: "Alfredo Pasta", desc: "Tender pasta in a velvety parmesan cream sauce", price: "Rs. 1,745", img: "", cut: false, code: "084839410074991" },
+      { cat: "PASTA", name: "Biang Biang Noodles", desc: "Hand-pulled noodles tossed in a spicy, aromatic sauce", price: "Rs. 1,695", img: "", cut: false, code: "084839410078562" },
+      { cat: "MAIN COURSE", name: "Burrito Bowl", desc: "A bowl of brown rice, purple cabbage, tomato salsa, guacamole, jalapeno garnish with sour cream", price: "Rs. 1,945", img: "./assets/dish-paneer-bowl.png", cut: true, code: "084839410082133" },
+      { cat: "MAIN COURSE", name: "Grilled Chicken Platter", desc: "Herb-marinated chicken breast, roasted vegetables & rice", price: "Rs. 2,145", img: "", cut: false, code: "084839410082134" },
+      { cat: "MAIN COURSE", name: "Beef Steak Platter", desc: "Grilled beef steak, mashed potatoes & peppercorn sauce", price: "Rs. 2,595", img: "", cut: false, code: "084839410082135" },
+      { cat: "PIZZA", name: "Chicken Mushroom & Truffle Oil Pizza", desc: "Homemade white sauce, fresh mushrooms, caramelized onion, black olives, marrow & parmesan cheese, truffle oil", price: "Rs. 1,945", img: "", cut: false, code: "084839410085704" },
+      { cat: "PIZZA", name: "Mediterranean Pizza", desc: "Olives, feta & sundried tomatoes on a thin crust", price: "Rs. 1,895", img: "", cut: false, code: "084839410089275" },
+      { cat: "PIZZA", name: "Buffalo Chicken Pizza", desc: "Tender chicken smothered in a tangy buffalo sauce", price: "Rs. 1,945", img: "", cut: false, code: "084839410092846" },
+      { cat: "PIZZA", name: "Margherita Pizza", desc: "Fresh basil, tomatoes & mozzarella", price: "Rs. 1,595", img: "", cut: false, code: "084839410096417" },
+      { cat: "PIZZA", name: "Prahas Pesto Pizza", desc: "Aromatic basil pesto, mozzarella & cherry tomatoes", price: "Rs. 1,845", img: "", cut: false, code: "084839410099988" },
+      { cat: "PIZZA", name: "Baked Figs with Goat Cheese Pizza", desc: "Baked figs, goat cheese & a honey drizzle", price: "Rs. 2,045", img: "", cut: false, code: "084839410103559" },
+      { cat: "BURGERS", name: "Ja Ja Jamaica Burger", desc: "Grilled spicy chicken, tomatoes, cheese & signature sauce", price: "Rs. 1,845", img: "./assets/frame-burger.png", cut: false, code: "084839410107130" },
+      { cat: "BURGERS", name: "Smashy Beef Burger", desc: "Donut bun, filled with beef, cheese, chipotle & sour cream", price: "from Rs. 1,745", img: "./assets/dish-burger.png", cut: true, code: "084839410110701" },
+      { cat: "BURGERS", name: "Classic Cheese Burger", desc: "Beef patty, cheddar, lettuce, tomato & house sauce", price: "Rs. 1,495", img: "", cut: false, code: "084839410110702" },
+      { cat: "SANDWICHES", name: "Prahas Euro Club Sandwich", desc: "Sliced bread, grilled chicken, cheese, lettuce, tomatoes, mayonnaise, Turkey bacon, fried egg, smoke Turkey & pickles", price: "Rs. 2,095", img: "./assets/dish-sandwich.png", cut: true, code: "084839410114272" },
+      { cat: "SANDWICHES", name: "Dynamite Chicken Brioche", desc: "Spicy chicken on a soft brioche bun with dynamite sauce", price: "Rs. 1,745", img: "", cut: false, code: "084839410117843" },
+      { cat: "SANDWICHES", name: "The Muffaleta", desc: "Layers of Italian meats, cheese & a tangy olive salad", price: "Rs. 1,895", img: "", cut: false, code: "084839410121414" },
+      { cat: "SANDWICHES", name: "Country Roast Sandwich", desc: "Roast chicken, fresh vegetables & mustard mayo on sourdough", price: "Rs. 1,695", img: "", cut: false, code: "084839410124985" },
+      { cat: "SANDWICHES", name: "Cheesy Chicken Sandwich", desc: "Tender chicken folded into a creamy cheese sauce", price: "Rs. 1,645", img: "", cut: false, code: "084839410128556" },
+      { cat: "CHIMNEYS", name: "Korean Fried Chimney", desc: "Crispy fried chicken in a savoury-sweet Korean glaze, served in a chimney cone", price: "Rs. 1,995", img: "./assets/wood-dish-chimney.png", cut: false, code: "084839410132127" },
+      { cat: "CHIMNEYS", name: "Prahas Original Chicken", desc: "Grilled chicken breast seasoned with a blend of signature spices", price: "Rs. 1,845", img: "", cut: false, code: "084839410135698" },
+      { cat: "CHIMNEYS", name: "Jalapeno Spice Chicken", desc: "Grilled chicken with jalapeño heat & a creamy finish", price: "Rs. 1,895", img: "", cut: false, code: "084839410139269" },
+      { cat: "CHIMNEYS", name: "Creamy Grilled Tikka", desc: "Yogurt-marinated chicken tikka, grilled & finished in cream", price: "Rs. 1,945", img: "", cut: false, code: "084839410142840" },
+      { cat: "DESSERTS", name: "Lotus Circus", desc: "Signature lotus brownies, with lotus sauce, soft serve ice cream & lotus crumbs", price: "Rs. 1,495", img: "", cut: true, code: "084839410146411" },
+      { cat: "DESSERTS", name: "Chocolate Lava Cake", desc: "Warm chocolate cake with a molten center & vanilla ice cream", price: "Rs. 1,345", img: "", cut: false, code: "084839410146412" },
+      { cat: "DESSERTS", name: "New York Cheesecake", desc: "Creamy baked cheesecake with a buttery biscuit crust", price: "Rs. 1,295", img: "", cut: false, code: "084839410146413" },
+      { cat: "HOT COFFEES", name: "Spanish Latte", desc: "Espresso with condensed milk & steamed milk", price: "Rs. 745", img: "", cut: false, code: "084839410149982" },
+      { cat: "HOT COFFEES", name: "Hot Chocolate", desc: "Rich melted chocolate, steamed milk & cocoa", price: "Rs. 795", img: "", cut: false, code: "084839410153553" },
+      { cat: "HOT COFFEES", name: "Cappuccino", desc: "Espresso, steamed milk & a deep layer of foam", price: "Rs. 695", img: "", cut: false, code: "084839410153554" },
+      { cat: "SHAKES", name: "Lotus Shake", desc: "Lotus biscoff blended with ice cream & milk", price: "Rs. 995", img: "", cut: false, code: "084839410157124" },
+      { cat: "SHAKES", name: "Oreo Shake", desc: "Crushed oreo cookies blended with ice cream & milk", price: "Rs. 945", img: "", cut: false, code: "084839410157125" },
+      { cat: "SHAKES", name: "Mango Shake", desc: "Fresh mango blended with milk & a touch of honey", price: "Rs. 895", img: "", cut: false, code: "084839410157126" },
+      { cat: "REFRESHERS", name: "Passion Fruit Refresher", desc: "Passion fruit, citrus & soda over ice", price: "Rs. 745", img: "", cut: false, code: "084839410160695" },
+      { cat: "REFRESHERS", name: "Mint Lemonade", desc: "Fresh mint, lemon & soda over ice", price: "Rs. 695", img: "", cut: false, code: "084839410160696" },
+      { cat: "REFRESHERS", name: "Berry Cooler", desc: "Mixed berries, citrus & soda over ice", price: "Rs. 745", img: "", cut: false, code: "084839410160697" }
+    ];
+    const mkBars = (code, n) => Array.from({ length: n }, (_, i) => {
+      const d = code.charCodeAt(i % code.length) - 48;
+      return { t: (2 + ((d * 7 + i * 3) % 7)) + "px" };
+    });
+    const q = (this.state.q || "").trim().toLowerCase();
+    const filtered = data.filter(d => !q || (d.name + " " + d.desc).toLowerCase().includes(q));
+    const selIdx = Math.min(this.state.sel, Math.max(0, filtered.length - 1));
+    const cardMode = (this.props.tileLayout ?? "Barcode ticket") === "Restaurant card";
+    const highlightMode = this.props.selectHighlight ?? "Doodle frame";
+    const pool = ["./assets/frame-pasta.png", "./assets/frame-frenchtoast.png", "./assets/frame-burger.png", "./assets/frame-mac.png", "./assets/dish-burger.png", "./assets/dish-sandwich.png", "./assets/dish-salad-bowl.png", "./assets/dish-paneer-bowl.png"];
+    const products = filtered.map((d, i) => ({
+      ...d,
+      img: R(d.img || pool[i % pool.length]),
+      cut: d.img ? d.cut : pool[i % pool.length].indexOf("dish-") > -1,
+      hasImg: true,
+      noImg: false,
+      newCat: i > 0 && filtered[i - 1].cat !== d.cat,
+      delay: (0.1 + i * 0.09).toFixed(2) + "s",
+      fit: (d.img ? d.cut : pool[i % pool.length].indexOf("dish-") > -1) || doodle ? "contain" : "cover",
+      zoom: (d.img ? d.cut : pool[i % pool.length].indexOf("dish-") > -1) || doodle ? 1 : 1.32,
+      bars: mkBars(d.code, 22),
+      filt: "none",
+      idx: i,
+      delay: (0.06 + (i % 6) * 0.05).toFixed(2) + "s",
+      isSelFrame: i === selIdx && highlightMode !== "Washi tape",
+      isSelTape: highlightMode === "Washi tape",
+      select: () => { this._userPicked = true; this.setState({ sel: i }); }
+    }));
+    const sel = products[selIdx] || {};
+    let curSec = null;
+    const sections = [];
+    this._prodByCat = {};
+    products.forEach((p, i) => {
+      if (i === 0 || p.newCat) { curSec = { label: p.cat, items: [] }; sections.push(curSec); }
+      curSec.items.push(p);
+      if (this._prodByCat[p.cat] == null) this._prodByCat[p.cat] = i;
+      (this._catBySel = this._catBySel || {})[i] = p.cat;
+    });
+    const HEAD = {
+      "POPULAR ITEMS": "./uploads/Group 1410103974.png",
+      "JAPANESE PANCAKES": "./uploads/Group 1410103958.png",
+      "FRENCH TOAST": "./uploads/Group 1410103957.png",
+      "STARTERS": "./uploads/Group 1410103959.png",
+      "SALADS": "./uploads/Group 1410103961.png",
+      "LOADED FRIES": "./uploads/Group 1410103962.png",
+      "MAIN COURSE": "./uploads/Group 1410103963.png",
+      "PIZZA": "./uploads/Group 1410103964.png",
+      "SANDWICHES": "./uploads/Group 1410103965.png",
+      "CHIMNEYS": "./uploads/Group 1410103966.png",
+      "PASTA": "./uploads/Group 1410103967.png",
+      "BURGERS": "./uploads/Group 1410103968.png",
+      "DESSERTS": "./uploads/Group 1410103969.png",
+      "SHAKES": "./uploads/Group 1410103970.png",
+      "HOT COFFEES": "./uploads/Group 1410103971.png",
+      "REFRESHERS": "./uploads/Group 1410103972.png"
+    };
+    sections.forEach((s) => { s.headImg = HEAD[s.label] || ""; s.hasHeadImg = !!HEAD[s.label]; s.noHeadImg = !HEAD[s.label]; });
+    if (this._secKey !== q) { this._secKey = q; this._secs = null; this._activeCat = null; }
+    const addonData = [
+      { id: "chicken", label: "Add grilled chicken", price: 450 },
+      { id: "prawns", label: "Add prawns", price: 650 },
+      { id: "cheese", label: "Extra cheese", price: 250 },
+      { id: "fries", label: "Side of fries", price: 395 },
+      { id: "bread", label: "Garlic bread", price: 345 },
+      { id: "coffee", label: "Iced coffee", price: 695 }
+    ];
+    const itemKey = sel.name;
+    const pickedBy = this.state.pickedBy || {};
+    const noteBy = this.state.noteBy || {};
+    const committed = this.state.committed || {};
+    const picked = pickedBy[itemKey] || [];
+    const note = noteBy[itemKey] || "";
+    const sig = (p, n) => p.slice().sort().join("|") + "§" + (n || "").trim();
+    const setPicked = (fn) => this.setState(s => {
+      const map = s.pickedBy || {};
+      return { pickedBy: { ...map, [itemKey]: fn(map[itemKey] || []) } };
+    });
+    const addons = addonData.map(a => ({
+      id: a.id,
+      label: a.label,
+      optionLabel: (picked.indexOf(a.id) > -1 ? "✓  " : "") + a.label + "  +Rs. " + a.price,
+      priceLabel: "Rs. " + a.price,
+      on: picked.indexOf(a.id) > -1,
+      off: picked.indexOf(a.id) < 0,
+      toggle: () => setPicked(list => list.indexOf(a.id) > -1 ? list.filter(x => x !== a.id) : list.concat([a.id]))
+    }));
+    const base = parseInt(String(sel.price || "0").replace(/[^0-9]/g, ""), 10) || 0;
+    const qty = Math.max(1, this.state.qty);
+    const total = (base + addonData.reduce((sum, a) => sum + (picked.indexOf(a.id) > -1 ? a.price : 0), 0)) * qty;
+    const addonSum = addonData.reduce((sum, a) => sum + (picked.indexOf(a.id) > -1 ? a.price : 0), 0);
+    const unitPriceLabel = "Rs. " + (base + addonSum).toLocaleString("en-US");
+    const addedQty = this.state.added[sel.name] || 0;
+    const FREE_AT = this.props.freeAbove ?? 5000;
+    const DELIV_FEE = this.props.deliveryFee ?? 250;
+    const cartItems = Object.keys(this.state.added).filter(n => this.state.added[n] > 0).map(n => {
+      const di = data.findIndex(x => x.name === n);
+      const d = data[di] || {};
+      const img = d.img || pool[Math.max(0, di) % pool.length];
+      const nPicked = (this.state.pickedBy || {})[n] || [];
+      const unit = (parseInt(String(d.price || "0").replace(/[^0-9]/g, ""), 10) || 0)
+        + addonData.reduce((sum, a) => sum + (nPicked.indexOf(a.id) > -1 ? a.price : 0), 0);
+      const qn = this.state.added[n];
+      return {
+        name: n, img: R(img), rawImg: img, unit, qn, qty: String(qn),
+        unitLabel: "Rs. " + unit.toLocaleString("en-US"),
+        line: "Rs. " + (unit * qn).toLocaleString("en-US"),
+        inc: () => this.setState(s => ({ added: { ...s.added, [n]: (s.added[n] || 0) + 1 } })),
+        dec: () => this.setState(s => { const v = (s.added[n] || 0) - 1; const nx = { ...s.added }; if (v <= 0) delete nx[n]; else nx[n] = v; return { added: nx }; })
+      };
+    });
+    const subtotal = cartItems.reduce((a, c) => a + c.unit * c.qn, 0);
+    const freeDel = subtotal >= FREE_AT && subtotal > 0;
+    const delivFee = freeDel ? 0 : DELIV_FEE;
+    const bestSellers = ["Creamy Sundried Tomato Rigatoni", "Nutella French Toast", "Ja Ja Jamaica Burger", "Prahas Euro Club Sandwich", "Quinoa & Feta Cheese"].map(n => {
+      const di = data.findIndex(x => x.name === n);
+      const d = data[di];
+      return {
+        name: n, img: R(d.img || pool[di % pool.length]), priceLabel: d.price,
+        add: () => this.setState(s => ({ added: { ...s.added, [n]: (s.added[n] || 0) + 1 } }))
+      };
+    });
+    const cats = [...new Set(data.map(d => d.cat))].map(label => ({
+      id: label + "|" + (this.state.cat || sel.cat),
+      label,
+      active: label === (this.state.cat && this.state.cat !== "ALL" ? this.state.cat : sel.cat),
+      inactive: label !== (this.state.cat && this.state.cat !== "ALL" ? this.state.cat : sel.cat),
+      pick: () => {
+        this._userPicked = true;
+        const idx = products.findIndex(p => p.cat === label);
+        if (idx >= 0) this.setState({ sel: idx });
+      }
+    }));
+    return {
+      products, sections, sel, showBarcode, ready: true, cats,
+      listMode: this.scrollSelectMode() ? "single" : "two",
+      noResults: products.length === 0,
+      showTicketPanel: !cardMode && products.length > 0,
+      ticketTiles: !cardMode,
+      cardTiles: cardMode,
+      stageMode: cardMode ? "cards" : "ticket",
+      noQuery: !q,
+      hasQuery: !!q,
+      q,
+      onSearch: (e) => { this.setState({ q: e.target.value, sel: 0 }); this.resetList(); },
+      clearSearch: (e) => { e.preventDefault(); this.setState({ q: "", sel: 0 }); this.resetList(); },
+      selBars: sel.code ? mkBars(sel.code, 34) : [],
+      count: String(products.length).padStart(2, "0"),
+      tileCols: showBarcode ? "clamp(38px, 4.4vw, 58px) 1px minmax(90px, 1fr) 1px clamp(64px, 8vw, 116px)" : "minmax(0, 1fr) 1px clamp(84px, 7vw, 128px)",
+      listRef: (el) => { this._list = el; },
+      onListScroll: (e) => {
+        if (e && e.currentTarget) this._list = e.currentTarget;
+        this.computeSel();
+      },
+      sheetOpen: this.state.sheetOpen,
+      listOverflow: this.state.sheetOpen ? "hidden" : "auto",
+      wiggleAnim: this.state.wiggle === 0 ? "none" : (this.state.wiggle % 2 ? "wiggle-a" : "wiggle-b"),
+      addons: addons,
+      total: "Rs. " + total.toLocaleString("en-US"),
+      addCount: String(qty + this.state.picked.length),
+      qty: String(qty),
+      incQty: () => this.setState(s => ({ qty: Math.min(20, s.qty + 1) })),
+      decQty: () => this.setState(s => ({ qty: Math.max(1, s.qty - 1) })),
+      addedQty: String(addedQty),
+      cartCount: String(Object.values(this.state.added).reduce((a, b) => a + b, 0)),
+      hasCart: Object.values(this.state.added).reduce((a, b) => a + b, 0) > 0,
+      cartOpen: !!this.state.cartOpen && !inPanelCart,
+      panelCart: !!this.state.cartOpen && inPanelCart,
+      openCart: (e) => { e.preventDefault(); this.setState({ cartOpen: true }); },
+      closeCart: (e) => { e.preventDefault(); this.setState({ cartOpen: false }); },
+      cartItems, bestSellers,
+      cartEmpty: cartItems.length === 0,
+      freeDel, notFreeDel: !freeDel,
+      toFree: "RS. " + Math.max(0, FREE_AT - subtotal).toLocaleString("en-US"),
+      freePct: Math.min(100, Math.round(subtotal / FREE_AT * 100)) + "%",
+      subtotalLabel: "Rs. " + subtotal.toLocaleString("en-US"),
+      delivLabel: freeDel ? "FREE" : "Rs. " + delivFee.toLocaleString("en-US"),
+      cartTotalLabel: "Rs. " + (subtotal + delivFee).toLocaleString("en-US"),
+      goCheckout: (e) => {
+        try { localStorage.setItem("praha-cart", JSON.stringify(cartItems.map(c => ({ name: c.name, img: c.rawImg || c.img, unit: c.unit, qty: c.qn })))); } catch (err) {}
+        if (this.props.onCheckout) { if (e && e.preventDefault) e.preventDefault(); this.props.onCheckout(); }
+      },
+      isAdded: addedQty > 0,
+      notAdded: addedQty === 0,
+      modalOpen: !!this.state.modalOpen,
+      closeModal: (e) => { e.preventDefault(); this.setState({ modalOpen: false, picked: [], note: "", qty: 1 }); },
+      confirmModal: (e) => {
+        e.preventDefault();
+        this.setState(s => ({
+          modalOpen: false, picked: [], note: "", qty: 1,
+          added: { ...s.added, [sel.name]: (s.added[sel.name] || 0) + qty }
+        }));
+      },
+      onNote: (e) => { const v = e.target.value; this.setState(s => ({ noteBy: { ...(s.noteBy || {}), [itemKey]: v } })); },
+      noteVal: note,
+      unitPriceLabel,
+      addonSelect: "",
+      pickedCount: picked.length ? picked.length + " selected" : "",
+      addonSummary: picked.length ? addonData.filter(a => picked.indexOf(a.id) > -1).map(a => a.label.replace(/^Add /, "").replace(/^Extra /, "Extra ")).join(", ") : "Select add-ons",
+      addonSummaryColor: picked.length ? "#14110F" : "#A9A198",
+      onPickAddon: (e) => {
+        const id = e.target.value;
+        if (!id) return;
+        setPicked(list => list.indexOf(id) > -1 ? list.filter(x => x !== id) : list.concat([id]));
+      },
+      isDirty: addedQty > 0 && committed[itemKey] !== undefined && committed[itemKey] !== sig(picked, note),
+      isAddedClean: addedQty > 0 && (committed[itemKey] === undefined || committed[itemKey] === sig(picked, note)),
+      updateOrder: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        this.setState(s => ({ committed: { ...(s.committed || {}), [itemKey]: sig(picked, note) } }));
+      },
+      closeSheet: (e) => { e.preventDefault(); this.setState({ sheetOpen: false, qty: 1 }); },
+      confirmAdd: (e) => {
+        e.preventDefault();
+        this.setState(s => ({
+          sheetOpen: false, picked: [], note: "", qty: 1,
+          added: { ...s.added, [sel.name]: (s.added[sel.name] || 0) + qty }
+        }));
+      },
+      addToOrder: (e) => {
+        e.preventDefault();
+        if (this._list) this._lockTop = this._list.scrollTop;
+        this.setState(s => ({
+          added: { ...s.added, [sel.name]: (s.added[sel.name] || 0) + 1 },
+          committed: { ...(s.committed || {}), [itemKey]: sig(picked, note) }
+        }));
+      },
+      addedInc: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        this.setState(s => ({ added: { ...s.added, [sel.name]: Math.min(20, (s.added[sel.name] || 0) + 1) } }));
+      },
+      addedDec: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        this.setState(s => ({ added: { ...s.added, [sel.name]: Math.max(0, (s.added[sel.name] || 0) - 1) } }));
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

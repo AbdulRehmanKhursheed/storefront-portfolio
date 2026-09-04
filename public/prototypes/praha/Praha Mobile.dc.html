@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'Awaline'; src: url('./uploads/AwalineDemoRegular-wozjn.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'The Hantwels'; src: url('./uploads/TheHantwels-zrw8l.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  html, body { margin: 0; padding: 0; background: #F1ECEB; }
+  * { box-sizing: border-box; }
+  a { color: #2A2320; text-decoration: none; }
+  a:hover { color: #C05A48; }
+  input::placeholder, textarea::placeholder { color: #A9A198; opacity: 1; }
+  [data-chips]::-webkit-scrollbar { display: none; }
+  [data-chips] { scrollbar-width: none; -ms-overflow-style: none; }
+  @keyframes sheet-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  @keyframes veil-in { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</helmet>
+<div style="width: 100%; background: #F1ECEB; font-family: Montserrat, sans-serif;">
+
+  <header style="position: sticky; top: 0; z-index: 50; width: 100%; height: 72px; overflow: hidden; background: #FFFFFF;">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: url('./uploads/TILES.png') left center / auto 100% repeat-x;"></div>
+    <div style="position: relative; height: 100%; display: flex; align-items: center; justify-content: center;">
+      <a href="#home" style="display: flex; align-items: center;">
+        <img src="./assets/logo-praha.png" alt="Caffè Praha" style="height: 34px; width: auto; display: block;">
+      </a>
+    </div>
+  </header>
+
+  <div style="display: flex; align-items: center; gap: 10px; padding: 12px 20px; background: #FDFBFA; border-bottom: 1px solid #EFE9E6;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex: none;">
+      <path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z" stroke="#914B4C" stroke-width="1.6"></path>
+      <circle cx="12" cy="10" r="2.6" stroke="#914B4C" stroke-width="1.6"></circle>
+    </svg>
+    <span style="display: flex; flex-direction: column; gap: 1px; min-width: 0;">
+      <span style="font-size: 11px; letter-spacing: 0.04em; color: #A9A198;">Deliver to</span>
+      <span style="font-size: 14px; font-weight: 500; color: #5F1E1F;">Clifton, Karachi</span>
+    </span>
+  </div>
+
+  <section data-screen-label="Hero — Mobile" style="position: relative; width: 100%; overflow: hidden; background: #F8F3F1;">
+    <div aria-hidden="true" style="position: absolute; inset: 0; opacity: 0.18; background: url('./assets/hero-limewash-bg.png') center / cover no-repeat;"></div>
+
+    <div style="position: relative; z-index: 2; display: flex; flex-direction: column; gap: 14px; padding: clamp(28px, 8vw, 48px) clamp(20px, 5.5vw, 40px) 0 clamp(20px, 5.5vw, 40px);">
+      <h1 style="margin: 0; font-family: 'Awaline', serif; font-weight: 400; font-size: clamp(34px, 9.6vw, 54px); line-height: 1.02; letter-spacing: -0.01em; color: #914B4C; text-wrap: balance;">From the Heart of Prague</h1>
+      <p style="margin: 0; max-width: 32ch; font-size: clamp(15px, 4.2vw, 18px); line-height: 1.5; color: #5F1E1F; text-wrap: pretty;">Since 2017, a Prague-inspired café in Karachi, Islamabad and Lahore — built for lingering.</p>
+      <a href="#menu" style="margin-top: 6px; align-self: flex-start; min-height: 52px; display: flex; align-items: center; justify-content: center; padding: 0 30px; border-radius: 12px; background: #E9BBBC; font-size: 16px; font-weight: 600; color: #914B4C;" style-hover="background: #E0AAAC;">Order Now</a>
+    </div>
+
+    <div style="position: relative; z-index: 1; width: 100%; aspect-ratio: 72 / 118; margin-top: clamp(-8px, -1vw, 0px);">
+      <img src="./uploads/plants.png" alt="" style="position: absolute; left: -14%; bottom: -2%; height: 62%; width: auto; pointer-events: none;">
+
+      <div data-annotations="1" style="position: absolute; inset: 0; pointer-events: none; opacity: {{ annOpacity }}; transition: opacity 420ms cubic-bezier(0.05,0.7,0.1,1);">
+        <span style="position: absolute; left: 52%; top: 6%; width: 44%; transform: rotate(-5deg); font-family: 'The Hantwels', cursive; font-size: clamp(15px, 4.2vw, 22px); text-align: center; line-height: 1.2; color: #686868;">Creamy tomato rigattoni</span>
+        <img src="./assets/arrow-4024-2.svg" alt="" style="position: absolute; left: 62%; top: 17%; width: 26%; height: auto; transform: rotate(14deg);">
+        <span style="position: absolute; left: 2%; top: 26%; width: 40%; transform: rotate(-8deg); font-family: 'The Hantwels', cursive; font-size: clamp(15px, 4.2vw, 22px); text-align: center; line-height: 1.2; color: #686868;">Creamy tomato rigattoni</span>
+        <img src="./assets/arrow-4024.svg" alt="" style="position: absolute; left: 5%; top: 34%; width: 34%; height: auto;">
+      </div>
+
+      <img src="./uploads/table-63e14c45.png" alt="Table with today's items" style="position: absolute; left: 6%; top: 26%; width: 116%; height: auto; transform: rotate({{ tableDeg }}deg); transition: transform 1400ms cubic-bezier(0.4, 0, 0.2, 1); will-change: transform;">
+    </div>
+  </section>
+
+  <div data-screen-label="Announcements" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 14px 20px; background: #914B4C;">
+    <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: #E9BBBC; text-transform: uppercase;">Announcement</span>
+    <span style="font-size: 14px; line-height: 1.4; text-align: center; color: #FEF9F7;">Weekend brunch now served till 3pm — Karachi, Islamabad &amp; Lahore</span>
+  </div>
+
+  <div data-screen-label="Bank Discounts" style="width: 100%; padding: clamp(24px, 7vw, 48px) clamp(16px, 4.5vw, 40px); background: #F1ECEB;">
+    <img src="./uploads/bank discounts-09ac40e4.png" alt="Bank discounts — up to 50% off with partner bank cards" style="display: block; width: 100%; height: auto;">
+  </div>
+</div>
+
+<section data-screen-label="Menu — Mobile" style="position: relative; width: 100%; background: #F1ECEB; font-family: Montserrat, sans-serif; padding-bottom: 96px;">
+
+  <div style="display: flex; flex-direction: column; gap: 4px; padding: clamp(24px, 7vw, 44px) clamp(16px, 4.5vw, 32px) 12px clamp(16px, 4.5vw, 32px);">
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: #A9A198;">THE MENU</span>
+    <h2 style="margin: 0; font-family: 'Awaline', serif; font-weight: 400; font-size: clamp(30px, 8.4vw, 44px); line-height: 1.05; color: #914B4C;">Order in a few taps</h2>
+  </div>
+
+  <div style="position: sticky; top: 0; z-index: 45; isolation: isolate; display: flex; flex-direction: column; gap: 10px; padding: 12px clamp(16px, 4.5vw, 32px); background: #F1ECEB; box-shadow: 0 8px 18px -12px rgba(20,17,15,0.22);">
+    <input onInput="{{ onSearch }}" value="{{ q }}" type="search" placeholder="Search the menu" style="width: 100%; min-height: 46px; background: #FFFFFF; border: 1px solid #ECE8E4; border-radius: 12px; padding: 0 14px; font-family: Montserrat, sans-serif; font-size: 15px; color: #14110F; outline: none;" style-focus="border-color: #FBC3C7;">
+    <div data-chips="1" style="display: flex; gap: 8px; overflow-x: auto; margin: 0 calc(-1 * clamp(16px, 4.5vw, 32px)); padding: 2px clamp(16px, 4.5vw, 32px);">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="6">
+        <sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ c.pick }}" style="cursor: pointer; flex: none; min-height: 44px; border: 1px solid #914B4C; background: #914B4C; color: #FFF6F4; border-radius: 999px; padding: 0 16px; font-family: Montserrat, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; white-space: nowrap;">{{ c.label }}</button>
+        </sc-if>
+        <sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ c.pick }}" style="cursor: pointer; flex: none; min-height: 44px; border: 1px solid #E4DED9; background: #FFFFFF; color: #6E6660; border-radius: 999px; padding: 0 16px; font-family: Montserrat, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; white-space: nowrap;" style-hover="border-color: #FBC3C7;">{{ c.label }}</button>
+        </sc-if>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 26px; padding: 8px clamp(16px, 4.5vw, 32px) 0 clamp(16px, 4.5vw, 32px);">
+    <sc-for list="{{ sections }}" as="s" hint-placeholder-count="3">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <sc-if value="{{ s.hasHeadImg }}" hint-placeholder-val="{{ true }}">
+          <img src="{{ s.headImg }}" alt="{{ s.label }}" style="display: block; height: 26px; width: auto; max-width: 100%; object-fit: contain; align-self: flex-start; margin-left: -8px;">
+        </sc-if>
+        <sc-if value="{{ s.noHeadImg }}" hint-placeholder-val="{{ false }}">
+          <span style="font-family: Montserrat, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: 0.02em; text-transform: capitalize; color: #F1ECEB; text-shadow: 0.7px 0 0 #817878, -0.7px 0 0 #817878, 0 0.7px 0 #817878, 0 -0.7px 0 #817878, 0.5px 0.5px 0 #817878, -0.5px 0.5px 0 #817878, 0.5px -0.5px 0 #817878, -0.5px -0.5px 0 #817878;">{{ s.label }}</span>
+        </sc-if>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <sc-for list="{{ s.items }}" as="p" hint-placeholder-count="4">
+            <button onClick="{{ p.open }}" style="cursor: pointer; text-align: left; width: 100%; display: flex; align-items: center; gap: 14px; background: #FFFFFF; border: 1px solid #ECE8E4; border-radius: 16px; padding: 12px; font-family: Montserrat, sans-serif; min-height: 96px;" style-hover="border-color: #FBC3C7;">
+              <div role="img" aria-label="{{ p.name }}" style="flex: none; width: 72px; height: 72px; border-radius: 12px; background-color: #F4F1ED; background-image: url('{{ p.img }}'); background-size: cover; background-position: center;"></div>
+              <span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+                <span style="font-size: 15px; font-weight: 600; line-height: 1.25; color: #914B4C;">{{ p.name }}</span>
+                <span style="font-size: 13px; line-height: 1.4; color: #8F8880; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{{ p.desc }}</span>
+                <span style="font-size: 14px; font-weight: 700; color: #14110F;">{{ p.priceLabel }}</span>
+              </span>
+              <sc-if value="{{ p.inCart }}" hint-placeholder-val="{{ false }}">
+                <span style="flex: none; min-width: 34px; height: 34px; padding: 0 10px; border-radius: 999px; background: #FBC3C7; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #914B4C;">×{{ p.qty }}</span>
+              </sc-if>
+              <sc-if value="{{ p.notInCart }}" hint-placeholder-val="{{ true }}">
+                <span style="flex: none; width: 34px; height: 34px; border-radius: 999px; background: #FBC3C7; display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 600; color: #914B4C;">+</span>
+              </sc-if>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ cartHasItems }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px clamp(16px, 4.5vw, 32px) calc(12px + env(safe-area-inset-bottom)) clamp(16px, 4.5vw, 32px); background: #FFFFFF; border-top: 1px solid #ECE8E4; box-shadow: 0 -10px 30px rgba(20,17,15,0.08);">
+      <span style="display: flex; flex-direction: column; gap: 2px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: #A9A198;">{{ cartCountLabel }}</span>
+        <span style="font-size: 18px; font-weight: 800; color: #14110F;">{{ cartTotalLabel }}</span>
+      </span>
+      <a href="./Checkout.dc.html" onClick="{{ goCheckout }}" style="min-height: 48px; display: flex; align-items: center; justify-content: center; padding: 0 26px; border-radius: 12px; background: #FBC3C7; font-size: 15px; font-weight: 700; color: #914B4C;" style-hover="background: #F7A8AE;">Checkout</a>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ sheetOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 60; display: flex; flex-direction: column; justify-content: flex-end;">
+      <div onClick="{{ closeSheet }}" style="position: absolute; inset: 0; background: rgba(20,17,15,0.42); animation: veil-in 200ms ease both;"></div>
+      <div style="position: relative; max-height: 92vh; overflow-y: auto; background: #FFFFFF; border-radius: 22px 22px 0 0; padding: 10px clamp(18px, 5vw, 32px) calc(18px + env(safe-area-inset-bottom)) clamp(18px, 5vw, 32px); animation: sheet-up 280ms cubic-bezier(0.16, 1, 0.3, 1) both; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; align-items: center; justify-content: center; padding: 4px 0 2px 0;">
+          <span style="width: 44px; height: 4px; border-radius: 999px; background: #E4DED9;"></span>
+        </div>
+        <a href="#close" onClick="{{ closeSheet }}" aria-label="Close" style="position: absolute; top: 14px; right: clamp(18px, 5vw, 32px); width: 44px; height: 44px; border-radius: 999px; background: #F4F1ED; display: flex; align-items: center; justify-content: center;" style-hover="background: #FBC3C7;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#14110F" stroke-width="2.4" stroke-linecap="round"><path d="M5.5 5.5l13 13M18.5 5.5l-13 13"></path></svg>
+        </a>
+
+        <div role="img" aria-label="{{ sel.name }}" style="width: 100%; aspect-ratio: 16 / 10; border-radius: 16px; background-color: #F4F1ED; background-image: url('{{ sel.img }}'); background-size: cover; background-position: center;"></div>
+
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: #A9A198;">{{ sel.cat }}</span>
+        <h3 style="margin: 0; font-family: 'Awaline', serif; font-weight: 400; font-size: clamp(26px, 7.4vw, 36px); line-height: 1.06; color: #914B4C;">{{ sel.name }}</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #8F8880; text-wrap: pretty;">{{ sel.desc }}</p>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <select onChange="{{ onPickAddon }}" value="{{ addonSelect }}" style="width: 100%; min-height: 48px; appearance: none; background: #FBFAF8; border: 1px solid #ECE8E4; border-radius: 12px; padding: 0 34px 0 14px; font-family: Montserrat, sans-serif; font-size: 14px; color: {{ addonSummaryColor }}; outline: none; cursor: pointer; text-overflow: ellipsis; background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M1%201.5L6%206.5L11%201.5%22%20stroke%3D%22%238F8880%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E); background-repeat: no-repeat; background-position: right 14px center;" style-focus="border-color: #FBC3C7;">
+            <option value="">{{ addonSummary }}</option>
+            <sc-for list="{{ addons }}" as="a" hint-placeholder-count="6">
+              <option value="{{ a.id }}">{{ a.optionLabel }}</option>
+            </sc-for>
+          </select>
+          <input onInput="{{ onNote }}" value="{{ noteVal }}" type="text" placeholder="Special instructions..." style="width: 100%; min-height: 48px; background: #FBFAF8; border: 1px solid #ECE8E4; border-radius: 12px; padding: 0 14px; font-family: Montserrat, sans-serif; font-size: 14px; color: #14110F; outline: none;" style-focus="border-color: #FBC3C7;">
+        </div>
+
+        <div style="height: 1px; background: #E9E5E1;"></div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+          <span style="display: flex; flex-direction: column; gap: 2px;">
+            <span style="font-family: Montserrat, sans-serif; font-size: 10px; letter-spacing: 0.18em; color: #B4ADA6;">PRICE</span>
+            <span style="font-size: clamp(22px, 6.4vw, 28px); font-weight: 800; color: #14110F; white-space: nowrap;">{{ unitPriceLabel }}</span>
+          </span>
+          <sc-if value="{{ notAdded }}" hint-placeholder-val="{{ true }}">
+            <a href="#add" onClick="{{ addToOrder }}" style="min-height: 52px; display: flex; align-items: center; justify-content: center; padding: 0 28px; border-radius: 14px; background: #FBC3C7; font-size: 16px; font-weight: 600; color: #914B4C; white-space: nowrap;" style-hover="background: #F7A8AE;">Add to Cart</a>
+          </sc-if>
+          <sc-if value="{{ isDirty }}" hint-placeholder-val="{{ false }}">
+            <a href="#update" onClick="{{ updateOrder }}" style="min-height: 52px; display: flex; align-items: center; justify-content: center; padding: 0 28px; border-radius: 14px; background: #FBC3C7; font-size: 16px; font-weight: 600; color: #914B4C; white-space: nowrap;" style-hover="background: #F7A8AE;">Update</a>
+          </sc-if>
+          <sc-if value="{{ isAddedClean }}" hint-placeholder-val="{{ false }}">
+            <span style="display: flex; align-items: center; gap: 6px; background: #FBC3C7; border-radius: 14px; padding: 6px; flex: none;">
+              <button onClick="{{ addedDec }}" aria-label="Decrease quantity" style="cursor: pointer; border: 0; background: #FFFFFF; border-radius: 10px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-family: inherit; font-size: 19px; font-weight: 600; color: #914B4C;">−</button>
+              <span style="min-width: 26px; text-align: center; font-size: 16px; font-weight: 700; color: #914B4C;">{{ addedQty }}</span>
+              <button onClick="{{ addedInc }}" aria-label="Increase quantity" style="cursor: pointer; border: 0; background: #FFFFFF; border-radius: 10px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-family: inherit; font-size: 19px; font-weight: 600; color: #914B4C;">+</button>
+            </span>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</section>
+
+<dc-import name="footer" hint-size="100%,700px" style="width: 100%; margin-top: clamp(40px, 10vw, 96px);"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844},&quot;autoSpin&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;spinInterval&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:6,&quot;min&quot;:3,&quot;max&quot;:15,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
+class Component extends DCLogic {
+  state = { q: "", cat: "ALL", open: null, pickedBy: {}, noteBy: {}, added: {}, committed: {}, deg: 0, shown: true };
+  componentDidMount() { this.schedule(); }
+  componentWillUnmount() { clearTimeout(this._t1); clearTimeout(this._t2); clearTimeout(this._t3); }
+  schedule() {
+    clearTimeout(this._t1);
+    this._t1 = setTimeout(() => this.spin(), (this.props.spinInterval ?? 6) * 1000);
+  }
+  spin() {
+    if ((this.props.autoSpin ?? true) === false) { this.schedule(); return; }
+    this.setState({ shown: false });
+    this._t2 = setTimeout(() => {
+      this.setState(s => ({ deg: s.deg + 360 }));
+      this._t3 = setTimeout(() => { this.setState({ shown: true }); this.schedule(); }, 1550);
+    }, 320);
+  }
+  data() {
+    return [
+      { cat: "POPULAR ITEMS", name: "American Breakfast", desc: "Fried eggs, hash brown, sausages, baked beans, grilled tomato & toast", price: 1795, img: "" },
+      { cat: "POPULAR ITEMS", name: "Mediterranean Omelette", desc: "Three-egg omelette with olives, feta, peppers & fresh herbs", price: 1545, img: "" },
+      { cat: "POPULAR ITEMS", name: "Mushroom & Cheese Omelette", desc: "Three-egg omelette folded with sautéed mushrooms & melted cheese", price: 1495, img: "" },
+      { cat: "JAPANESE PANCAKES", name: "Lotus Pancake", desc: "Fluffy pancakes topped with lotus sauce & lotus biscuit crumbs", price: 1595, img: "" },
+      { cat: "JAPANESE PANCAKES", name: "Nutella Pancake", desc: "Fluffy soufflé pancakes with nutella, cream & chocolate crumbs", price: 1595, img: "" },
+      { cat: "JAPANESE PANCAKES", name: "Matcha Pancake", desc: "Soufflé pancakes with matcha cream & white chocolate shavings", price: 1645, img: "" },
+      { cat: "FRENCH TOAST", name: "Nutella French Toast", desc: "Battered bread, topped with nutella, cream & housemade granola", price: 1495, img: "./assets/frame-frenchtoast.png" },
+      { cat: "FRENCH TOAST", name: "Classic French Toast", desc: "Battered bread, cinnamon sugar, maple syrup & butter", price: 1295, img: "" },
+      { cat: "FRENCH TOAST", name: "Berry French Toast", desc: "Battered bread topped with mixed berries & vanilla cream", price: 1395, img: "" },
+      { cat: "LOADED FRIES", name: "Mexican Fries", desc: "Topped with sriracha mayo, cheese sauce, black beans bolognese sauce, tomato salsa, jalapeno & sour cream", price: 1445, img: "" },
+      { cat: "LOADED FRIES", name: "Loaded Cheese Fries", desc: "Crispy fries smothered in a rich cheese sauce & chives", price: 1145, img: "" },
+      { cat: "LOADED FRIES", name: "BBQ Chicken Fries", desc: "Fries topped with pulled BBQ chicken, cheese sauce & scallions", price: 1295, img: "" },
+      { cat: "STARTERS", name: "Nashville Chicken Tenders", desc: "4 Chicken Fingers in a Signature Flavor served Fries & Coleslaw", price: 1445, img: "" },
+      { cat: "STARTERS", name: "Salsa Chicken Tacos", desc: "Soft tacos filled with chicken, zesty tomato salsa & sour cream", price: 1395, img: "" },
+      { cat: "STARTERS", name: "Prawn to be Wild", desc: "Spiced prawns tossed in signature seasoning, served with dip", price: 1695, img: "" },
+      { cat: "SALADS", name: "Quinoa & Feta Cheese", desc: "Quinoa grains, mixed greens, orange segments, feta cheese, red cabbage & homemade balsamic zesty dressing", price: 1595, img: "./assets/dish-salad-bowl.png" },
+      { cat: "SALADS", name: "Caesar Salad", desc: "Crisp romaine, parmesan, croutons & creamy caesar dressing", price: 1395, img: "" },
+      { cat: "SALADS", name: "Greek Salad", desc: "Cucumber, tomato, olives, red onion & feta with olive oil", price: 1345, img: "" },
+      { cat: "PASTA", name: "Creamy Sundried Tomato Rigatoni", desc: "Rich rigatoni in a creamy sauce with flavorful sundried tomatoes and herbs.", price: 1995, img: "./assets/frame-pasta.png" },
+      { cat: "PASTA", name: "Prahas Prawn Linguine Pasta", desc: "Olive oil based spicy tangy clear sauce, prawns & linguine pasta", price: 2045, img: "" },
+      { cat: "PASTA", name: "Mac and Cheese", desc: "Pasta in a rich, cheesy béchamel, baked till golden", price: 1595, img: "./assets/frame-mac.png" },
+      { cat: "PASTA", name: "Alfredo Pasta", desc: "Tender pasta in a velvety parmesan cream sauce", price: 1745, img: "" },
+      { cat: "PASTA", name: "Biang Biang Noodles", desc: "Hand-pulled noodles tossed in a spicy, aromatic sauce", price: 1695, img: "" },
+      { cat: "MAIN COURSE", name: "Burrito Bowl", desc: "A bowl of brown rice, purple cabbage, tomato salsa, guacamole, jalapeno garnish with sour cream", price: 1945, img: "./assets/dish-paneer-bowl.png" },
+      { cat: "MAIN COURSE", name: "Grilled Chicken Platter", desc: "Herb-marinated chicken breast, roasted vegetables & rice", price: 2145, img: "" },
+      { cat: "MAIN COURSE", name: "Beef Steak Platter", desc: "Grilled beef steak, mashed potatoes & peppercorn sauce", price: 2595, img: "" },
+      { cat: "PIZZA", name: "Chicken Mushroom & Truffle Oil Pizza", desc: "Homemade white sauce, fresh mushrooms, caramelized onion, black olives, marrow & parmesan cheese, truffle oil", price: 1945, img: "" },
+      { cat: "PIZZA", name: "Mediterranean Pizza", desc: "Olives, feta & sundried tomatoes on a thin crust", price: 1895, img: "" },
+      { cat: "PIZZA", name: "Buffalo Chicken Pizza", desc: "Tender chicken smothered in a tangy buffalo sauce", price: 1945, img: "" },
+      { cat: "PIZZA", name: "Margherita Pizza", desc: "Fresh basil, tomatoes & mozzarella", price: 1595, img: "" },
+      { cat: "PIZZA", name: "Prahas Pesto Pizza", desc: "Aromatic basil pesto, mozzarella & cherry tomatoes", price: 1845, img: "" },
+      { cat: "PIZZA", name: "Baked Figs with Goat Cheese Pizza", desc: "Baked figs, goat cheese & a honey drizzle", price: 2045, img: "" },
+      { cat: "BURGERS", name: "Ja Ja Jamaica Burger", desc: "Grilled spicy chicken, tomatoes, cheese & signature sauce", price: 1845, img: "./assets/frame-burger.png" },
+      { cat: "BURGERS", name: "Smashy Beef Burger", desc: "Donut bun, filled with beef, cheese, chipotle & sour cream", price: 1745, img: "./assets/dish-burger.png" },
+      { cat: "BURGERS", name: "Classic Cheese Burger", desc: "Beef patty, cheddar, lettuce, tomato & house sauce", price: 1495, img: "" },
+      { cat: "SANDWICHES", name: "Prahas Euro Club Sandwich", desc: "Sliced bread, grilled chicken, cheese, lettuce, tomatoes, mayonnaise, Turkey bacon, fried egg, smoke Turkey & pickles", price: 2095, img: "./assets/dish-sandwich.png" },
+      { cat: "SANDWICHES", name: "Dynamite Chicken Brioche", desc: "Spicy chicken on a soft brioche bun with dynamite sauce", price: 1745, img: "" },
+      { cat: "SANDWICHES", name: "The Muffaleta", desc: "Layers of Italian meats, cheese & a tangy olive salad", price: 1895, img: "" },
+      { cat: "SANDWICHES", name: "Country Roast Sandwich", desc: "Roast chicken, fresh vegetables & mustard mayo on sourdough", price: 1695, img: "" },
+      { cat: "SANDWICHES", name: "Cheesy Chicken Sandwich", desc: "Tender chicken folded into a creamy cheese sauce", price: 1645, img: "" },
+      { cat: "CHIMNEYS", name: "Korean Fried Chimney", desc: "Crispy fried chicken in a savoury-sweet Korean glaze, served in a chimney cone", price: 1995, img: "./assets/wood-dish-chimney.png" },
+      { cat: "CHIMNEYS", name: "Prahas Original Chicken", desc: "Grilled chicken breast seasoned with a blend of signature spices", price: 1845, img: "" },
+      { cat: "CHIMNEYS", name: "Jalapeno Spice Chicken", desc: "Grilled chicken with jalapeño heat & a creamy finish", price: 1895, img: "" },
+      { cat: "CHIMNEYS", name: "Creamy Grilled Tikka", desc: "Yogurt-marinated chicken tikka, grilled & finished in cream", price: 1945, img: "" },
+      { cat: "DESSERTS", name: "Lotus Circus", desc: "Signature lotus brownies, with lotus sauce, soft serve ice cream & lotus crumbs", price: 1495, img: "" },
+      { cat: "DESSERTS", name: "Chocolate Lava Cake", desc: "Warm chocolate cake with a molten center & vanilla ice cream", price: 1345, img: "" },
+      { cat: "DESSERTS", name: "New York Cheesecake", desc: "Creamy baked cheesecake with a buttery biscuit crust", price: 1295, img: "" },
+      { cat: "HOT COFFEES", name: "Spanish Latte", desc: "Espresso with condensed milk & steamed milk", price: 745, img: "" },
+      { cat: "HOT COFFEES", name: "Hot Chocolate", desc: "Rich melted chocolate, steamed milk & cocoa", price: 795, img: "" },
+      { cat: "HOT COFFEES", name: "Cappuccino", desc: "Espresso, steamed milk & a deep layer of foam", price: 695, img: "" },
+      { cat: "SHAKES", name: "Lotus Shake", desc: "Lotus biscoff blended with ice cream & milk", price: 995, img: "" },
+      { cat: "SHAKES", name: "Oreo Shake", desc: "Crushed oreo cookies blended with ice cream & milk", price: 945, img: "" },
+      { cat: "SHAKES", name: "Mango Shake", desc: "Fresh mango blended with milk & a touch of honey", price: 895, img: "" },
+      { cat: "REFRESHERS", name: "Passion Fruit Refresher", desc: "Passion fruit, citrus & soda over ice", price: 745, img: "" },
+      { cat: "REFRESHERS", name: "Mint Lemonade", desc: "Fresh mint, lemon & soda over ice", price: 695, img: "" },
+      { cat: "REFRESHERS", name: "Berry Cooler", desc: "Mixed berries, citrus & soda over ice", price: 745, img: "" }
+    ];
+  }
+  addonData() {
+    return [
+      { id: "chicken", label: "Add grilled chicken", price: 450 },
+      { id: "prawns", label: "Add prawns", price: 650 },
+      { id: "cheese", label: "Extra cheese", price: 250 },
+      { id: "fries", label: "Side of fries", price: 395 },
+      { id: "bread", label: "Garlic bread", price: 345 },
+      { id: "coffee", label: "Iced coffee", price: 695 }
+    ];
+  }
+  renderVals() {
+    const R = p => (window.__resources && window.__resources[p]) || p;
+    const money = n => "Rs. " + n.toLocaleString("en-US");
+    const pool = ["./assets/frame-pasta.png", "./assets/frame-frenchtoast.png", "./assets/frame-burger.png", "./assets/frame-mac.png", "./assets/dish-burger.png", "./assets/dish-sandwich.png", "./assets/dish-salad-bowl.png", "./assets/dish-paneer-bowl.png"];
+    const all = this.data().map((d, i) => ({ ...d, img: R(d.img || pool[i % pool.length]) }));
+    const addonData = this.addonData();
+    const q = (this.state.q || "").trim().toLowerCase();
+    const cat = this.state.cat;
+    const catList = [];
+    all.forEach(d => { if (catList.indexOf(d.cat) < 0) catList.push(d.cat); });
+    const visible = all.filter(d =>
+      (cat === "ALL" || d.cat === cat) &&
+      (!q || (d.name + " " + d.desc).toLowerCase().includes(q))
+    );
+    const added = this.state.added;
+    const pickedBy = this.state.pickedBy;
+    const noteBy = this.state.noteBy;
+    const committed = this.state.committed;
+    const sig = (p, n) => p.slice().sort().join("|") + "§" + (n || "").trim();
+    const extras = name => {
+      const list = pickedBy[name] || [];
+      return addonData.reduce((sum, a) => sum + (list.indexOf(a.id) > -1 ? a.price : 0), 0);
+    };
+
+    const sections = [];
+    let cur = null;
+    visible.forEach(d => {
+      if (!cur || cur.label !== d.cat) {
+        const HEAD = {
+          "POPULAR ITEMS": "./uploads/Group 1410103974.png",
+          "JAPANESE PANCAKES": "./uploads/Group 1410103958.png",
+          "FRENCH TOAST": "./uploads/Group 1410103957.png",
+          "STARTERS": "./uploads/Group 1410103959.png",
+          "SALADS": "./uploads/Group 1410103961.png",
+          "LOADED FRIES": "./uploads/Group 1410103962.png",
+          "MAIN COURSE": "./uploads/Group 1410103963.png",
+          "PIZZA": "./uploads/Group 1410103964.png",
+          "SANDWICHES": "./uploads/Group 1410103965.png",
+          "CHIMNEYS": "./uploads/Group 1410103966.png",
+          "PASTA": "./uploads/Group 1410103967.png",
+          "BURGERS": "./uploads/Group 1410103968.png",
+          "DESSERTS": "./uploads/Group 1410103969.png",
+          "SHAKES": "./uploads/Group 1410103970.png",
+          "HOT COFFEES": "./uploads/Group 1410103971.png",
+          "REFRESHERS": "./uploads/Group 1410103972.png"
+        };
+        cur = { label: d.cat, items: [], headImg: HEAD[d.cat] || "", hasHeadImg: !!HEAD[d.cat], noHeadImg: !HEAD[d.cat] };
+        sections.push(cur);
+      }
+      const qty = added[d.name] || 0;
+      cur.items.push({
+        name: d.name, desc: d.desc, img: d.img, cat: d.cat,
+        priceLabel: money(d.price + extras(d.name)),
+        qty: String(qty), inCart: qty > 0, notInCart: qty === 0,
+        open: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ open: d.name }); }
+      });
+    });
+
+    const openName = this.state.open;
+    const item = all.filter(d => d.name === openName)[0] || null;
+    const key = openName || "";
+    const picked = pickedBy[key] || [];
+    const note = noteBy[key] || "";
+    const setPicked = (fn) => this.setState(s => ({ pickedBy: { ...s.pickedBy, [key]: fn(s.pickedBy[key] || []) } }));
+    const addons = addonData.map(a => ({
+      id: a.id,
+      optionLabel: (picked.indexOf(a.id) > -1 ? "✓  " : "") + a.label + "  +Rs. " + a.price,
+      toggle: () => setPicked(list => list.indexOf(a.id) > -1 ? list.filter(x => x !== a.id) : list.concat([a.id]))
+    }));
+    const addedQty = item ? (added[item.name] || 0) : 0;
+    const unitPrice = item ? item.price + extras(item.name) : 0;
+
+    const cartNames = Object.keys(added).filter(n => added[n] > 0);
+    const cartTotal = cartNames.reduce((sum, n) => {
+      const d = all.filter(x => x.name === n)[0];
+      return sum + (d ? (d.price + extras(n)) * added[n] : 0);
+    }, 0);
+    const cartCount = cartNames.reduce((a, n) => a + added[n], 0);
+
+    return {
+      tableDeg: this.state.deg,
+      annOpacity: this.state.shown ? 1 : 0,
+      q: this.state.q,
+      onSearch: (e) => { const v = e.target.value; this.setState({ q: v }); },
+      cats: [{ label: "ALL", key: "ALL" }].concat(catList.map(c => ({ label: c, key: c }))).map(c => ({
+        label: c.label,
+        on: cat === c.key,
+        off: cat !== c.key,
+        pick: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ cat: c.key }); }
+      })),
+      sections,
+      sheetOpen: !!item,
+      sel: item ? { name: item.name, desc: item.desc, cat: item.cat, img: item.img } : { name: "", desc: "", cat: "", img: "" },
+      closeSheet: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ open: null }); },
+      addons,
+      addonSelect: "",
+      addonSummary: picked.length ? addonData.filter(a => picked.indexOf(a.id) > -1).map(a => a.label.replace(/^Add /, "")).join(", ") : "Select add-ons",
+      addonSummaryColor: picked.length ? "#14110F" : "#A9A198",
+      onPickAddon: (e) => {
+        const id = e.target.value;
+        if (!id) return;
+        setPicked(list => list.indexOf(id) > -1 ? list.filter(x => x !== id) : list.concat([id]));
+      },
+      noteVal: note,
+      onNote: (e) => { const v = e.target.value; this.setState(s => ({ noteBy: { ...s.noteBy, [key]: v } })); },
+      unitPriceLabel: money(unitPrice),
+      addedQty: String(addedQty),
+      notAdded: addedQty === 0,
+      isDirty: addedQty > 0 && committed[key] !== undefined && committed[key] !== sig(picked, note),
+      isAddedClean: addedQty > 0 && (committed[key] === undefined || committed[key] === sig(picked, note)),
+      addToOrder: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        this.setState(s => ({
+          added: { ...s.added, [key]: (s.added[key] || 0) + 1 },
+          committed: { ...s.committed, [key]: sig(picked, note) }
+        }));
+      },
+      updateOrder: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        this.setState(s => ({ committed: { ...s.committed, [key]: sig(picked, note) } }));
+      },
+      addedInc: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        this.setState(s => ({ added: { ...s.added, [key]: Math.min(20, (s.added[key] || 0) + 1) } }));
+      },
+      addedDec: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        this.setState(s => ({ added: { ...s.added, [key]: Math.max(0, (s.added[key] || 0) - 1) } }));
+      },
+      cartHasItems: cartCount > 0,
+      cartCountLabel: cartCount === 1 ? "1 ITEM" : cartCount + " ITEMS",
+      cartTotalLabel: money(cartTotal),
+      goCheckout: (e) => {
+        try {
+          localStorage.setItem("praha-cart", JSON.stringify(cartNames.map(n => {
+            const d = all.filter(x => x.name === n)[0] || {};
+            return { name: n, img: d.img, unit: (d.price || 0) + extras(n), qty: added[n] };
+          })));
+        } catch (err) {}
+        if (this.props.onCheckout) { if (e && e.preventDefault) e.preventDefault(); this.props.onCheckout(); }
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

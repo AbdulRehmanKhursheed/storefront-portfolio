@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#FBC3C7">
+<svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg"><rect width="240" height="160" fill="#FBC3C7"/><text x="120" y="92" font-family="Georgia, serif" font-size="52" font-weight="700" text-anchor="middle" fill="#14110F">CP</text></svg>
+</template>
+<meta name="ext-resource-dependency" content="./assets/frame-pasta.png" data-resource-id="./assets/frame-pasta.png" />
+<meta name="ext-resource-dependency" content="./assets/frame-frenchtoast.png" data-resource-id="./assets/frame-frenchtoast.png" />
+<meta name="ext-resource-dependency" content="./assets/frame-burger.png" data-resource-id="./assets/frame-burger.png" />
+<meta name="ext-resource-dependency" content="./assets/frame-mac.png" data-resource-id="./assets/frame-mac.png" />
+<meta name="ext-resource-dependency" content="./assets/dish-burger.png" data-resource-id="./assets/dish-burger.png" />
+<meta name="ext-resource-dependency" content="./assets/dish-sandwich.png" data-resource-id="./assets/dish-sandwich.png" />
+<meta name="ext-resource-dependency" content="./assets/dish-salad-bowl.png" data-resource-id="./assets/dish-salad-bowl.png" />
+<meta name="ext-resource-dependency" content="./assets/dish-paneer-bowl.png" data-resource-id="./assets/dish-paneer-bowl.png" />
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=EB+Garamond:wght@400;500;600;700&amp;family=Lato:wght@400;700;900&amp;display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'Mirtha Display'; src: url('./assets/fonts/mirtha-bold.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+  html, body { margin: 0; padding: 0; background: #FDFCF8; }
+  * { box-sizing: border-box; }
+  a { color: #2A2320; text-decoration: none; }
+  a:hover { color: #C05A48; }
+  input::placeholder, textarea::placeholder { color: #B4ADA6; }
+  @media (max-width: 900px) {
+    [data-co-grid] { grid-template-columns: minmax(0, 1fr) !important; }
+    [data-co-summary] { order: -1; border-left: 0 !important; border-bottom: 1px solid #E9E5E1; }
+  }
+</style>
+</helmet>
+<div data-fontroot="1" style="min-height: 100vh; background: #FDFCF8; color: #14110F; font-family: 'Montserrat', system-ui, sans-serif; display: flex; flex-direction: column;">
+  <header style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 16px clamp(20px, 4vw, 48px); border-bottom: 1px solid #EDE9E3; background: #FFFFFF;">
+    <a href="./Praha Full Page - Responsive.dc.html" onClick="{{ back }}" style="font-size: 11px; letter-spacing: 0.14em; color: #6E6660;">‹ BACK TO MENU</a>
+    <img src="./assets/logo-praha.png" alt="Caffè Praha" style="height: 38px; width: auto; display: block; justify-self: center;">
+    <span style="justify-self: end; font-size: 10px; letter-spacing: 0.16em; color: #A9A198;">SECURE CHECKOUT</span>
+  </header>
+
+  <div data-co-grid="1" style="flex: 1; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); width: min(1100px, 100%); margin: 0 auto;">
+    <main style="padding: clamp(24px, 4vw, 48px) clamp(20px, 3.4vw, 40px); display: flex; flex-direction: column; gap: 30px;">
+
+      <section style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.01em; color: #14110F;">Contact</h2>
+        <input type="email" placeholder="Email" style="width: 100%; background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 10px; padding: 13px 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #14110F; outline: none;">
+        <label style="display: flex; align-items: center; gap: 9px; font-size: 13px; color: #6E6660; cursor: pointer;">
+          <input type="checkbox" style="width: 16px; height: 16px; accent-color: #FBC3C7;">
+          <span>Email me with news and offers</span>
+        </label>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.01em; color: #14110F;">Delivery</h2>
+        <div style="display: flex; flex-direction: column; border: 1px solid #E2DDD5; border-radius: 12px; overflow: hidden;">
+          <sc-if value="{{ isDelivery }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ pickDelivery }}" style="cursor: pointer; display: flex; align-items: center; gap: 11px; text-align: left; border: 0; background: #FFF4F5; padding: 14px 15px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; color: #14110F; border-bottom: 1px solid #E2DDD5;">
+              <span style="width: 17px; height: 17px; border-radius: 999px; border: 5px solid #F296A0; background: #FFFFFF; flex: none;"></span>
+              <span>Deliver to my address</span>
+            </button>
+          </sc-if>
+          <sc-if value="{{ isPickup }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ pickDelivery }}" style="cursor: pointer; display: flex; align-items: center; gap: 11px; text-align: left; border: 0; background: #FFFFFF; padding: 14px 15px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 500; color: #6E6660; border-bottom: 1px solid #E2DDD5;" style-hover="background: #FBFAF8;">
+              <span style="width: 17px; height: 17px; border-radius: 999px; border: 1.5px solid #C9C2BA; background: #FFFFFF; flex: none;"></span>
+              <span>Deliver to my address</span>
+            </button>
+          </sc-if>
+          <sc-if value="{{ isPickup }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ pickPickup }}" style="cursor: pointer; display: flex; align-items: center; gap: 11px; text-align: left; border: 0; background: #FFF4F5; padding: 14px 15px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; color: #14110F;">
+              <span style="width: 17px; height: 17px; border-radius: 999px; border: 5px solid #F296A0; background: #FFFFFF; flex: none;"></span>
+              <span>Pick up in store — Shahrah-e-Faisal</span>
+            </button>
+          </sc-if>
+          <sc-if value="{{ isDelivery }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ pickPickup }}" style="cursor: pointer; display: flex; align-items: center; gap: 11px; text-align: left; border: 0; background: #FFFFFF; padding: 14px 15px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 500; color: #6E6660;" style-hover="background: #FBFAF8;">
+              <span style="width: 17px; height: 17px; border-radius: 999px; border: 1.5px solid #C9C2BA; background: #FFFFFF; flex: none;"></span>
+              <span>Pick up in store — Shahrah-e-Faisal</span>
+            </button>
+          </sc-if>
+        </div>
+
+        <sc-if value="{{ isDelivery }}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+              <input type="text" placeholder="First name" style="width: 100%; background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 10px; padding: 13px 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #14110F; outline: none;">
+              <input type="text" placeholder="Last name" style="width: 100%; background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 10px; padding: 13px 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #14110F; outline: none;">
+            </div>
+            <input type="text" placeholder="Address" style="width: 100%; background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 10px; padding: 13px 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #14110F; outline: none;">
+            <input type="text" placeholder="Apartment, suite, etc. (optional)" style="width: 100%; background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 10px; padding: 13px 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #14110F; outline: none;">
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+              <input type="text" placeholder="City" style="width: 100%; background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 10px; padding: 13px 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #14110F; outline: none;">
+              <input type="text" placeholder="Postal code (optional)" style="width: 100%; background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 10px; padding: 13px 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #14110F; outline: none;">
+            </div>
+            <input type="tel" placeholder="Phone" style="width: 100%; background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 10px; padding: 13px 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #14110F; outline: none;">
+            <textarea rows="2" placeholder="Delivery instructions (optional)" style="width: 100%; resize: none; background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 10px; padding: 13px 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.45; color: #14110F; outline: none;"></textarea>
+          </div>
+        </sc-if>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.01em; color: #14110F;">Payment</h2>
+        <span style="font-size: 13px; color: #A9A198; margin-top: -6px;">All transactions are secure and encrypted.</span>
+        <div style="display: flex; flex-direction: column; border: 1px solid #E2DDD5; border-radius: 12px; overflow: hidden;">
+          <sc-if value="{{ isCod }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ pickCod }}" style="cursor: pointer; display: flex; align-items: center; gap: 11px; text-align: left; border: 0; background: #FFF4F5; padding: 14px 15px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; color: #14110F; border-bottom: 1px solid #E2DDD5;">
+              <span style="width: 17px; height: 17px; border-radius: 999px; border: 5px solid #F296A0; background: #FFFFFF; flex: none;"></span>
+              <span>Cash on delivery</span>
+            </button>
+          </sc-if>
+          <sc-if value="{{ isCard }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ pickCod }}" style="cursor: pointer; display: flex; align-items: center; gap: 11px; text-align: left; border: 0; background: #FFFFFF; padding: 14px 15px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 500; color: #6E6660; border-bottom: 1px solid #E2DDD5;" style-hover="background: #FBFAF8;">
+              <span style="width: 17px; height: 17px; border-radius: 999px; border: 1.5px solid #C9C2BA; background: #FFFFFF; flex: none;"></span>
+              <span>Cash on delivery</span>
+            </button>
+          </sc-if>
+          <sc-if value="{{ isCard }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ pickCard }}" style="cursor: pointer; display: flex; align-items: center; gap: 11px; text-align: left; border: 0; background: #FFF4F5; padding: 14px 15px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; color: #14110F;">
+              <span style="width: 17px; height: 17px; border-radius: 999px; border: 5px solid #F296A0; background: #FFFFFF; flex: none;"></span>
+              <span>Credit / debit card</span>
+            </button>
+          </sc-if>
+          <sc-if value="{{ isCod }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ pickCard }}" style="cursor: pointer; display: flex; align-items: center; gap: 11px; text-align: left; border: 0; background: #FFFFFF; padding: 14px 15px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 500; color: #6E6660;" style-hover="background: #FBFAF8;">
+              <span style="width: 17px; height: 17px; border-radius: 999px; border: 1.5px solid #C9C2BA; background: #FFFFFF; flex: none;"></span>
+              <span>Credit / debit card</span>
+            </button>
+          </sc-if>
+        </div>
+        <sc-if value="{{ isCard }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: 10px; background: #F7F5F1; border: 1px solid #E9E5E1; border-radius: 12px; padding: 14px;">
+            <input type="text" inputmode="numeric" placeholder="Card number" style="width: 100%; background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 10px; padding: 13px 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #14110F; outline: none;">
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+              <input type="text" placeholder="Expiry (MM / YY)" style="width: 100%; background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 10px; padding: 13px 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #14110F; outline: none;">
+              <input type="text" placeholder="CVC" style="width: 100%; background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 10px; padding: 13px 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #14110F; outline: none;">
+            </div>
+            <input type="text" placeholder="Name on card" style="width: 100%; background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 10px; padding: 13px 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #14110F; outline: none;">
+          </div>
+        </sc-if>
+      </section>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <a href="./Order Status.dc.html" onClick="{{ place }}" style="display: flex; align-items: center; justify-content: center; background: #FBC3C7; color: #14110F; border-radius: 12px; padding: 17px 28px; font-size: 16px; font-weight: 700;" style-hover="background: #F7A8AE;">{{ payLabel }}</a>
+        <span style="text-align: center; font-size: 10px; letter-spacing: 0.12em; color: #A9A198;">BY PLACING THIS ORDER YOU AGREE TO OUR TERMS</span>
+      </div>
+    </main>
+
+    <div data-co-summary="1" style="display: flex; flex-direction: column; gap: 28px; margin-top: clamp(24px, 4vw, 48px); min-height: 0;">
+    <aside style="padding: clamp(28px, 4vw, 40px); background: #F7F5F1; display: flex; flex-direction: column; gap: 18px; height: fit-content; border-radius: 16px; box-shadow: 0px 0px 0px 0px #00000000">
+      <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.22em; color: #14110F;">ORDER SUMMARY</span>
+      <div style="display: flex; flex-direction: column;">
+        <sc-for list="{{ items }}" as="ci" hint-placeholder-count="2">
+          <div style="display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 13px; align-items: center; padding: 10px 0; border-bottom: 1px solid #E9E5E1;">
+            <div style="position: relative; width: 56px; height: 56px;">
+              <div role="img" aria-label="{{ ci.name }}" style="width: 56px; height: 56px; border-radius: 10px; background-color: #FFFFFF; border: 1px solid #E9E5E1; background-image: url('{{ ci.img }}'); background-size: contain; background-position: center; background-repeat: no-repeat;"></div>
+              <span style="position: absolute; top: -7px; right: -7px; min-width: 20px; height: 20px; border-radius: 999px; background: #14110F; color: #FFFFFF; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; padding: 0 5px;">{{ ci.qtyLabel }}</span>
+            </div>
+            <span style="font-size: 13px; font-weight: 600; color: #14110F; line-height: 1.35;">{{ ci.name }}</span>
+            <span style="font-size: 13px; font-weight: 700; color: #14110F; white-space: nowrap;">{{ ci.line }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; gap: 8px;">
+        <input type="text" placeholder="Discount code" style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2DDD5; border-radius: 10px; padding: 12px 14px; font-family: 'Montserrat', sans-serif; font-size: 13px; color: #14110F; outline: none;">
+        <button style="cursor: pointer; border: 1px solid #E2DDD5; background: #FFFFFF; border-radius: 10px; padding: 12px 18px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; color: #6E6660;" style-hover="background: #FBFAF8; color: #14110F;">Apply</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #E9E5E1; padding-top: 14px;">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; font-size: 13px; color: #6E6660;"><span>Subtotal</span><span>{{ subtotalLabel }}</span></div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; font-size: 13px; color: #6E6660;"><span>{{ delivRowLabel }}</span><span style="font-size: 12px;">{{ delivLabel }}</span></div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; font-size: 17px; font-weight: 800; color: #14110F; margin-top: 4px;"><span>Total</span><span>{{ totalLabel }}</span></div>
+      </div>
+      <sc-if value="{{ freeDel }}" hint-placeholder-val="{{ false }}">
+        <span style="font-size: 10px; letter-spacing: 0.12em; color: #6E6660;">FREE DELIVERY APPLIED — ORDERS OVER RS. 5,000</span>
+      </sc-if>
+    </aside><img src="./assets/checkout-collage.png" alt="Happier than ever — collage" style="width: 100%; max-width: 512px; align-self: end; margin-top: auto; flex: 0 1 auto; min-height: 0; max-height: 575px; object-fit: contain; object-position: right bottom; display: block; margin-bottom: 0;">
+    
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:920},&quot;fontTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Modern — Mirtha + Inter&quot;,&quot;Classic — Lato + EB Garamond&quot;],&quot;default&quot;:&quot;Modern — Mirtha + Inter&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Typography&quot;}}">
+class Component extends DCLogic {
+  state = { items: null, method: "cod", fulfil: "delivery" };
+  applyFontTheme() {
+    const classic = (this.props.fontTheme || "").indexOf("Classic") === 0;
+    let tag = document.getElementById("co-font-theme");
+    if (classic) {
+      if (!tag) { tag = document.createElement("style"); tag.id = "co-font-theme"; document.head.appendChild(tag); }
+      tag.textContent = `
+        [data-fontroot], [data-fontroot] *:not([style*="Plex Mono"]):not(p) { font-family: 'Lato', sans-serif !important; }
+        [data-fontroot] p { font-family: 'EB Garamond', Georgia, serif !important; }
+        [data-fontroot] h2 { font-weight: 900 !important; letter-spacing: -0.02em !important; }
+      `;
+    } else if (tag) { tag.remove(); }
+  }
+  componentDidUpdate() { this.applyFontTheme(); }
+  componentDidMount() {
+    this.applyFontTheme();
+    try {
+      const raw = localStorage.getItem("praha-cart");
+      if (raw) {
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr) && arr.length) this.setState({ items: arr });
+      }
+    } catch (e) {}
+  }
+  renderVals() {
+    const R = p => (window.__resources && window.__resources[p]) || p;
+    const FREE_AT = 5000, DELIV_FEE = 250;
+    const fallback = [
+      { name: "Creamy Sundried Tomato Rigatoni", img: "./assets/frame-pasta.png", unit: 1995, qty: 1 },
+      { name: "Nutella French Toast", img: "./assets/frame-frenchtoast.png", unit: 1495, qty: 2 }
+    ];
+    const items = this.state.items || fallback;
+    const subtotal = items.reduce((a, c) => a + c.unit * c.qty, 0);
+    const isDelivery = this.state.fulfil === "delivery";
+    const freeDel = isDelivery && subtotal >= FREE_AT;
+    const fee = !isDelivery ? 0 : (freeDel ? 0 : DELIV_FEE);
+    const isCard = this.state.method === "card";
+    const totalLabel = "Rs. " + (subtotal + fee).toLocaleString("en-US");
+    return {
+      items: items.map(c => ({ ...c, img: R(c.img), qtyLabel: String(c.qty), line: "Rs. " + (c.unit * c.qty).toLocaleString("en-US") })),
+      subtotalLabel: "Rs. " + subtotal.toLocaleString("en-US"),
+      delivRowLabel: isDelivery ? "Delivery" : "Pickup",
+      delivLabel: !isDelivery ? "FREE" : (freeDel ? "FREE" : "Rs. " + DELIV_FEE.toLocaleString("en-US")),
+      totalLabel, freeDel,
+      isDelivery, isPickup: !isDelivery,
+      pickDelivery: () => this.setState({ fulfil: "delivery" }),
+      pickPickup: () => this.setState({ fulfil: "pickup" }),
+      isCod: !isCard, isCard,
+      pickCod: () => this.setState({ method: "cod" }),
+      pickCard: () => this.setState({ method: "card" }),
+      payLabel: (isCard ? "Pay now — " : "Place order — ") + totalLabel,
+      back: (e) => { if (this.props.onBack) { if (e && e.preventDefault) e.preventDefault(); this.props.onBack(); } },
+      place: (e) => { if (this.props.onPlace) { if (e && e.preventDefault) e.preventDefault(); this.props.onPlace(); } }
+    };
+  }
+}
+</script>
+</body>
+</html>

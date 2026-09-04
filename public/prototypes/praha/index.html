@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#914B4C"/><circle cx="50" cy="50" r="26" fill="#F1ECEB"/><text x="50" y="60" font-family="Georgia, serif" font-size="26" fill="#914B4C" text-anchor="middle">P</text></svg></template>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  @font-face { font-family: 'Awaline'; src: url('./uploads/AwalineDemoRegular-wozjn.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'The Hantwels'; src: url('./uploads/TheHantwels-zrw8l.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  html, body { margin: 0; padding: 0; background: #F1ECEB; }
+  * { box-sizing: border-box; }
+  a { color: #2A2320; text-decoration: none; }
+  a:hover { color: #C05A48; }
+  [data-pin] > div, [data-pin] > div > div, [data-pin] .sc-host, [data-pin] .sc-host > div, [data-pin] .sc-host > div > div { overflow: visible !important; height: auto !important; max-height: none !important; }
+  [data-mobile-only] { display: none; }
+  @media (max-width: 900px) {
+    [data-desktop-only] { display: none !important; }
+    [data-mobile-only] { display: block !important; }
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+</helmet>
+<div data-fontroot-page="1" style="display: flex; flex-direction: column; width: 100%; background: #F1ECEB;">
+
+  <sc-if value="{{ isMenu }}" hint-placeholder-val="{{ true }}">
+  <div data-desktop-only="1" style="display: flex; flex-direction: column; width: 100%;">
+    <dc-import name="new idea" hint-size="100%,1650px" style="position: relative; z-index: 0; width: 100%;"></dc-import>
+    <div data-pin="1" style="position: relative; z-index: 1; width: 100%;">
+      <div style="position: relative; z-index: 2; background: #F1ECEB;">
+        <dc-import name="Product Listing - Horizontal Scroll" font-theme="{{ fontTheme }}" list-mode="{{ listMode }}" select-highlight="{{ selectHighlight }}" cart-style="{{ cartStyle }}" on-checkout="{{ goCheckout }}" hint-size="100%,900px" style="width: 100%; height: auto; overflow: visible;"></dc-import>
+      </div>
+    </div>
+    <dc-import name="footer" hint-size="100%,700px" style="width: 100%; margin-top: 96px;"></dc-import>
+  </div>
+
+  <div data-mobile-only="1" data-pin="1" style="width: 100%;">
+    <dc-import name="Praha Mobile" on-checkout="{{ goCheckout }}" hint-size="100%,2400px" style="position: relative; z-index: 0; width: 100%;"></dc-import>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isCheckout }}" hint-placeholder-val="{{ false }}">
+    <dc-import name="Checkout" font-theme="{{ fontTheme }}" on-back="{{ goMenu }}" on-place="{{ goStatus }}" hint-size="100%,900px" style="width: 100%;"></dc-import>
+  </sc-if>
+
+  <sc-if value="{{ isStatus }}" hint-placeholder-val="{{ false }}">
+    <dc-import name="Order Status" font-theme="{{ fontTheme }}" on-back="{{ goMenu }}" hint-size="100%,900px" style="width: 100%;"></dc-import>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;fontTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Modern — Mirtha + Inter&quot;,&quot;Classic — Lato + EB Garamond&quot;],&quot;default&quot;:&quot;Modern — Mirtha + Inter&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Typography&quot;},&quot;listMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Two columns — click to select&quot;,&quot;Single column — scroll to select&quot;],&quot;default&quot;:&quot;Single column — scroll to select&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Menu&quot;},&quot;selectHighlight&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Doodle frame&quot;,&quot;Washi tape&quot;],&quot;default&quot;:&quot;Doodle frame&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Menu&quot;},&quot;cartStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;In panel — replaces item detail&quot;,&quot;Modal overlay&quot;],&quot;default&quot;:&quot;Modal overlay&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Cart&quot;}}">
+class Component extends DCLogic {
+  state = { screen: "menu" };
+  go(screen) { this.setState({ screen }); try { window.scrollTo(0, 0); } catch (e) {} }
+  renderVals() {
+    const screen = this.state.screen;
+    return {
+      isMenu: screen === "menu",
+      isCheckout: screen === "checkout",
+      isStatus: screen === "status",
+      goMenu: () => this.go("menu"),
+      goCheckout: () => this.go("checkout"),
+      goStatus: () => this.go("status"),
+      fontTheme: this.props.fontTheme ?? "Modern — Mirtha + Inter",
+      listMode: this.props.listMode ?? "Single column — scroll to select",
+      selectHighlight: this.props.selectHighlight ?? "Doodle frame",
+      cartStyle: this.props.cartStyle ?? "Modal overlay"
+    };
+  }
+}
+</script>
+</body>
+</html>

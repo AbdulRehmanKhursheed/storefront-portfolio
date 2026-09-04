@@ -116,6 +116,21 @@ export const STOREFRONTS: Storefront[] = [
     mockGlow:
       "radial-gradient(circle,rgba(127,24,67,0.16),rgba(127,24,67,0) 70%)",
   },
+  {
+    slug: "praha",
+    name: "Caffè Praha",
+    tagline: "From the heart of Prague, brewed in Karachi.",
+    category: "Café ordering",
+    location: "Karachi · Islamabad · Lahore",
+    modules: "Ordering · Payments · Cart",
+    tags: ["Café ordering"],
+    shot: "/shots/praha.jpg",
+    prototypePath: "/prototypes/praha/",
+    liveUrl: null,
+    mockBg: "linear-gradient(160deg,#F5EFEC 0%,#E7C9CC 100%)",
+    mockGlow:
+      "radial-gradient(circle,rgba(145,75,76,0.16),rgba(145,75,76,0) 70%)",
+  },
 ];
 
 export type StatusFilter = "all" | "live" | "concept";
