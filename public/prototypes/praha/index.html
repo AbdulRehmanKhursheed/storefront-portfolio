@@ -7,6 +7,77 @@
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#914B4C"/><circle cx="50" cy="50" r="26" fill="#F1ECEB"/><text x="50" y="60" font-family="Georgia, serif" font-size="26" fill="#914B4C" text-anchor="middle">P</text></svg></template>
 </head>
 <body>
+<!-- Praha loading overlay: branded, byte-weighted progress. Fades out when assets are in. -->
+<div id="praha-loader" role="progressbar" aria-label="Loading Caffè Praha" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+  <style>
+    #praha-loader{position:fixed;inset:0;z-index:2147483647;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;background:#F1ECEB;
+      font-family:Georgia,'Times New Roman',serif;color:#2A2320;
+      transition:opacity .5s ease;opacity:1}
+    #praha-loader.pl-done{opacity:0;pointer-events:none}
+    #praha-loader .pl-mark{font-size:30px;font-weight:700;letter-spacing:.01em;color:#914B4C}
+    #praha-loader .pl-sub{margin-top:6px;font-size:12.5px;font-style:italic;color:#8a7d75;letter-spacing:.02em}
+    #praha-loader .pl-track{width:280px;max-width:70vw;height:6px;margin-top:28px;border-radius:999px;
+      background:rgba(145,75,76,.15);overflow:hidden}
+    #praha-loader .pl-fill{height:100%;width:0%;border-radius:inherit;
+      background:linear-gradient(90deg,#C05A48,#914B4C);transition:width .25s ease}
+    #praha-loader .pl-pct{margin-top:13px;font-size:12px;letter-spacing:.1em;color:#914B4C;
+      font-variant-numeric:tabular-nums}
+  </style>
+  <div class="pl-mark">Caffè Praha</div>
+  <div class="pl-sub">From the Heart of Prague</div>
+  <div class="pl-track"><div class="pl-fill" id="pl-fill"></div></div>
+  <div class="pl-pct" id="pl-pct">0%</div>
+</div>
+<script>
+(function(){
+  var PRAHA_ASSETS=[
+["./assets/frame-pasta.png",629701],["./assets/prague-skyline.png",909939],
+["./assets/checkout-collage.png",1843653],["./assets/frame-mac.png",1335951],
+["./assets/washi-dots.png",108501],["./assets/dish-burger.png",164565],
+["./assets/arrow-4024-2.svg",592],["./assets/wood-dish-chimney.png",1805399],
+["./assets/frame-burger.png",1324749],["./assets/logo-praha.png",7575],
+["./assets/dish-paneer-bowl.png",553264],["./assets/dish-salad-bowl.png",545845],
+["./assets/frame-frenchtoast.png",1192984],["./assets/arrow-4024.svg",606],
+["./assets/hero-limewash-bg.png",1126137],["./assets/doodle-frame-square.png",27497],
+["./assets/dish-sandwich.png",213350],["./uploads/Group 1410103961.png",10809],
+["./uploads/Group 1410103974.png",14645],["./uploads/Group 1410103962.png",13777],
+["./uploads/Group 1410103963.png",9921],["./uploads/Group 1410103967.png",9222],
+["./uploads/Group 1410103972.png",12408],["./uploads/Group 1410103966.png",8969],
+["./uploads/Group 1410103970.png",10485],["./uploads/Group 1410103964.png",8593],
+["./uploads/Group 1410103958.png",11886],["./uploads/Group 1410103959.png",13511],
+["./uploads/Group 1410103965.png",15079],["./uploads/Group 1410103971.png",12550],
+["./uploads/table-63e14c45.png",2601370],["./uploads/bank discounts-09ac40e4.png",800007],
+["./uploads/plants.png",679953],["./uploads/Group 1410103968.png",9829],
+["./uploads/Group 1410103969.png",11140],["./uploads/TILES.png",187519],
+["./uploads/Group 1410103957.png",14674]
+  ];
+  var total=0;for(var i=0;i<PRAHA_ASSETS.length;i++)total+=PRAHA_ASSETS[i][1];
+  var loaded=0,settled=0,done=false;
+  var fill=document.getElementById('pl-fill'),pct=document.getElementById('pl-pct'),
+      box=document.getElementById('praha-loader');
+  function paint(p){if(fill)fill.style.width=p+'%';if(pct)pct.textContent=p+'%';
+    if(box)box.setAttribute('aria-valuenow',p);}
+  function update(){var p=total?Math.round(loaded/total*100):100;
+    // hold at 99 until every asset settles, so 100% means truly loaded
+    if(p>=100&&settled<PRAHA_ASSETS.length)p=99;paint(p);}
+  function reveal(){if(done)return;done=true;paint(100);
+    var f=(document.fonts&&document.fonts.ready)?document.fonts.ready:Promise.resolve();
+    f.catch(function(){}).then(function(){
+      setTimeout(function(){if(box){box.classList.add('pl-done');
+        setTimeout(function(){if(box&&box.parentNode)box.parentNode.removeChild(box);},600);}},120);
+    });}
+  PRAHA_ASSETS.forEach(function(a){
+    var img=new Image();
+    function fin(){loaded+=a[1];settled++;update();if(settled>=PRAHA_ASSETS.length)reveal();}
+    img.onload=fin;img.onerror=fin;
+    try{img.src=encodeURI(a[0]);}catch(e){fin();}
+  });
+  // Safety net: never trap the viewer if an asset stalls.
+  setTimeout(reveal,25000);
+  update();
+})();
+</script>
 <x-dc>
 <helmet>
 <meta name="viewport" content="width=device-width, initial-scale=1">
