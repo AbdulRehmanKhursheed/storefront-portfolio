@@ -26,13 +26,18 @@ export function StorefrontCard({
         boxShadow: "0 1px 3px rgba(116,90,252,0.04)",
         transition: `transform 180ms ${EASE_HOVER},box-shadow 180ms ${EASE_HOVER}`,
         animation: "riseIn 320ms cubic-bezier(0.16,1,0.3,1) both",
+        position: "relative",
       }}
     >
+      {/* Stretched link: the whole card is clickable, not just the image/label. */}
       <a
         href={target}
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`${storefront.name} — opens the ${live ? "live site" : "design"} in a new tab`}
+        style={{ position: "absolute", inset: 0, zIndex: 1 }}
+      />
+      <div
         style={{
           position: "relative",
           display: "flex",
@@ -115,7 +120,7 @@ export function StorefrontCard({
           />
           {live ? "LIVE" : "CONCEPT"}
         </div>
-      </a>
+      </div>
 
       <div
         style={{
@@ -179,10 +184,8 @@ export function StorefrontCard({
             gap: 10,
           }}
         >
-          <a
-            href={target}
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* Visual affordance only — the stretched link above handles the click. */}
+          <span
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -194,14 +197,19 @@ export function StorefrontCard({
           >
             {live ? "Open live site" : "Open prototype"}
             <Icon name="arrow-right-up-linear" size={15} />
-          </a>
+          </span>
           <button
             type="button"
             title="Copy link"
             aria-label={`Copy the ${storefront.name} link`}
-            onClick={() => onCopy(storefront)}
+            onClick={(e) => {
+              e.preventDefault();
+              onCopy(storefront);
+            }}
             className="icon-btn"
             style={{
+              position: "relative",
+              zIndex: 2,
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
