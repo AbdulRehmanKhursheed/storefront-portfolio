@@ -2720,13 +2720,13 @@ function showView(name) {
   const step=Math.max(1,Math.floor(imgs.length/slots.length));
   slots.forEach((im,i)=>{ im.dataset.dsrc=imgs[(i*step)%imgs.length]; });
   const LUNCH=[['assets/lunch-hero-5.jpg','center 62%'],['assets/lunch-hero-1.jpg','center 55%'],['assets/lunch-hero-2.jpg','center 45%'],['assets/lunch-hero-4.jpg','center'],['assets/lunch-hero-3.jpg','32% 62%']];
-  const applyMeal=()=>{ const lunch=document.body.dataset.meal==='lunch';
-    slots.forEach((im,i)=>{ const l=LUNCH[i%LUNCH.length]; const src=lunch?l[0]:im.dataset.dsrc;
-      if(im.getAttribute('src')!==src){ im.src=src; im.onerror=lunch?null:()=>{ im.src=imgs[(i*step+1)%imgs.length]; }; }
-      im.style.objectPosition=lunch?l[1]:''; }); };
+  const applyMeal=()=>{
+    slots.forEach((im,i)=>{ const l=LUNCH[i%LUNCH.length]; const src=l[0];
+      if(im.getAttribute('src')!==src){ im.src=src; im.onerror=null; }
+      im.style.objectPosition=l[1]; }); };
   applyMeal(); new MutationObserver(applyMeal).observe(document.body,{attributes:true,attributeFilter:['data-meal']});
   /* rotate the arch photos: one arch at a time crossfades to a dish not already on screen */
-  const pool=()=> document.body.dataset.meal==='lunch' ? LUNCH : imgs.map(s=>[s,'']);
+  const pool=()=> LUNCH;
   let rot=0, busy=false;
   const rotate=()=>{
     if(!matchMedia('(max-width: 768px)').matches) return;
