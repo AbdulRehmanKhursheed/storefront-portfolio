@@ -146,6 +146,21 @@ export const STOREFRONTS: Storefront[] = [
     mockGlow:
       "radial-gradient(circle,rgba(38,81,48,0.16),rgba(38,81,48,0) 70%)",
   },
+  {
+    slug: "braci",
+    name: "Braci",
+    tagline: "Brick-oven pizza and pasta.",
+    category: "Pizza",
+    location: "Karachi",
+    modules: "Ordering · Payments · Delivery",
+    tags: ["Pizza"],
+    shot: "/shots/braci.jpg",
+    prototypePath: "/prototypes/braci/",
+    liveUrl: null,
+    mockBg: "linear-gradient(160deg,#EFE7D8 0%,#E2B79E 100%)",
+    mockGlow:
+      "radial-gradient(circle,rgba(194,66,0,0.16),rgba(194,66,0,0) 70%)",
+  },
 ];
 
 export type StatusFilter = "all" | "live" | "concept";

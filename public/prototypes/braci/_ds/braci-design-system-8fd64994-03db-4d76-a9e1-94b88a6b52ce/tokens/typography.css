@@ -1,0 +1,32 @@
+:root{
+  --font-display:"Dead Stock",cursive;                     /* brush accent, wordmark voice */
+  --font-heading:"Gaegu","Asap Condensed",system-ui,sans-serif; /* all headings; Asap covers accents Gaegu lacks */
+  --font-body:"Asap Condensed",system-ui,sans-serif;       /* body copy, UI labels */
+  --font-mono:ui-monospace,"SFMono-Regular",Menlo,monospace;
+
+  --weight-body:400;
+  --weight-semibold:600;
+  --weight-body-strong:700;
+  --weight-heading:700;
+
+  /* Gaegu runs small on the em; display sizes are deliberately large */
+  --text-display:68px;
+  --text-h1:48px;
+  --text-h2:34px;
+  --text-h3:26px;
+  --text-h4:21px;
+  --text-body-lg:18px;
+  --text-body-md:16px;
+  --text-body-sm:14px;
+  --text-body-xs:12px;
+
+  --leading-display:0.95;
+  --leading-heading:1.1;
+  --leading-body:1.55;
+  --leading-tight:1.3;
+
+  --tracking-display:0.01em;
+  --tracking-heading:0.02em;
+  --tracking-body:0;
+  --tracking-label:0.14em;   /* nav labels, eyebrows: uppercase + wide */
+}

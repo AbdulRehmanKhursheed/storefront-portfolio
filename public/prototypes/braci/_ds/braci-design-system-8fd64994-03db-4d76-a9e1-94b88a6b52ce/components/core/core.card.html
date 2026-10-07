@@ -1,0 +1,42 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Core primitives" subtitle="Buttons, icon buttons, badges, tags, cards" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:20px;background:var(--surface-page)}.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}.lbl{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);width:100%;margin-bottom:2px}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const {Button,IconButton,Badge,Tag,Card,Icon}=window.BraciDesignSystem_8fd649;
+function Demo(){return <>
+<div className="row"><span className="lbl">Button</span>
+<Button variant="primary" sticker>Order now</Button>
+<Button variant="primary">Add to order</Button>
+<Button variant="secondary">See the menu</Button>
+<Button variant="ghost">Cancel</Button>
+<Button variant="primary" size="sm">Small</Button>
+<Button variant="primary" disabled>Sold out</Button>
+</div>
+<div className="row"><span className="lbl">Icon button</span>
+<IconButton label="Cart" icon={<Icon name="shopping-bag" />} />
+<IconButton label="Cart" variant="outline" icon={<Icon name="shopping-bag" />} />
+<IconButton label="Cart" variant="solid" icon={<Icon name="shopping-bag" />} />
+<div style={{background:'var(--surface-identity)',borderRadius:999,padding:4,display:'flex'}}><IconButton label="Menu" variant="onOrange" icon={<Icon name="list" />} /></div>
+</div>
+<div className="row"><span className="lbl">Badge / Tag</span>
+<Badge tone="identity">Brick oven</Badge><Badge tone="action">New</Badge><Badge tone="soft">Vegetariana</Badge><Badge tone="outline">Contains dairy</Badge><Badge tone="success">Order ready</Badge><Badge tone="error">Sold out</Badge>
+<span style={{width:12}} />
+<Tag selected>Pizza</Tag><Tag>Pasta</Tag><Tag interactive={false}>fior di latte</Tag>
+</div>
+<div className="row" style={{alignItems:'stretch'}}><span className="lbl">Card</span>
+<Card strip title="Brick oven, 480°C" text="Sixty seconds. Leopard-spotted crust." style={{width:210}} />
+<Card title="Flat" text="No shadow, hairline only." elevation="flat" style={{width:200}} />
+<Card interactive elevation="raised" title="Interactive" text="Lifts 2px on hover." style={{width:200}} />
+</div>
+</>}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

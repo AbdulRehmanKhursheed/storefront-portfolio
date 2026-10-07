@@ -1,0 +1,12 @@
+:root{
+  /* warm, low-spread shadows — the ground is cream, so shadows are brown, never grey */
+  --shadow-none:none;
+  --shadow-sm:0 1px 2px rgba(23,17,14,.08);
+  --shadow-card:0 2px 10px rgba(23,17,14,.08);
+  --shadow-raised:0 10px 28px rgba(23,17,14,.12);
+  --shadow-overlay:0 24px 60px rgba(23,17,14,.28);
+  /* sticker shadow — hard offset, used only on primary CTAs and price chips */
+  --shadow-sticker:3px 3px 0 var(--braci-char);
+  --shadow-sticker-pressed:1px 1px 0 var(--braci-char);
+  --ring-focus:0 0 0 3px rgba(255,97,14,.45);
+}

@@ -1,0 +1,60 @@
+:root{
+  /* base ramp — Braci "bold brand identity" palette, verbatim */
+  --braci-orange:#EB5E28;      /* Vivid Vermillion — Identity: header, footer, logo, action */
+  --braci-ember:#B34A1E;       /* deepened vermillion — pressed/hover states */
+  --braci-cream:#FFFCF2;       /* Orchid White — Background: page ground */
+  --braci-shell:#FFFCF2;       /* Orchid White — button text / labels & icons on action fills */
+  --braci-char:#252422;        /* Warm Black — Body text: name, prices, nav labels */
+  --braci-ash:#403D39;         /* Masala — Muted text: descriptions, ingredients, timestamps */
+  --braci-chrome:#CCC5B9;      /* Chrome White — neutral tint, dividers, quiet surfaces */
+
+  /* derived neutrals & tints (mixed from the base values, no new hues) */
+  --braci-cream-deep:color-mix(in oklch, var(--braci-cream), var(--braci-chrome) 55%);
+  --braci-orange-tint:color-mix(in oklch, var(--braci-orange), var(--braci-cream) 85%);
+  --braci-ember-deep:color-mix(in oklch, var(--braci-orange), var(--braci-char) 45%);
+  --braci-hairline:rgba(37,36,34,.14);
+  --braci-hairline-strong:rgba(37,36,34,.28);
+  --braci-scrim:rgba(37,36,34,.62);
+
+  /* semantic aliases */
+  --surface-page:var(--braci-cream);
+  --surface-card:var(--braci-shell);
+  --surface-raised:#FFFFFF;
+  --surface-inset:var(--braci-cream-deep);
+  --surface-neutral:var(--braci-chrome);
+  --surface-identity:var(--braci-orange);
+  --surface-action:var(--braci-ember);
+  --surface-action-hover:var(--braci-ember-deep);
+  --surface-selected:var(--braci-ember);
+  --surface-muted:var(--braci-orange-tint);
+  --surface-scrim:var(--braci-scrim);
+
+  --text-body:var(--braci-char);
+  --text-muted:var(--braci-ash);
+  --text-on-action:var(--braci-shell);
+  --text-on-identity:var(--braci-shell);
+  --text-link:var(--braci-ember);
+  --text-link-hover:var(--braci-ember-deep);
+  --text-price:var(--braci-char);
+
+  --border-hairline:var(--braci-hairline);
+  --border-strong:var(--braci-hairline-strong);
+  --border-action:var(--braci-ember);
+  --border-focus:var(--braci-orange);
+
+  --accent-doodle:var(--braci-orange);
+  --accent-flame:var(--braci-orange);
+
+  /* status — derived from the brand pair; no new brand hues introduced */
+  --status-success:#3F6B2E;
+  --status-success-surface:#EAF0E1;
+  --status-warning:var(--braci-orange);
+  --status-warning-surface:var(--braci-orange-tint);
+  --status-error:#A3231A;
+  --status-error-surface:#F8E3E0;
+
+  --dark-surface:var(--braci-char);
+  --dark-surface-raised:#2E2C29;
+  --dark-text-body:var(--braci-cream);
+  --dark-text-muted:var(--braci-chrome);
+}

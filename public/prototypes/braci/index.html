@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/braci-design-system-8fd64994-03db-4d76-a9e1-94b88a6b52ce/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/braci-design-system-8fd64994-03db-4d76-a9e1-94b88a6b52ce/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/braci-design-system-8fd64994-03db-4d76-a9e1-94b88a6b52ce/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/braci-design-system-8fd64994-03db-4d76-a9e1-94b88a6b52ce/tokens/radius.css">
+  <link rel="stylesheet" href="_ds/braci-design-system-8fd64994-03db-4d76-a9e1-94b88a6b52ce/tokens/base.css">
+  <link rel="stylesheet" href="_ds/braci-design-system-8fd64994-03db-4d76-a9e1-94b88a6b52ce/styles.css">
+  <script src="image-slot.js"></script>
+  <style>
+    @font-face{font-family:"Gotham Ultra";src:url("assets/fonts/GothamUltra.ttf") format("truetype");font-weight:900;font-style:normal;font-display:swap}
+    @font-face{font-family:"Gotham";src:url("assets/fonts/GothamMedium.otf") format("opentype");font-weight:500;font-style:normal;font-display:swap}
+    @font-face{font-family:"Gotham";src:url("assets/fonts/GothamBook.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+    body{margin:0;background:#E9E2D4}
+    a{color:#C24200;text-decoration:none}
+    a:hover{color:#EB5E28}
+    @keyframes fk-run{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .fk-run{animation:fk-run 38s linear infinite}
+    @keyframes fk-spin{to{transform:rotate(360deg)}}
+    .fk-spin{animation:fk-spin 26s linear infinite}
+    .fk-tile{transition:box-shadow 160ms cubic-bezier(.2,.7,.3,1)}
+    .fk-tile:hover{box-shadow:inset 0 0 0 2px #252422;position:relative;z-index:1}
+    .fk-stick{transition:transform 140ms cubic-bezier(.2,.7,.3,1),box-shadow 140ms cubic-bezier(.2,.7,.3,1)}
+    .rf-cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+    .rf-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px}
+    .rf-story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:100%}
+    .rf-story > *{width:100% !important;height:100% !important;min-width:0 !important;box-sizing:border-box}
+    @media (max-width:1440px){.rf-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media (max-width:1080px){.rf-cats{grid-template-columns:repeat(2,minmax(0,1fr))}.rf-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}    .rf-hero{padding-right:clamp(0px,26%,380px)}
+    @media (max-width:1100px){.rf-heroband{min-height:0 !important;display:block !important;padding-bottom:0 !important}.rf-hero{padding-right:0}.rf-heropie{position:relative !important;right:auto !important;top:auto !important;bottom:auto !important;width:100% !important;transform:none !important;margin-top:24px}}
+    @media (max-width:1080px){.rf-cats .fk-tile{border-right:0 !important}.rf-cats .fk-tile:nth-child(odd){border-right:2px solid #252422 !important}.rf-cats .fk-tile:nth-child(-n+2){border-bottom:2px solid #252422}}
+    @media (max-width:1100px){.rf-nav,.rf-subnav{padding-left:32px !important;padding-right:32px !important}.rf-heroband{padding-left:32px !important;padding-right:32px !important}.rf-storypanel{padding-left:40px !important;padding-right:40px !important}#rf-menu,.rf-cardwrap,.rf-foot{padding-left:32px !important;padding-right:32px !important}}
+    @media (max-width:900px){.rf-cogrid{grid-template-columns:minmax(0,1fr) !important;padding:32px 32px 48px !important}.rf-cogrid > div[style*="sticky"]{position:static !important}.rf-navlinks{display:none !important}}
+    @media (max-width:760px){.rf-cards,.rf-story{grid-template-columns:minmax(0,1fr)}}
+    @media (max-width:640px){
+      .rf-nav{height:52px !important;padding:0 16px !important}
+      .rf-nav > div{gap:10px !important}
+      .rf-locbtn{height:36px !important;padding:0 10px !important;gap:8px !important;min-width:0}
+      .rf-locbtn > span:nth-child(2),.rf-locbtn > span:nth-child(3){display:none !important}
+      .rf-locbtn > span:last-child{max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px !important}
+      .rf-cartbtn{height:36px !important;padding:0 12px !important;box-shadow:2px 2px 0 #FFFCF2 !important}
+      .rf-heroband{padding:24px 20px 0 !important}
+      .rf-heroband button.fk-stick{height:44px !important;padding:0 24px !important;font-size:14px !important;box-shadow:5px 5px 0 #252422 !important}
+      .rf-h1{font-size:44px !important;line-height:.9 !important;margin-top:16px !important;text-shadow:3px 3px 0 #FFBB0E,5px 5px 0 #252422 !important}
+      .rf-herop{font-size:14px !important;line-height:1.5 !important;margin-top:16px !important}
+      .rf-heropie{width:648px !important;max-width:none !important;height:264px;overflow:hidden;margin:24px 0 0 calc(50% - 324px) !important}
+      .rf-herotags{top:4px !important;bottom:auto !important;right:auto !important;left:50% !important;transform:translateX(-50%) !important}
+      .rf-ticker{padding:8px 0 !important}
+      .rf-ticker .fk-run{font-size:12px !important;gap:20px !important}
+      .rf-story{display:block !important;height:auto !important}
+      .rf-story > img{height:auto !important;aspect-ratio:4/3}
+      .rf-story > .rf-storypanel{height:auto !important;padding:32px 20px 36px !important}
+      .rf-storyh2{font-size:24px !important}
+      .rf-brick{height:28px !important}
+      #rf-menu{padding:36px 16px 0 !important}
+      .rf-menuh2{font-size:24px !important}
+      .rf-cats .fk-tile{min-height:76px !important;padding:12px 16px !important}
+      .rf-cats .fk-tile h3{font-size:20px !important}
+      .rf-cardwrap{padding:32px 16px 48px !important}
+      .rf-cards{gap:28px !important}
+      .rf-foot{padding:36px 20px 44px !important}
+      .rf-foot > div:first-child{gap:24px !important}
+      .rf-subnav{height:56px !important;padding:0 16px !important}
+      .rf-cogrid{padding:20px 16px 24px !important;gap:16px !important}
+      .rf-receipt{padding:24px 18px !important}
+      .rf-sheetwrap{align-items:flex-end !important;padding:0 !important}
+      .rf-sheet{width:100% !important;max-width:100% !important;border-radius:24px 24px 0 0 !important;box-shadow:none !important;max-height:calc(100vh - 48px);overflow-y:auto}
+      .rf-x{right:12px !important;top:12px !important;box-shadow:none !important}
+    }
+    @media (prefers-reduced-motion:reduce){.fk-run,.fk-spin{animation:none}}
+  </style>
+</helmet>
+
+<div style="background:#FFFCF2">
+  <div class="rf-nav" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;height:76px;padding:0 72px;background:#403D39">
+    <div style="display:flex;align-items:center;gap:22px">
+      <div style="display:flex;align-items:center;gap:4px">
+        <img src="assets/rf-nav-mark.png" alt="" aria-hidden="true" style="display: block; height: 26px; width: auto">
+        <img src="assets/ds-logo-wordmark-shell.png" alt="Braci" style="display:block;height:22px;width:auto;position:relative;top:2px">
+      </div>
+      <button class="rf-locbtn" onClick="{{ openLoc }}" style="display:flex;align-items:center;gap:12px;height:42px;padding:0 16px;border:1px solid #FFFCF2;border-radius:12px;background:transparent;cursor:pointer;font-family:'Gotham',sans-serif">
+        <span aria-hidden="true" style="display:block;width:17px;height:17px;flex:none;background-color:#EB5E28;-webkit-mask-image:url(assets/icons/solar-map-point.svg);mask-image:url(assets/icons/solar-map-point.svg);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span>
+        <span style="font-weight: 700; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #FFFCF2">{{ orderMode }}</span>
+        <span aria-hidden="true" style="width:2px;height:18px;background:rgba(253,243,227,.4)"></span>
+        <span style="font-weight: 400; font-size: 14px; letter-spacing: .04em; color: #FFFCF2">{{ branchLabel }}</span>
+      </button>
+    </div>
+    <div style="display:flex;align-items:center;gap:34px">
+      <div class="rf-navlinks" style="display:flex;gap:26px;font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#FFFCF2">
+        <span onClick="{{ toMenu }}" style="cursor:pointer">Menu</span><span onClick="{{ toOven }}" style="cursor:pointer">The oven</span>
+      </div>
+      <button class="rf-cartbtn" onClick="{{ openCart }}" style="position:relative;display:flex;align-items:center;gap:10px;height:42px;padding:0 18px;border:2px solid #252422;border-radius:12px;box-shadow:3px 3px 0 #FFFCF2;background:#EB5E28;font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#FFFCF2;cursor:pointer">
+        Cart
+        <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
+          <span style="display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:#C24200;color:#FFFCF2;font-family:'Gotham Ultra',sans-serif;font-size:12px;letter-spacing:0">{{ cartCount }}</span>
+        </sc-if>
+      </button>
+    </div>
+  </div>
+
+  <div class="rf-heroband" style="position:relative;background:#EB5E28;padding:58px 72px 64px;min-height:clamp(556px,calc(52vw - 4px),756px);display:flex;align-items:center;overflow:hidden">
+    
+    <div class="rf-hero" style="flex:1;min-width:0;position:relative;display:grid;grid-template-columns:minmax(0,1fr);align-items:center;gap:clamp(20px,3vw,40px)">
+      <div>
+        <span style="display:inline-block;padding:7px 14px;background:#FFBB0E;border:2px solid #252422;border-radius:6px;font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#252422">Brick oven · no gas</span>
+        <h1 class="rf-h1" style="margin:22px 0 0;font-family:'Gotham Ultra',sans-serif;font-size:clamp(48px,8vw,104px);line-height:.86;letter-spacing:-.02em;text-transform:uppercase;color:#403D39;text-shadow:5px 5px 0 #FFBB0E,8px 8px 0 #252422">Hot off<br>the embers</h1>
+        <p class="rf-herop" style="margin:26px 0 0;max-width:36ch;font-family:'Gotham',sans-serif;font-weight:500;font-size:17px;line-height:1.55;color:{{ orangeInk }}">Nine pizzas, four pastas, puddings made that morning. When something runs out it stays out until tomorrow.</p>
+        <div style="display:flex;gap:14px;margin-top:32px">
+          <button class="fk-stick" onClick="{{ toMenu }}" style="height:56px;padding:0 28px;background:#FFFCF2;border:2px solid #252422;border-radius:14px;box-shadow:6px 6px 0 #252422;font-family:'Gotham',sans-serif;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#252422;cursor:pointer">View menu</button>
+        </div>
+      </div>
+      <div class="rf-heropie" style="position:absolute;right:-100px;top:50%;width:min(118%,1560px);z-index:1;transform:translate(40%,-50%)">
+        <div style="position:relative;transform:rotate({{ heroRot }}deg);transition:transform 1400ms cubic-bezier(.2,.7,.3,1)">
+          <img src="assets/rf-hero-margherita-top.png" alt="Margherita from the brick oven" style="display:block;width:100%;height:auto;opacity:{{ heroOpacityA }};transition:opacity 700ms cubic-bezier(.2,.7,.3,1)">
+          <img src="assets/rf-hero-pepperoni-top.png" alt="Pepperoni and hot honey from the brick oven" style="position:absolute;inset:0;display:block;width:100%;height:auto;opacity:{{ heroOpacityB }};transition:opacity 700ms cubic-bezier(.2,.7,.3,1)">
+        </div>
+        <div class="rf-herotags" style="position:absolute;right:calc(81% - 6px);top:auto;bottom:calc(22% - 6px);transform:none;z-index:3;display:flex;align-items:center;gap:0;white-space:nowrap">
+          <span style="display: inline-block; padding: 10px 52px 10px 20px; background: #FFBB0E; border: 2px solid #252422; border-radius: 7px; font-family: 'Gotham',sans-serif; font-weight: 700; font-size: 16px; letter-spacing: .14em; text-transform: uppercase; color: #252422;">{{ heroName }}</span>
+          <div style="position:relative;flex:none;width:116px;height:116px;margin-left:-34px;transform:rotate(-10deg)">
+            <div aria-hidden="true" style="position:absolute;inset:0;transform:translate(5px,5px);background:#252422;clip-path:polygon(50.0% 0.0%,58.2% 8.8%,69.1% 3.8%,73.3% 15.1%,85.4% 14.6%,84.9% 26.7%,96.2% 30.9%,91.2% 41.8%,100.0% 50.0%,91.2% 58.2%,96.2% 69.1%,84.9% 73.3%,85.4% 85.4%,73.3% 84.9%,69.1% 96.2%,58.2% 91.2%,50.0% 100.0%,41.8% 91.2%,30.9% 96.2%,26.7% 84.9%,14.6% 85.4%,15.1% 73.3%,3.8% 69.1%,8.8% 58.2%,0.0% 50.0%,8.8% 41.8%,3.8% 30.9%,15.1% 26.7%,14.6% 14.6%,26.7% 15.1%,30.9% 3.8%,41.8% 8.8%)"></div>
+            <div aria-hidden="true" style="position:absolute;inset:0;background:#252422;clip-path:polygon(50.0% 0.0%,58.2% 8.8%,69.1% 3.8%,73.3% 15.1%,85.4% 14.6%,84.9% 26.7%,96.2% 30.9%,91.2% 41.8%,100.0% 50.0%,91.2% 58.2%,96.2% 69.1%,84.9% 73.3%,85.4% 85.4%,73.3% 84.9%,69.1% 96.2%,58.2% 91.2%,50.0% 100.0%,41.8% 91.2%,30.9% 96.2%,26.7% 84.9%,14.6% 85.4%,15.1% 73.3%,3.8% 69.1%,8.8% 58.2%,0.0% 50.0%,8.8% 41.8%,3.8% 30.9%,15.1% 26.7%,14.6% 14.6%,26.7% 15.1%,30.9% 3.8%,41.8% 8.8%)"></div>
+            <div style="position:absolute;inset:2px;background:#C24200;clip-path:polygon(50.0% 0.0%,58.2% 8.8%,69.1% 3.8%,73.3% 15.1%,85.4% 14.6%,84.9% 26.7%,96.2% 30.9%,91.2% 41.8%,100.0% 50.0%,91.2% 58.2%,96.2% 69.1%,84.9% 73.3%,85.4% 85.4%,73.3% 84.9%,69.1% 96.2%,58.2% 91.2%,50.0% 100.0%,41.8% 91.2%,30.9% 96.2%,26.7% 84.9%,14.6% 85.4%,15.1% 73.3%,3.8% 69.1%,8.8% 58.2%,0.0% 50.0%,8.8% 41.8%,3.8% 30.9%,15.1% 26.7%,14.6% 14.6%,26.7% 15.1%,30.9% 3.8%,41.8% 8.8%);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#FFBB0E;font-family:'Gotham Ultra',sans-serif;line-height:1;text-align:center">
+              <span style="font-size:20px">Rs</span>
+              <span style="font-size:22px;margin-top:2px">{{ heroPrice }}</span>
+            </div>
+        </div>
+        </div>
+      </div>
+</div>
+  </div>
+
+  <div class="rf-ticker" style="background:#FFBB0E;border-top:2px solid #252422;border-bottom:2px solid #252422;overflow:hidden;padding:10px 0">
+    <div class="fk-run" style="display:flex;width:max-content;gap:30px;font-family:'Gotham Ultra',sans-serif;font-size:14px;letter-spacing:.1em;color:#C24200;text-transform:uppercase">
+      <span style="display:inline-flex;align-items:baseline">480°C<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Opened by hand<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Slow-proved<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Leopard spotting<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Gone by nine<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px"></span>
+      <span style="display:inline-flex;align-items:baseline">480°C<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Opened by hand<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Slow-proved<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Leopard spotting<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Gone by nine<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px"></span>
+      <span style="display:inline-flex;align-items:baseline">480°C<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Opened by hand<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Slow-proved<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Leopard spotting<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Gone by nine<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px"></span>
+      <span style="display:inline-flex;align-items:baseline">480°C<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Opened by hand<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Slow-proved<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Leopard spotting<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px">Gone by nine<img src="assets/ticker-flame.png" alt="" aria-hidden="true" style="height:13px;width:auto;align-self:baseline;margin:0 12px"></span>
+    </div>
+  </div>
+
+  <div id="rf-oven" class="rf-story" style="align-items:stretch;height:clamp(540px,48vh,620px);overflow:hidden">
+    <img src="assets/story-oven-fire.jpg" alt="The brick oven at full heat" style="display:block;object-fit:cover">
+    <div class="rf-storypanel" style="background:#EB5E28;padding:32px 72px;display:flex;flex-direction:column;justify-content:center">
+      <span style="align-self:flex-start;display:inline-block;padding:7px 14px;background:#FFBB0E;border:2px solid #252422;border-radius:6px;font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#252422">The oven</span>
+      <h2 class="rf-storyh2" style="margin:18px 0 0;font-family:'Gotham Ultra',sans-serif;font-size:clamp(28px,4vw,52px);line-height:.92;text-transform:uppercase;color:#403D39">Wood in,<br>fire out</h2>
+      <p style="margin:18px 0 0;max-width:38ch;font-family:'Gotham',sans-serif;font-weight:500;font-size:16px;line-height:1.55;color:{{ orangeInk }}">Mixed the day before, slow-proved cold, opened by hand. Nothing is rolled. The oven is lit at ten and it does not go out until we close.</p>
+      <div style="display:flex;flex-direction:column;margin-top:30px;border-top:2px solid {{ orangeInk }}">
+        <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:2px solid {{ orangeInk }};font-family:'Gotham',sans-serif;color:{{ orangeInk }}"><span style="font-weight:500;font-size:14px;letter-spacing:.1em;text-transform:uppercase">Floor temperature</span><span style="font-family:'Gotham Ultra',sans-serif;font-size:18px">480°C</span></div>
+        <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:2px solid {{ orangeInk }};font-family:'Gotham',sans-serif;color:{{ orangeInk }}"><span style="font-weight:500;font-size:14px;letter-spacing:.1em;text-transform:uppercase">PREP TIME</span><span style="font-family:'Gotham Ultra',sans-serif;font-size:18px">7 MINS</span></div>
+        <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:2px solid {{ orangeInk }};font-family:'Gotham',sans-serif;color:{{ orangeInk }}"><span style="font-weight:500;font-size:14px;letter-spacing:.1em;text-transform:uppercase">Gas used</span><span style="font-family:'Gotham Ultra',sans-serif;font-size:18px">NONE</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rf-brick" aria-hidden="true" style="position:relative;z-index:2;height:44px;background-image:url(assets/brick-break.png);background-repeat:repeat-x;background-size:auto 100%;background-position:left center"></div>
+
+  <div id="rf-menu" style="padding:52px 72px 0;background:#FFFCF2">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding-bottom:18px">
+      <h2 class="rf-menuh2" style="margin:0;font-family:'Gotham Ultra',sans-serif;font-size:clamp(34px,4.8vw,58px);line-height:.9;letter-spacing:-.01em;text-transform:uppercase;color:#403D39">The menu</h2>
+    </div>
+    <div class="rf-cats" style="border:2px solid #252422;border-radius:12px;overflow:hidden">
+      <div class="fk-tile" onClick="{{ toPizza }}" style="display:flex;flex-direction:column;justify-content:center;min-height:104px;padding:18px 20px;border-right:2px solid #252422;background:#EB5E28;cursor:pointer">
+        <span style="font-family:'Gotham Ultra',sans-serif;font-size:13px;color:#FFFCF2;letter-spacing:.1em">01</span>
+        <h3 style="margin:0;font-family:'Gotham Ultra',sans-serif;font-size:27px;line-height:1;text-transform:uppercase;color:#FFFCF2">Pizza</h3>
+      </div>
+      <div class="fk-tile" onClick="{{ toPasta }}" style="display:flex;flex-direction:column;justify-content:center;min-height:104px;padding:18px 20px;border-right:2px solid #252422;background:#C24200;cursor:pointer">
+        <span style="font-family:'Gotham Ultra',sans-serif;font-size:13px;color:#FFFCF2;letter-spacing:.1em">02</span>
+        <h3 style="margin:0;font-family:'Gotham Ultra',sans-serif;font-size:27px;line-height:1;text-transform:uppercase;color:#FFFCF2">Pasta</h3>
+      </div>
+      <div class="fk-tile" onClick="{{ toDesserts }}" style="display:flex;flex-direction:column;justify-content:center;min-height:104px;padding:18px 20px;border-right:2px solid #252422;background:#EB5E28;cursor:pointer">
+        <span style="font-family:'Gotham Ultra',sans-serif;font-size:13px;color:#FFFCF2;letter-spacing:.1em">03</span>
+        <h3 style="margin:0;font-family:'Gotham Ultra',sans-serif;font-size:27px;line-height:1;text-transform:uppercase;color:#FFFCF2">Desserts</h3>
+      </div>
+      <div class="fk-tile" onClick="{{ toDrinks }}" style="display:flex;flex-direction:column;justify-content:center;min-height:104px;padding:18px 20px;background:#C24200;cursor:pointer">
+        <span style="font-family:'Gotham Ultra',sans-serif;font-size:13px;color:#FFFCF2;letter-spacing:.1em">04</span>
+        <h3 style="margin:0;font-family:'Gotham Ultra',sans-serif;font-size:27px;line-height:1;text-transform:uppercase;color:#FFFCF2">Drinks</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="rf-cardwrap" style="padding:44px 72px 60px;background:#FFFCF2">
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+      <div style="display:flex;align-items:center;gap:16px;margin:{{ g.topGap }} 0 22px">
+        <h3 id="{{ g.anchorId }}" style="margin:0;font-family:'Gotham Ultra',sans-serif;font-size:28px;line-height:1;letter-spacing:.01em;text-transform:uppercase;color:#403D39">{{ g.label }}</h3>
+        <span style="flex:1;height:2px;background:#252422"></span>
+      </div>
+      <div class="rf-cards">
+        <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+          <div onClick="{{ it.open }}" style="position:relative;background:#FFFCF2;border:2px solid #252422;border-radius:18px;box-shadow:8px 8px 0 #252422;padding:26px 24px 24px;cursor:pointer">
+            <div style="width:100%;aspect-ratio:4/3;border-radius:12px;border:2px solid #252422;margin:0 0 20px;background:#E9E2D4;overflow:hidden">
+              <image-slot id="rf-card-{{ it.id }}" shape="rect" fit="cover" src="{{ it.img }}" placeholder="Drop a photo of this item" style="display:block;width:100%;height:100%"></image-slot>
+            </div>
+            <h4 style="margin: 0; font-family: 'Gotham',sans-serif; font-weight: 700; font-size: 16px; color: #252422">{{ it.name }}</h4>
+            <p style="margin:6px 0 0;min-height:42px;font-family:'Gotham',sans-serif;font-weight:400;font-size:14px;line-height:1.5;color:#403D39">{{ it.desc }}</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px">
+              <span style="font-family:'Gotham Ultra',sans-serif;font-size:18px;color:#252422">{{ it.price }}</span>
+              <sc-if value="{{ it.none }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ it.add }}" style="border:2px solid #252422;border-radius:12px;box-shadow:3px 3px 0 #252422;height:42px;padding:0 18px;background:#EB5E28;font-family:'Gotham',sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#FFFCF2;cursor:pointer">Add</button>
+              </sc-if>
+              <sc-if value="{{ it.some }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;align-items:center;gap:10px;border:2px solid #252422;border-radius:12px;box-shadow:3px 3px 0 #252422;background:#EB5E28;height:42px;box-sizing:border-box;padding:0 8px">
+                  <button aria-label="Decrease" onClick="{{ it.dec }}" style="width:26px;height:26px;border:0;background:transparent;padding:0;color:#FFFCF2;font-family:'Gotham',sans-serif;font-weight:700;font-size:16px;line-height:1;cursor:pointer">−</button>
+                  <span style="min-width:14px;text-align:center;font-family:'Gotham',sans-serif;font-weight:700;font-size:14px;color:#FFFCF2">{{ it.qty }}</span>
+                  <button aria-label="Increase" onClick="{{ it.inc }}" style="width:26px;height:26px;border:0;background:transparent;padding:0;color:#FFFCF2;font-family:'Gotham',sans-serif;font-weight:700;font-size:16px;line-height:1;cursor:pointer">+</button>
+                </div>
+              </sc-if>
+            </div>
+            <sc-if value="{{ it.hasBadge }}" hint-placeholder-val="{{ false }}">
+              <span style="position:absolute;left:38px;top:38px;padding:7px 12px;background:#FFBB0E;border:2px solid #252422;border-radius:6px;font-family:'Gotham',sans-serif;font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#252422">{{ it.badge }}</span>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+
+  <div class="rf-brick" aria-hidden="true" style="position:relative;z-index:2;height:44px;background-image:url(assets/brick-break.png);background-repeat:repeat-x;background-size:auto 100%;background-position:left center"></div>
+
+  <div class="rf-foot" style="background:#403D39;padding:48px 72px 0;overflow:hidden">
+    <div style="display:flex;flex-wrap:wrap;gap:48px;justify-content:space-between">
+      <div style="max-width:30ch">
+        <p style="margin:0;font-family:'Gotham',sans-serif;font-size:14px;line-height:1.55;color:#FFFCF2">12 Mill Lane, Cambridge. Counter open 12:00 – 22:00, seven days.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#FFBB0E">Order</span>
+        <a href="#rf-menu" style="font-family:'Gotham',sans-serif;font-size:14px;color:#FFFCF2">Collection</a>
+        <a href="#rf-menu" style="font-family:'Gotham',sans-serif;font-size:14px;color:#FFFCF2">Delivery</a>
+        <a href="#rf-menu" style="font-family:'Gotham',sans-serif;font-size:14px;color:#FFFCF2">Large orders</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#FFBB0E">Braci</span>
+        <a href="#rf-menu" style="font-family:'Gotham',sans-serif;font-size:14px;color:#FFFCF2">The oven</a>
+        <a href="#rf-menu" style="font-family:'Gotham',sans-serif;font-size:14px;color:#FFFCF2">Jobs</a>
+        <a href="#rf-menu" style="font-family:'Gotham',sans-serif;font-size:14px;color:#FFFCF2">Instagram</a>
+      </div>
+    </div><div style="display:flex;align-items:center;gap:8px"><img src="assets/rf-nav-mark.png" alt="" aria-hidden="true" style="display: block; height: 69px; width: 52px"><img src="assets/ds-logo-wordmark-shell.png" alt="Braci" style="display: block; width: 250px; height: 84px; position: relative; top: 6px"></div><div style="margin-top:40px;padding-bottom:28px;display:flex;align-items:center;justify-content:flex-end;gap:8px">
+      <span style="font-family:'Gotham',sans-serif;font-weight:400;font-size:13px;color:#FFFCF2">Powered by</span>
+      <img src="assets/rf-powered-by.png" alt="Bazaar" style="display:block;height:19px;width:auto">
+    </div>
+  </div>
+</div>
+
+
+<sc-if value="{{ orderConfirmed }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:95;background:#FFFCF2;overflow-y:auto">
+    <div class="rf-subnav" style="position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:22px;height:76px;padding:0 72px;background:#403D39">
+      <button onClick="{{ closeOrder }}" aria-label="Back to home" style="border:0;background:transparent;padding:0;cursor:pointer;display:flex;align-items:center">
+        <div style="display:flex;align-items:center;gap:4px">
+          <img src="assets/rf-nav-mark.png" alt="" aria-hidden="true" style="display:block;height:30px;width:auto">
+          <img src="assets/ds-logo-wordmark-shell.png" alt="Braci" style="display:block;height:22px;width:auto;position:relative;top:2px">
+        </div>
+      </button>
+      
+    </div>
+
+    
+
+    <div style="max-width:820px;margin:0 auto;padding:72px 24px 72px;display:flex;flex-direction:column;gap:22px">
+
+      <div style="background: #FFFCF2; border: 2px solid #252422; border-radius: 18px; box-shadow: 8px 8px 0 #252422; padding: 26px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-start; position: relative">
+        <div>
+          <h2 style="margin:0;font-family:'Gotham Ultra',sans-serif;font-size:34px;line-height:1;text-transform:uppercase;color:#403D39">{{ stageTitle }}</h2>
+          <p style="margin:10px 0 0;font-family:'Gotham',sans-serif;font-weight:500;font-size:15px;color:#403D39">{{ stageDesc }}</p>
+          <span style="display:block;margin-top:18px;font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#403D39">Order no.</span>
+          <span style="display:block;margin-top:4px;font-family:'Gotham Ultra',sans-serif;font-size:20px;color:#252422">{{ orderNo }}</span>
+          <button onClick="{{ openReceipt }}" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:0;border:0;background:transparent;font-family:'Gotham',sans-serif;font-weight:700;font-size:14px;color:#252422;cursor:pointer;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#252422" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M4 19h16"></path></svg>
+            Download receipt
+          </button>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:24px;align-self:stretch">
+          <div style="text-align:right;align-self:flex-end">
+            <span style="display:block;font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#403D39">Est. time</span>
+            <span style="display:block;margin-top:4px;font-family:'Gotham Ultra',sans-serif;font-size:20px;color:#252422">{{ stageEta }}</span>
+          </div>
+          
+        </div>
+        <div style="width:100%;display:flex;gap:8px">
+          <sc-for list="{{ stageBars }}" as="b" hint-placeholder-count="4">
+            <span style="flex:1;height:8px;border:2px solid #252422;border-radius:999px;background:{{ b.bg }}"></span>
+          </sc-for>
+        </div>
+      <div role="img" aria-hidden="true" style="flex: none; width: 193px; height: 165px; background-image: url({{ stageIllustration }}); background-size: contain; background-repeat: no-repeat; background-position: right top; position: absolute; left: 584px; top: -53px"></div></div>
+
+      <div style="background:#FFFCF2;border:2px solid #252422;border-radius:18px;padding:26px">
+        <div style="display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid rgba(37,36,34,.14);font-family:'Gotham',sans-serif;font-size:14px">
+          <span style="color:#403D39">Sold to</span><span style="font-weight:700;color:#252422">{{ orderName }}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid rgba(37,36,34,.14);font-family:'Gotham',sans-serif;font-size:14px">
+          <span style="color:#403D39">Customer address</span><span style="font-weight:700;color:#252422;text-align:right">{{ orderAddr }}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid rgba(37,36,34,.14);font-family:'Gotham',sans-serif;font-size:14px">
+          <span style="color:#403D39">Order date</span><span style="font-weight:700;color:#252422">{{ orderDate }}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:16px;padding:10px 0;font-family:'Gotham',sans-serif;font-size:14px">
+          <span style="color:#403D39">Mobile number</span><span style="font-weight:700;color:#252422">{{ orderPhone }}</span>
+        </div>
+      </div>
+
+      <div style="background:#FFFCF2;border:2px solid #252422;border-radius:18px;padding:26px">
+        <h3 style="margin:0 0 16px;font-family:'Gotham Ultra',sans-serif;font-size:20px;line-height:1;text-transform:uppercase;color:#403D39">Order summary</h3>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ orderLines }}" as="line" hint-placeholder-count="2">
+            <div style="display:flex;justify-content:space-between;gap:12px;font-family:'Gotham',sans-serif;font-weight:500;font-size:14px;color:#252422">
+              <span>{{ line.name }} × {{ line.qty }}</span><span>{{ line.lineTotal }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="height:1px;background:rgba(37,36,34,.14);margin:16px 0"></div>
+        <div style="display:flex;justify-content:space-between;font-family:'Gotham',sans-serif;font-weight:500;font-size:14px;color:#403D39">
+          <span>Delivery fee</span><span style="font-family:'Gotham Ultra',sans-serif;font-size:15px;color:#252422">{{ orderDeliveryFee }}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;border-top:2px solid #252422">
+          <span style="font-family:'Gotham',sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#252422">Total</span>
+          <span style="font-family:'Gotham Ultra',sans-serif;font-size:22px;color:#252422">{{ orderTotal }}</span>
+        </div>
+        <p style="margin:12px 0 0;font-family:'Gotham',sans-serif;font-weight:500;font-size:13px;color:#403D39">{{ orderPayMethod }}</p>
+      </div>
+
+      
+    </div>
+
+    <div aria-hidden="true" style="height:22px;background-image:url(assets/brick-break.png);background-repeat:repeat-x;background-size:auto 100%;background-position:left center"></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ receiptOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:99;background:#FFFCF2;overflow-y:auto">
+    <div class="rf-subnav" style="position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:22px;height:76px;padding:0 72px;background:#403D39">
+      <button onClick="{{ closeReceipt }}" aria-label="Back to order status" style="border:0;background:transparent;padding:0;cursor:pointer;display:flex;align-items:center">
+        <div style="display:flex;align-items:center;gap:4px">
+          <img src="assets/rf-nav-mark.png" alt="" aria-hidden="true" style="display:block;height:30px;width:auto">
+          <img src="assets/ds-logo-wordmark-shell.png" alt="Braci" style="display:block;height:22px;width:auto;position:relative;top:2px">
+        </div>
+      </button>
+      
+    </div>
+    <div style="max-width:720px;margin:0 auto;padding:56px 24px 72px">
+    <div class="rf-receipt" style="position:relative;background:#FFFCF2;border:2px solid #252422;border-radius:18px;box-shadow:8px 8px 0 #252422;padding:40px 44px 44px">
+      <h2 style="margin:0;font-family:'Gotham Ultra',sans-serif;font-size:30px;line-height:1;text-transform:uppercase;color:#252422">Order receipt</h2>
+      <div style="height:2px;background:#252422;margin:18px 0 22px"></div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
+        <div style="display:flex;flex-direction:column;gap:6px;font-family:'Gotham',sans-serif">
+          <span style="font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#403D39">Bill to</span>
+          <span style="font-weight:700;font-size:15px;color:#252422">{{ orderName }}</span>
+          <span style="font-weight:500;font-size:14px;line-height:1.5;color:#252422">{{ orderAddr }}</span>
+          <span style="font-weight:500;font-size:14px;color:#252422">{{ orderPhone }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-family:'Gotham',sans-serif">
+          <span style="font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#403D39">Order details</span>
+          <span style="font-family:'Gotham Ultra',sans-serif;font-size:15px;color:#252422">{{ orderNo }}</span>
+          <span style="font-weight:500;font-size:14px;color:#252422">{{ orderDate }}</span>
+        </div>
+      </div>
+      <div style="margin-top:30px;border:2px solid #252422;border-radius:12px;overflow:hidden">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) 60px 110px 110px;gap:12px;padding:12px 16px;background:#EB5E28;border-bottom:2px solid #252422;font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#FFFCF2">
+          <span>Item</span><span style="text-align:center">Qty</span><span style="text-align:right">Unit price</span><span style="text-align:right">Amount</span>
+        </div>
+        <sc-for list="{{ orderLines }}" as="line" hint-placeholder-count="2">
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 60px 110px 110px;gap:12px;padding:12px 16px;border-bottom:1px solid rgba(37,36,34,.14);font-family:'Gotham',sans-serif;font-weight:500;font-size:14px;color:#252422">
+            <span>{{ line.name }}</span><span style="text-align:center">{{ line.qty }}</span><span style="text-align:right">{{ line.unit }}</span><span style="text-align:right;font-weight:700">{{ line.lineTotal }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:22px;font-family:'Gotham',sans-serif;font-weight:500;font-size:14px;color:#403D39">
+        <div style="display:flex;justify-content:space-between"><span>Subtotal</span><span>{{ orderSubtotal }}</span></div>
+        <div style="display:flex;justify-content:space-between"><span>Delivery fee</span><span>{{ orderDeliveryFee }}</span></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:18px;border-top:2px solid #252422">
+        <span style="font-family:'Gotham',sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#252422">Total</span>
+        <span style="font-family:'Gotham Ultra',sans-serif;font-size:24px;color:#252422">{{ orderTotal }}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:18px;margin-top:22px;padding:14px 18px;background:#FFFCF2;border:2px solid #252422;border-radius:12px;font-family:'Gotham',sans-serif;font-size:14px">
+        <span style="font-weight:500;color:#403D39">{{ orderPayMethod }}</span>
+        <span style="font-family:'Gotham Ultra',sans-serif;font-size:15px;color:#252422">{{ orderTotal }}</span>
+      </div>
+    </div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ checkoutOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:90;background:#FFFCF2;overflow-y:auto">
+    <div class="rf-subnav" style="position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:22px;height:76px;padding:0 72px;background:#403D39">
+      <button onClick="{{ closeCheckout }}" aria-label="Back to home" style="border:0;background:transparent;padding:0;cursor:pointer;display:flex;align-items:center">
+        <div style="display:flex;align-items:center;gap:4px">
+          <img src="assets/rf-nav-mark.png" alt="" aria-hidden="true" style="display:block;height:30px;width:auto">
+          <img src="assets/ds-logo-wordmark-shell.png" alt="Braci" style="display:block;height:22px;width:auto;position:relative;top:2px">
+        </div>
+      </button>
+      
+    </div>
+
+    
+
+    <div class="rf-cogrid" style="padding:40px 72px 72px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:30px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:24px">
+
+        <div style="background:#FFFCF2;border:2px solid #252422;border-radius:18px;padding:24px">
+          <h3 style="margin:0 0 16px;font-family:'Gotham Ultra',sans-serif;font-size:22px;line-height:1;text-transform:uppercase;color:#403D39">Contact details</h3>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <input style-focus="border-color:rgba(37,36,34,.55);outline:none;box-shadow:none" type="email" placeholder="Email" value="{{ coEmail }}" onChange="{{ setCoEmail }}" style="height:48px;box-sizing:border-box;border:1px solid {{ errEmailBorder }};border-radius:12px;padding:0 16px;font-family:'Gotham',sans-serif;font-weight:500;font-size:15px;color:#252422;outline:0;background:#FFFCF2">
+            <sc-if value="{{ errEmailShow }}" hint-placeholder-val="{{ false }}"><span style="margin-top:-6px;font-family:'Gotham',sans-serif;font-weight:500;font-size:12px;color:#B3261E">Enter your email</span></sc-if>
+            <input style-focus="border-color:rgba(37,36,34,.55);outline:none;box-shadow:none" type="text" placeholder="Full name" value="{{ coName }}" onChange="{{ setCoName }}" style="height:48px;box-sizing:border-box;border:1px solid {{ errNameBorder }};border-radius:12px;padding:0 16px;font-family:'Gotham',sans-serif;font-weight:500;font-size:15px;color:#252422;outline:0;background:#FFFCF2">
+            <sc-if value="{{ errNameShow }}" hint-placeholder-val="{{ false }}"><span style="margin-top:-6px;font-family:'Gotham',sans-serif;font-weight:500;font-size:12px;color:#B3261E">Enter your full name</span></sc-if>
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+              <div style="display:flex;flex-direction:column;gap:12px;min-width:0"><input style-focus="border-color:rgba(37,36,34,.55);outline:none;box-shadow:none" type="tel" placeholder="Mobile number" value="{{ coPhone }}" onChange="{{ setCoPhone }}" style="height:48px;box-sizing:border-box;border:1px solid {{ errPhoneBorder }};border-radius:12px;padding:0 16px;font-family:'Gotham',sans-serif;font-weight:500;font-size:15px;color:#252422;outline:0;background:#FFFCF2"><sc-if value="{{ errPhoneShow }}" hint-placeholder-val="{{ false }}"><span style="margin-top:-6px;font-family:'Gotham',sans-serif;font-weight:500;font-size:12px;color:#B3261E">Enter your mobile number</span></sc-if></div>
+              <input style-focus="border-color:rgba(37,36,34,.55);outline:none;box-shadow:none" type="tel" placeholder="Alternate number (optional)" style="height:48px;box-sizing:border-box;border:1px solid rgba(37,36,34,.28);border-radius:12px;padding:0 16px;font-family:'Gotham',sans-serif;font-weight:500;font-size:15px;color:#252422;outline:0;background:#FFFCF2">
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#FFFCF2;border:2px solid #252422;border-radius:18px;padding:24px">
+          <h3 style="margin:0 0 16px;font-family:'Gotham Ultra',sans-serif;font-size:22px;line-height:1;text-transform:uppercase;color:#403D39">Delivery details</h3>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <button onClick="{{ openAddr }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;box-sizing:border-box;border:1px solid {{ errAddrBorder }};border-radius:12px;padding:12px 16px;background:#FFFCF2;cursor:pointer;text-align:left;font-family:'Gotham',sans-serif;font-weight:500;font-size:15px;line-height:1.4;color:{{ coFullColor }}">
+              <span style="min-width:0">{{ coFullLabel }}</span>
+              
+            </button>
+            <sc-if value="{{ errAddrShow }}" hint-placeholder-val="{{ false }}"><span style="margin-top:-6px;font-family:'Gotham',sans-serif;font-weight:500;font-size:12px;color:#B3261E">Enter your full address</span></sc-if>
+            <button onClick="{{ changeArea }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;height:48px;box-sizing:border-box;border:1px solid rgba(37,36,34,.28);border-radius:12px;padding:0 16px;background:#FFFCF2;cursor:pointer;text-align:left;font-family:'Gotham',sans-serif;font-weight:500;font-size:15px;color:{{ coAreaColor }}">
+              <span>{{ coAreaLabel }}</span>
+              <span style="flex:none;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#C24200">Change</span>
+            </button>
+            
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+              <input style-focus="border-color:rgba(37,36,34,.55);outline:none;box-shadow:none" type="text" placeholder="Floor (optional)" value="{{ coFloor }}" onChange="{{ setCoFloor }}" style="min-width:0;height:48px;box-sizing:border-box;border:1px solid rgba(37,36,34,.28);border-radius:12px;padding:0 16px;font-family:'Gotham',sans-serif;font-weight:500;font-size:15px;color:#252422;outline:0;background:#FFFCF2">
+              <input style-focus="border-color:rgba(37,36,34,.55);outline:none;box-shadow:none" type="text" placeholder="Building name (optional)" value="{{ coBuilding }}" onChange="{{ setCoBuilding }}" style="min-width:0;height:48px;box-sizing:border-box;border:1px solid rgba(37,36,34,.28);border-radius:12px;padding:0 16px;font-family:'Gotham',sans-serif;font-weight:500;font-size:15px;color:#252422;outline:0;background:#FFFCF2">
+            </div>
+            <textarea style-focus="border-color:rgba(37,36,34,.55);outline:none;box-shadow:none" placeholder="Any instructions, e.g. closest landmark" rows="2" style="box-sizing:border-box;border:1px solid rgba(37,36,34,.28);border-radius:12px;padding:12px 16px;font-family:'Gotham',sans-serif;font-weight:500;font-size:15px;color:#252422;outline:0;resize:vertical;background:#FFFCF2"></textarea>
+          </div>
+        </div>
+
+        <div style="background:#FFFCF2;border:2px solid #252422;border-radius:18px;padding:24px">
+          <h3 style="margin:0 0 16px;font-family:'Gotham Ultra',sans-serif;font-size:22px;line-height:1;text-transform:uppercase;color:#403D39">Payment</h3>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
+            <sc-for list="{{ payMethods }}" as="m" hint-placeholder-count="3">
+              <button onClick="{{ m.select }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:96px;padding:14px 12px;border:2px solid #252422;border-radius:12px;background:{{ m.bg }};font-family:'Gotham',sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;color:#252422;cursor:pointer;text-align:center">
+                <span role="img" aria-hidden="true" style="display:block;height:30px;width:70px;background-image:url({{ m.icon }});background-size:contain;background-repeat:no-repeat;background-position:center"></span>
+                {{ m.label }}
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:sticky;top:110px;background:#FFFCF2;border:2px solid #252422;border-radius:18px;box-shadow:8px 8px 0 #252422;padding:24px">
+        <h3 style="margin:0 0 16px;font-family:'Gotham Ultra',sans-serif;font-size:22px;line-height:1;text-transform:uppercase;color:#403D39">Order details</h3>
+        <div style="display:flex;align-items:center;gap:10px;border:1px solid rgba(37,36,34,.28);border-radius:12px;background:#FFFCF2;padding:0 12px;height:48px">
+          <input style-focus="outline:none;box-shadow:none" type="text" placeholder="Enter promo code" value="{{ promo }}" onChange="{{ setPromo }}" style="flex:1;min-width:0;border:0;background:transparent;outline:0;font-family:'Gotham',sans-serif;font-weight:400;font-size:14px;color:#252422">
+          <button disabled="{{ promoDisabled }}" style="border:2px solid #252422;border-radius:9px;background:{{ promoBg }};font-family:'Gotham',sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:{{ promoFg }};padding:7px 14px;cursor:{{ promoCursor }}">Apply</button>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:18px">
+          <sc-for list="{{ cartLines }}" as="line" hint-placeholder-count="2">
+            <div style="display:flex;justify-content:space-between;gap:12px;font-family:'Gotham',sans-serif;font-weight:500;font-size:14px;color:#252422">
+              <span>{{ line.name }} × {{ line.qty }}</span><span>{{ line.lineTotal }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="height:2px;background:#252422;margin:16px 0"></div>
+        <div style="display:flex;justify-content:space-between;font-family:'Gotham',sans-serif;font-weight:500;font-size:14px;color:#403D39">
+          <span>Subtotal</span><span style="font-family:'Gotham Ultra',sans-serif;font-size:15px;color:#252422">{{ cartSubtotal }}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:8px;font-family:'Gotham',sans-serif;font-weight:500;font-size:14px;color:#403D39">
+          <span>Delivery</span><span style="font-family:'Gotham Ultra',sans-serif;font-size:15px;color:#252422">{{ cartDelivery }}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;border-top:2px solid #252422">
+          <span style="font-family:'Gotham',sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#252422">Total</span>
+          <span style="font-family:'Gotham Ultra',sans-serif;font-size:22px;color:#252422">{{ cartTotal }}</span>
+        </div>
+
+        <button class="fk-stick" onClick="{{ placeOrder }}" style="width:100%;box-sizing:border-box;margin-top:20px;height:54px;border:2px solid #252422;border-radius:14px;box-shadow:6px 6px 0 #252422;background:{{ orderBg }};font-family:'Gotham',sans-serif;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:{{ orderFg }};cursor:{{ orderCursor }}">{{ orderLabel }}</button>
+        <button onClick="{{ backToCart }}" style="width:100%;margin-top:14px;border:0;background:transparent;font-family:'Gotham',sans-serif;font-weight:700;font-size:13px;color:#252422;cursor:pointer">← Continue to add more items</button>
+      </div>
+    </div>
+
+    <div aria-hidden="true" style="height:22px;background-image:url(assets/brick-break.png);background-repeat:repeat-x;background-size:auto 100%;background-position:left center"></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ addrOpen }}" hint-placeholder-val="{{ false }}">
+  <div class="rf-sheetwrap" onClick="{{ closeAddr }}" style="position:fixed;inset:0;z-index:100;background:rgba(37,36,34,.62);display:flex;align-items:center;justify-content:center;padding:24px">
+    <div class="rf-sheet" onClick="{{ stopClick }}" style="position:relative;width:min(640px,94vw);box-sizing:border-box;background:#FFFCF2;border:2px solid #252422;border-radius:18px;box-shadow:10px 10px 0 #252422;padding:28px 28px 30px">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
+        <div>
+          <h3 style="margin:0;font-family:'Gotham Ultra',sans-serif;font-size:24px;line-height:1;text-transform:uppercase;color:#403D39">Full address</h3>
+          <p style="margin:10px 0 0;font-family:'Gotham',sans-serif;font-weight:500;font-size:14px;line-height:1.5;color:#403D39">Type your address, then drag the pin to your door if it's not quite right.</p>
+        </div>
+        <button aria-label="Close" onClick="{{ closeAddr }}" style="flex:none;width:36px;height:36px;border:2px solid #252422;border-radius:999px;background:#FFBB0E;font-family:'Gotham',sans-serif;font-weight:700;font-size:16px;line-height:1;color:#252422;cursor:pointer">✕</button>
+      </div>
+
+      <input style-focus="border-color:rgba(37,36,34,.55);outline:none;box-shadow:none" type="text" autoFocus="{{ true }}" placeholder="e.g. House 14, Street 3, DHA Phase 6" value="{{ addrDraft }}" onChange="{{ setAddrDraft }}" style="width:100%;margin-top:18px;height:48px;box-sizing:border-box;border:1px solid rgba(37,36,34,.28);border-radius:12px;padding:0 16px;font-family:'Gotham',sans-serif;font-weight:500;font-size:15px;color:#252422;outline:0;background:#FFFCF2">
+
+      <div onPointerDown="{{ pinDown }}" onPointerMove="{{ pinMove }}" onPointerUp="{{ pinUp }}" onPointerLeave="{{ pinUp }}" style="position:relative;margin-top:14px;aspect-ratio:16/9;border:1px solid rgba(37,36,34,.28);border-radius:12px;overflow:hidden;background:#E9E2D4;touch-action:none;cursor:crosshair;user-select:none">
+        <div ref="{{ pinInnerRef }}" style="position:absolute;inset:0">
+          <img src="assets/rf-checkout-map.png" alt="Map" draggable="false" style="display:block;width:100%;height:100%;object-fit:cover;pointer-events:none">
+          <span aria-hidden="true" style="position:absolute;left:{{ addrPinX }};top:{{ addrPinY }};width:30px;height:38px;margin:-38px 0 0 -15px;background-color:#C24200;-webkit-mask-image:url(assets/icons/solar-map-point.svg);mask-image:url(assets/icons/solar-map-point.svg);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;pointer-events:none;transition:{{ addrPinTransition }}"></span>
+        </div>
+        <sc-if value="{{ addrHasArea }}" hint-placeholder-val="{{ false }}">
+          <span style="position:absolute;left:12px;bottom:12px;padding:6px 10px;background:#FFFCF2;border:2px solid #252422;border-radius:6px;font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#252422">{{ addrAreaLabel }}</span>
+        </sc-if>
+      </div>
+
+      <button class="fk-stick" onClick="{{ confirmAddr }}" disabled="{{ addrDisabled }}" style="width:100%;box-sizing:border-box;margin-top:20px;height:54px;border:2px solid #252422;border-radius:14px;box-shadow:6px 6px 0 #252422;background:{{ addrBg }};font-family:'Gotham',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:{{ addrFg }};cursor:{{ addrCursor }}">{{ addrBtnLabel }}</button>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ locOpen }}" hint-placeholder-val="{{ false }}">
+  <div class="rf-sheetwrap" onClick="{{ closeLoc }}" style="position:fixed;inset:0;z-index:100;background:rgba(37,36,34,.62);display:flex;align-items:center;justify-content:center;padding:24px">
+    <div class="rf-sheet" onClick="{{ stopClick }}" style="position:relative;width:min(560px,94vw);box-sizing:border-box;background:#FFFCF2;border:2px solid #252422;border-radius:18px;box-shadow:10px 10px 0 #252422;padding:28px 28px 30px">
+      <h3 style="margin:0;font-family:'Gotham Ultra',sans-serif;font-size:24px;line-height:1;text-transform:uppercase;color:#252422">{{ locTitle }}</h3>
+
+      <sc-if value="{{ locShowMode }}" hint-placeholder-val="{{ true }}">
+      <div style="display:inline-flex;margin-top:20px;border:2px solid #252422;border-radius:12px;overflow:hidden">
+        <button onClick="{{ pickDelivery }}" style="height:44px;padding:0 22px;border:0;border-right:2px solid #252422;background:{{ deliveryBg }};color:{{ deliveryFg }};font-family:'Gotham',sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">Delivery</button>
+        <button onClick="{{ pickPickup }}" style="height:44px;padding:0 22px;border:0;background:{{ pickupBg }};color:{{ pickupFg }};font-family:'Gotham',sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">Pick up</button>
+      </div>
+      </sc-if>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin:26px 0 12px">
+        <h4 style="margin:0;font-family:'Gotham Ultra',sans-serif;font-size:18px;line-height:1;text-transform:uppercase;color:#252422">{{ destLabel }}</h4>
+        <button style="display:flex;align-items:center;gap:8px;border:0;background:transparent;padding:0;cursor:pointer;font-family:'Gotham',sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#C24200">
+          <span aria-hidden="true" style="display:block;width:16px;height:16px;flex:none;background-color:#C24200;-webkit-mask-image:url(assets/icons/solar-map-point.svg);mask-image:url(assets/icons/solar-map-point.svg);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span>
+          Use current location
+        </button>
+      </div>
+
+      <div style="position:relative;z-index:2">
+        <input style-focus="border-color:#252422;outline:none" type="text" placeholder="{{ locSearchPlaceholder }}" value="{{ locQuery }}" onChange="{{ setLocQuery }}" onFocus="{{ openLocDrop }}" style="width:100%;box-sizing:border-box;height:54px;padding:0 16px;border:2px solid rgba(37,36,34,.28);border-radius:12px;background:#FFFCF2;font-family:'Gotham',sans-serif;font-weight:500;font-size:15px;color:#252422">
+        <sc-if value="{{ locDropOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:8px;max-height:240px;overflow:auto;background:#FFFCF2;border:2px solid #252422;border-radius:12px">
+            <sc-for list="{{ locPlaces }}" as="p" hint-placeholder-count="3">
+              <button onClick="{{ p.select }}" style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;width:100%;box-sizing:border-box;padding:13px 16px;border:0;border-bottom:1px solid rgba(37,36,34,.14);background:{{ p.bg }};cursor:pointer;text-align:left;font-family:'Gotham',sans-serif">
+                <span style="font-weight:700;font-size:15px;color:#252422">{{ p.name }}</span>
+                <span style="font-weight:400;font-size:13px;color:#403D39">{{ p.distance }}</span>
+              </button>
+            </sc-for>
+            <sc-if value="{{ locNoMatch }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:0;padding:13px 16px;font-family:'Gotham',sans-serif;font-weight:500;font-size:14px;color:#403D39">We don't deliver there yet.</p>
+            </sc-if>
+          </div>
+        </sc-if>
+      </div>
+
+      <sc-if value="{{ showLocPin }}" hint-placeholder-val="{{ false }}">
+        <div onClick="{{ closeLocDrop }}" style="position:relative;margin-top:14px;aspect-ratio:16/7;border:2px solid rgba(37,36,34,.28);border-radius:12px;overflow:hidden;background:#E9E2D4">
+          <div style="position:absolute;inset:0;transform:{{ zoneTransform }};transform-origin:{{ zoneOrigin }};transition:transform 320ms cubic-bezier(.2,.7,.3,1)">
+            <img src="assets/rf-checkout-map.png" alt="Map" style="display:block;width:100%;height:100%;object-fit:cover">
+            <sc-if value="{{ hasZone }}" hint-placeholder-val="{{ false }}">
+              <span aria-hidden="true" style="position:absolute;left:{{ zoneX }};top:{{ zoneY }};width:{{ zoneW }};aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:1.5px dashed #C24200;background:rgba(235,94,40,.16);box-shadow:0 0 0 3000px rgba(37,36,34,.42)"></span>
+            </sc-if>
+            <sc-if value="{{ showLocPin }}" hint-placeholder-val="{{ false }}">
+              <span aria-hidden="true" style="position:absolute;left:{{ locPinX }};top:{{ locPinY }};width:28px;height:36px;margin:-36px 0 0 -14px;background-color:#C24200;-webkit-mask-image:url(assets/icons/solar-map-point.svg);mask-image:url(assets/icons/solar-map-point.svg);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;transition:left 280ms cubic-bezier(.2,.7,.3,1),top 280ms cubic-bezier(.2,.7,.3,1)"></span>
+            </sc-if>
+          </div>
+          <sc-if value="{{ hasZone }}" hint-placeholder-val="{{ false }}">
+            <span style="position:absolute;left:12px;bottom:12px;padding:6px 10px;background:#FFFCF2;border:2px solid #252422;border-radius:6px;font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#252422">{{ locPickLabel }}</span>
+          </sc-if>
+        </div>
+        </sc-if>
+
+      <button class="fk-stick" onClick="{{ confirmLoc }}" disabled="{{ confirmDisabled }}" style="width:100%;box-sizing:border-box;margin-top:22px;height:54px;border:2px solid #252422;border-radius:14px;box-shadow:6px 6px 0 #252422;background:{{ confirmBg }};font-family:'Gotham',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:{{ confirmFg }};cursor:{{ confirmCursor }}">Select</button>
+
+      <button class="rf-x" aria-label="Close" onClick="{{ closeLoc }}" style="position:absolute;right:-12px;top:-14px;width:36px;height:36px;border:2px solid #252422;border-radius:999px;background:#FFBB0E;box-shadow:3px 3px 0 #252422;font-family:'Gotham',sans-serif;font-weight:700;font-size:16px;line-height:1;color:#252422;cursor:pointer">✕</button>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ cartOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeCart }}" style="position:fixed;inset:0;z-index:70;background:rgba(37,36,34,.62);display:flex;justify-content:flex-end">
+    <div onClick="{{ stopClick }}" style="width:min(460px,100vw);box-sizing:border-box;height:100%;background:#FFFCF2;border-left:2px solid #252422;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:24px 28px;background:#FFFCF2">
+        <div>
+          <h3 style="margin:0;font-family:'Gotham Ultra',sans-serif;font-size:26px;line-height:1;text-transform:uppercase;color:#403D39">Your cart</h3>
+          <p style="margin:8px 0 0;font-family:'Gotham',sans-serif;font-weight:400;font-size:14px;line-height:1.5;color:#403D39">Delivery in about 35 minutes</p>
+        </div>
+        <button aria-label="Close" onClick="{{ closeCart }}" style="width:36px;height:36px;border:2px solid #252422;border-radius:999px;background:#FFBB0E;font-family:'Gotham',sans-serif;font-weight:700;font-size:16px;line-height:1;color:#252422;cursor:pointer">✕</button>
+      </div>
+
+      
+
+      <div style="flex:1;min-height:0;overflow-y:auto;padding:4px 28px 24px;display:flex;flex-direction:column;gap:14px">
+        <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ true }}">
+          <p style="margin:0;font-family:'Gotham',sans-serif;font-weight:500;font-size:15px;line-height:1.55;color:#403D39">Nothing in here yet. The oven is on — add something from the menu.</p>
+        </sc-if>
+        <sc-for list="{{ cartLines }}" as="l" hint-placeholder-count="2">
+          <div style="display:flex;gap:14px;align-items:center;background:#FFFCF2;border:2px solid #252422;border-radius:14px;box-shadow:4px 4px 0 #252422;padding:12px">
+            <div role="img" aria-label="{{ l.name }}" style="flex:none;width:64px;height:64px;border-radius:10px;border:2px solid #252422;background-color:#E9E2D4;background-image:url({{ l.img }});background-size:cover;background-position:center"></div>
+            <div style="flex:1;min-width:0">
+              <h4 style="margin:0;font-family:'Gotham',sans-serif;font-weight:700;font-size:16px;line-height:1.2;color:#252422">{{ l.name }}</h4>
+              <span style="display: inline-block; margin-top: 4px; font-family: 'Gotham Ultra',sans-serif; font-size: 14px; color: #252422">{{ l.lineTotal }}</span>
+            </div>
+            <div style="flex:none;display:flex;align-items:center;gap:8px;border:2px solid #252422;border-radius:12px;box-shadow:3px 3px 0 #252422;background:#EB5E28;padding:5px 8px">
+              <button aria-label="Decrease" onClick="{{ l.dec }}" style="width:22px;height:22px;border:0;background:transparent;padding:0;font-family:'Gotham',sans-serif;font-weight:700;font-size:16px;line-height:1;color:#FFFCF2;cursor:pointer">−</button>
+              <span style="min-width:14px;text-align:center;font-family:'Gotham',sans-serif;font-weight:700;font-size:14px;color:#FFFCF2">{{ l.qty }}</span>
+              <button aria-label="Increase" onClick="{{ l.inc }}" style="width:22px;height:22px;border:0;background:transparent;padding:0;font-family:'Gotham',sans-serif;font-weight:700;font-size:16px;line-height:1;color:#FFFCF2;cursor:pointer">+</button>
+            </div>
+          </div>
+        </sc-for>
+
+        <button onClick="{{ addMore }}" style="width:100%;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:10px;flex:none;height:48px;border:2px dashed #252422;border-radius:14px;background:transparent;font-family:'Gotham',sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#252422;cursor:pointer">+ Add more items</button>
+
+        <h4 style="margin: 16px 0 0; font-family: 'Gotham Ultra',sans-serif; font-size: 16px; line-height: 1; text-transform: uppercase; color: #252422">Also try our…</h4>
+        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+          <sc-for list="{{ suggestions }}" as="s" hint-placeholder-count="2">
+            <div style="background:#FFFCF2;border:2px solid #252422;border-radius:14px;box-shadow:4px 4px 0 #252422;padding:12px">
+              <div role="img" aria-label="{{ s.name }}" style="width:100%;aspect-ratio:4/3;border-radius:10px;border:2px solid #252422;background-color:#E9E2D4;background-image:url({{ s.img }});background-size:cover;background-position:center"></div>
+              <h5 style="margin:10px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Gotham',sans-serif;font-weight:700;font-size:14px;line-height:1.2;color:#252422">{{ s.name }}</h5>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px">
+                <span style="font-family:'Gotham Ultra',sans-serif;font-size:14px;color:#252422">{{ s.price }}</span>
+                <button aria-label="Add" onClick="{{ s.add }}" style="width:30px;height:30px;border:2px solid #252422;border-radius:9px;box-shadow:3px 3px 0 #252422;background:#EB5E28;font-family:'Gotham',sans-serif;font-weight:700;font-size:16px;line-height:1;color:#FFFCF2;cursor:pointer">+</button>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      
+
+      <div style="border-top:2px solid #252422;background:#FFFCF2;padding:22px 28px 26px">
+        <div style="display:flex;align-items:center;justify-content:space-between;font-family:'Gotham',sans-serif;font-weight:500;font-size:14px;color:#403D39">
+          <span>Subtotal</span><span style="font-family:'Gotham Ultra',sans-serif;font-size:16px;color:#252422">{{ cartSubtotal }}</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-family:'Gotham',sans-serif;font-weight:500;font-size:14px;color:#403D39">
+          <span>Delivery</span><span style="font-family:'Gotham Ultra',sans-serif;font-size:16px;color:#252422">{{ cartDelivery }}</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:14px;border-top:2px solid #252422">
+          <span style="font-family:'Gotham',sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#252422">Total</span>
+          <span style="font-family:'Gotham Ultra',sans-serif;font-size:22px;color:#252422">{{ cartTotal }}</span>
+        </div>
+        <button class="fk-stick" onClick="{{ openCheckout }}" disabled="{{ cartEmpty }}" style="width:100%;box-sizing:border-box;margin-top:18px;height:54px;border:2px solid #252422;border-radius:14px;box-shadow:6px 6px 0 #252422;background:{{ checkoutBg }};font-family:'Gotham',sans-serif;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:{{ checkoutFg }};cursor:{{ checkoutCursor }}">Checkout</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ hhOpen }}" hint-placeholder-val="{{ false }}">
+  <div class="rf-sheetwrap" onClick="{{ closeHH }}" style="position:fixed;inset:0;z-index:60;background:rgba(37,36,34,.62);display:flex;align-items:center;justify-content:center;padding:24px">
+    <div class="rf-sheet" onClick="{{ stopClick }}" style="position:relative;width:min(640px,92vw);box-sizing:border-box;background:#FFFCF2;border:2px solid #252422;border-radius:18px;box-shadow:10px 10px 0 #252422">
+      <div style="max-height:92vh;overflow-y:auto;box-sizing:border-box;padding:26px 24px 24px;border-radius:16px">
+      <div style="display:flex;align-items:center;gap:22px">
+        <div style="position:relative;flex:none;width:150px;height:150px;border-radius:50%;background-image:url(assets/hh-board.png);background-size:100% 100%;background-repeat:no-repeat;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;width:50%;height:100%;background-image:url({{ hhLeftImg }});background-size:auto 92%;background-position:right center;background-repeat:no-repeat"></div>
+          <div style="position:absolute;right:0;top:0;width:50%;height:100%;background-image:url({{ hhRightImg }});background-size:auto 92%;background-position:left center;background-repeat:no-repeat"></div>
+        </div>
+        <div style="flex:1;min-width:0">
+          <span style="display:inline-block;padding:7px 12px;background:#FFBB0E;border:2px solid #252422;border-radius:6px;font-family:'Gotham',sans-serif;font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#252422">Build your own</span>
+          <h3 style="margin:12px 0 0;font-family:'Gotham Ultra',sans-serif;font-size:28px;line-height:1;text-transform:uppercase;color:#252422">Half &amp; half</h3>
+          <p style="margin:8px 0 0;font-family:'Gotham',sans-serif;font-weight:400;font-size:14px;line-height:1.5;color:#403D39">Priced at the dearer half. Same base, same sixty seconds.</p>
+              <div style="display:flex;align-items:center;gap:8px;margin-top:12px;min-height:18px;font-family:'Gotham',sans-serif;font-weight:700;font-size:12px;color:#252422;visibility:{{ hhHintVis }}">
+                  <span style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:2px solid #252422;font-size:11px;line-height:1">i</span>
+                  <span>{{ hhHint }}</span>
+              </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:22px">
+        <div>
+          <p style="margin:0 0 10px;display:flex;align-items:center;gap:8px;font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#252422"><span style="width:12px;height:12px;border-radius:50%;background:#EB5E28;border:2px solid #252422"></span>Left half</p>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ hhLeftOpts }}" as="o" hint-placeholder-count="4">
+              <button onClick="{{ o.select }}" style="display:flex;align-items:center;justify-content:space-between;gap:10px;border:1.5px solid rgba(37,36,34,.55);border-radius:10px;background:{{ o.bg }};padding:10px 12px;font-family:'Gotham',sans-serif;font-size:13px;color:#252422;cursor:pointer;text-align:left">
+                <span style="font-weight:500">{{ o.name }}</span>
+                <span style="font-weight:700;flex:none">{{ o.price }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <p style="margin:0 0 10px;display:flex;align-items:center;gap:8px;font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#252422"><span style="width:12px;height:12px;border-radius:50%;background:#FFBB0E;border:2px solid #252422"></span>Right half</p>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ hhRightOpts }}" as="o" hint-placeholder-count="4">
+              <button onClick="{{ o.select }}" style="display:flex;align-items:center;justify-content:space-between;gap:10px;border:1.5px solid rgba(37,36,34,.55);border-radius:10px;background:{{ o.bg }};padding:10px 12px;font-family:'Gotham',sans-serif;font-size:13px;color:#252422;cursor:pointer;text-align:left">
+                <span style="font-weight:500">{{ o.name }}</span>
+                <span style="font-weight:700;flex:none">{{ o.price }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:14px;margin-top:22px;padding-top:18px;border-top:2px solid #252422">
+        <div style="display:flex;align-items:center;gap:12px;border:2px solid {{ hhCtaBorder }};border-radius:12px;box-shadow:{{ hhShadow }};background:{{ hhCtaBg }};height:48px;box-sizing:border-box;padding:0 10px;opacity:{{ hhCtaOpacity }}">
+          <button aria-label="Decrease" disabled="{{ hhIncomplete }}" onClick="{{ hhDec }}" style="width:26px;height:26px;border:0;background:transparent;padding:0;color:{{ hhCtaFg }};font-family:'Gotham',sans-serif;font-weight:700;font-size:18px;line-height:1;cursor:pointer">−</button>
+          <span style="min-width:16px;text-align:center;font-family:'Gotham',sans-serif;font-weight:700;font-size:15px;color:{{ hhCtaFg }}">{{ hhQty }}</span>
+          <button aria-label="Increase" disabled="{{ hhIncomplete }}" onClick="{{ hhInc }}" style="width:26px;height:26px;border:0;background:transparent;padding:0;color:{{ hhCtaFg }};font-family:'Gotham',sans-serif;font-weight:700;font-size:18px;line-height:1;cursor:pointer">+</button>
+        </div>
+        <button disabled="{{ hhIncomplete }}" onClick="{{ hhAdd }}" style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;height:48px;padding:0 18px;border:2px solid {{ hhCtaBorder }};border-radius:12px;box-shadow:{{ hhShadow }};background:{{ hhCtaBg }};font-family:'Gotham',sans-serif;font-size:14px;color:{{ hhCtaFg }};cursor:{{ hhCursor }};opacity:{{ hhCtaOpacity }}">
+          <span style="font-family:'Gotham Ultra',sans-serif;font-size:16px">{{ hhTotalLabel }}</span>
+          <span style="font-weight:700;letter-spacing:.08em;text-transform:uppercase">{{ hhCtaLabel }}</span>
+        </button>
+      </div>
+      </div>
+      <button class="rf-x" aria-label="Close" onClick="{{ closeHH }}" style="position:absolute;right:-12px;top:-14px;width:36px;height:36px;border:2px solid #252422;border-radius:999px;background:#FFBB0E;box-shadow:3px 3px 0 #252422;font-family:'Gotham',sans-serif;font-weight:700;font-size:15px;color:#252422;cursor:pointer">✕</button>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ detailOpen }}" hint-placeholder-val="{{ false }}">
+  <div class="rf-sheetwrap" onClick="{{ closeDetail }}" style="position:fixed;inset:0;z-index:60;background:rgba(37,36,34,.62);display:flex;align-items:center;justify-content:center;padding:24px;opacity:{{ detailOpacity }};transition:opacity 260ms cubic-bezier(.2,.7,.3,1)">
+    <div class="rf-sheet" onClick="{{ stopClick }}" style="width:min(520px,92vw);box-sizing:border-box;background:#FFFCF2;border:2px solid #252422;border-radius:18px;box-shadow:10px 10px 0 #252422;padding:26px 24px 24px;transform:{{ detailTransform }};transition:transform 340ms cubic-bezier(.2,.7,.3,1)">
+      <div style="display:flex;gap:18px;align-items:flex-start">
+        <div role="img" aria-label="{{ detail.name }}" style="flex:none;width:132px;aspect-ratio:1;border-radius:12px;border:2px solid #252422;background-color:#E9E2D4;background-image:url({{ detail.img }});background-size:cover;background-position:center"></div>
+        <div style="min-width:0">
+          <h4 style="margin:0;font-family:'Gotham',sans-serif;font-weight:700;font-size:22px;line-height:1.15;color:#252422">{{ detail.name }}</h4>
+          <p style="margin:8px 0 0;font-family:'Gotham',sans-serif;font-weight:400;font-size:14px;line-height:1.5;color:#403D39">{{ detail.desc }}</p>
+          <span style="display:inline-block;margin-top:10px;font-family:'Gotham Ultra',sans-serif;font-size:18px;color:#252422">{{ detail.price }}</span>
+        </div>
+      </div>
+
+      <p style="margin:24px 0 10px;font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#252422">Add ons</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <sc-for list="{{ addons }}" as="a" hint-placeholder-count="4">
+          <button onClick="{{ a.toggle }}" style="display:flex;align-items:center;gap:10px;border:1.5px solid rgba(37,36,34,.55);border-radius:10px;background:{{ a.bg }};padding:9px 12px;font-family:'Gotham',sans-serif;font-size:13px;color:#252422;cursor:pointer">
+            <span style="font-weight:500">{{ a.name }}</span>
+            <span style="font-weight:700">{{ a.priceLabel }}</span>
+          </button>
+        </sc-for>
+      </div>
+
+      <p style="margin:24px 0 10px;font-family:'Gotham',sans-serif;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#252422">Special instructions</p>
+      <textarea rows="2" placeholder="Anything we should know about this one?" value="{{ note }}" onChange="{{ setNote }}" style="width:100%;box-sizing:border-box;resize:none;border:1.5px solid rgba(37,36,34,.55);border-radius:10px;background:#FFFCF2;padding:12px;font-family:'Gotham',sans-serif;font-weight:400;font-size:14px;line-height:1.5;color:#252422;outline:none"></textarea>
+
+      <div style="display:flex;align-items:center;gap:14px;margin-top:22px;padding-top:18px;border-top:2px solid #252422">
+        <div style="display:flex;align-items:center;gap:12px;border:2px solid #252422;border-radius:12px;box-shadow:3px 3px 0 #252422;background:#EB5E28;height:48px;box-sizing:border-box;padding:0 10px">
+          <button aria-label="Decrease" onClick="{{ decQty }}" style="width:26px;height:26px;border:0;background:transparent;padding:0;color:#FFFCF2;font-family:'Gotham',sans-serif;font-weight:700;font-size:18px;line-height:1;cursor:pointer">−</button>
+          <span style="min-width:16px;text-align:center;font-family:'Gotham',sans-serif;font-weight:700;font-size:15px;color:#FFFCF2">{{ modalQty }}</span>
+          <button aria-label="Increase" onClick="{{ incQty }}" style="width:26px;height:26px;border:0;background:transparent;padding:0;color:#FFFCF2;font-family:'Gotham',sans-serif;font-weight:700;font-size:18px;line-height:1;cursor:pointer">+</button>
+        </div>
+        <button onClick="{{ addToCart }}" style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;height:48px;padding:0 18px;border:2px solid #252422;border-radius:12px;box-shadow:3px 3px 0 #252422;background:#EB5E28;font-family:'Gotham',sans-serif;font-size:14px;color:#FFFCF2;cursor:pointer">
+          <span style="font-family:'Gotham Ultra',sans-serif;font-size:16px">{{ totalLabel }}</span>
+          <span style="font-weight:700;letter-spacing:.08em;text-transform:uppercase">Add to cart</span>
+        </button>
+      </div>
+      <button class="rf-x" aria-label="Close" onClick="{{ closeDetail }}" style="position:absolute;right:-12px;top:-14px;width:36px;height:36px;border:2px solid #252422;border-radius:999px;background:#FFBB0E;box-shadow:3px 3px 0 #252422;font-family:'Gotham',sans-serif;font-weight:700;font-size:15px;color:#252422;cursor:pointer">✕</button>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;orangeInk&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;White&quot;,&quot;Black&quot;,&quot;Cream&quot;],&quot;default&quot;:&quot;Black&quot;,&quot;tsType&quot;:&quot;'White' | 'Black' | 'Cream'&quot;,&quot;section&quot;:&quot;Orange sections&quot;}}">
+class Component extends DCLogic {
+  state = { qty: {}, openId: null, origin: null, shown: false, modalQty: 1, picked: {}, note: '', cartOpen: false, locOpen: true, orderMode: 'Delivery', branch: '', locPick: '', locQuery: '' };
+
+  deliveryPlaces = [
+    { name: 'DHA Phase 2', distance: 'Karachi', zone: [70, 30, 9] },
+    { name: 'DHA Phase 4', distance: 'Karachi', zone: [62, 52, 9] },
+    { name: 'DHA Phase 5', distance: 'Karachi', zone: [48, 66, 10] },
+    { name: 'DHA Phase 6', distance: 'Karachi', zone: [80, 70, 11] },
+    { name: 'Clifton Block 3', distance: 'Karachi', zone: [30, 40, 7] },
+    { name: 'Clifton Block 5', distance: 'Karachi', zone: [38, 56, 7] },
+    { name: 'Clifton Block 9', distance: 'Karachi', zone: [24, 64, 7] },
+    { name: 'PECHS', distance: 'Karachi', zone: [56, 20, 9] },
+    { name: 'Gulshan-e-Iqbal', distance: 'Karachi', zone: [84, 24, 10] },
+    { name: 'Gulshan-e-Meymar', distance: 'Karachi', zone: [16, 22, 10] }
+  ];
+  pickupPlaces = [
+    { name: 'Clifton Branch', distance: '2.1 km away', pin: [38, 58] },
+    { name: 'Shahrah-e-Faisal Branch', distance: '3.4 km away', pin: [70, 34] },
+    { name: 'Queen Square', distance: '5.0 km away', pin: [56, 74] }
+  ];
+  pinInnerRef = React.createRef();
+  zoneFor(name) {
+    const p = this.deliveryPlaces.find(x => x.name === name);
+    return p ? p.zone : null;
+  }
+  movePin(ev) {
+    const el = this.pinInnerRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const x = Math.max(2, Math.min(98, (ev.clientX - r.left) / r.width * 100));
+    const y = Math.max(6, Math.min(98, (ev.clientY - r.top) / r.height * 100));
+    this.setState({ addrPin: [x, y], addrDragged: true });
+  }
+  areaFromText(text) {
+    const t = ' ' + (text || '').toLowerCase().replace(/[-,.]/g, ' ').replace(/\s+/g, ' ') + ' ';
+    const keys = [
+      ['DHA Phase 2', /phase (2|ii) /], ['DHA Phase 4', /phase (4|iv) /], ['DHA Phase 5', /phase (5|v) /], ['DHA Phase 6', /phase (6|vi) /],
+      ['Clifton Block 3', /block 3 /], ['Clifton Block 5', /block 5 /], ['Clifton Block 9', /block 9 /],
+      ['PECHS', / pechs /], ['Gulshan-e-Iqbal', /iqbal/], ['Gulshan-e-Meymar', /meymar|maymar/]
+    ];
+    const hit = keys.find(k => k[1].test(t));
+    return hit ? hit[0] : null;
+  }
+  areaAt(p) {
+    if (!p) return null;
+    const hit = this.deliveryPlaces.find(z => Math.hypot(p[0] - z.zone[0], (p[1] - z.zone[1]) * 9 / 16) <= z.zone[2]);
+    return hit ? hit.name : null;
+  }
+  addrVals() {
+    const s = this.state;
+    const pin = s.addrPin || [50, 55];
+    const area = this.areaAt(pin) || this.areaFromText(s.addrDraft) || s.branch || '';
+    const ok = (s.addrDraft || '').trim().length > 0;
+    return {
+      addrOpen: !!s.addrOpen,
+      addrDraft: s.addrDraft || '',
+      addrPinX: pin[0] + '%', addrPinY: pin[1] + '%',
+      addrPinTransition: s.addrDragged ? 'none' : 'left 360ms cubic-bezier(.2,.7,.3,1),top 360ms cubic-bezier(.2,.7,.3,1)',
+      addrHasArea: !!area, addrAreaLabel: area,
+      addrDisabled: !ok,
+      addrBg: ok ? '#EB5E28' : 'rgba(37,36,34,.12)',
+      addrFg: ok ? '#FFFCF2' : '#403D39',
+      addrCursor: ok ? 'pointer' : 'not-allowed',
+      addrBtnLabel: ok ? 'Confirm address' : 'Enter your address',
+      coFullLabel: s.coFullAddr || 'Full address',
+      coFullColor: s.coFullAddr ? '#252422' : 'rgba(37,36,34,.45)',
+      openAddr: () => {
+        const z = this.zoneFor(s.branch);
+        this.setState({ addrOpen: true, addrDraft: s.coFullAddr || '', addrDragged: false, addrPin: s.coPin || (z ? [z[0], z[1]] : [50, 55]) });
+      },
+      closeAddr: () => { this._drag = false; this.setState({ addrOpen: false }); },
+      setAddrDraft: (ev) => {
+        const v = ev.target.value, a = this.areaFromText(v);
+        const upd = { addrDraft: v };
+        if (a && a !== this.areaFromText(s.addrDraft)) { const z = this.zoneFor(a); upd.addrPin = [z[0], z[1]]; upd.addrDragged = false; }
+        this.setState(upd);
+      },
+      confirmAddr: () => {
+        if (!ok) return;
+        this._drag = false;
+        this.setState({ addrOpen: false, coFullAddr: s.addrDraft.trim(), coPin: pin, branch: area || s.branch });
+      },
+      changeArea: () => this.setState({ locOpen: true, locFromCheckout: true, locPick: s.branch, locQuery: s.branch, locDropOpen: false }),
+      pinDown: (ev) => { this._drag = true; this.movePin(ev); },
+      pinMove: (ev) => { if (this._drag) this.movePin(ev); },
+      pinUp: () => { this._drag = false; }
+    };
+  }
+  zoneVals() {
+    const Z = 1.8;
+    const mz = this.state.orderMode === 'Delivery' ? this.zoneFor(this.state.locPick) : null;
+    const cz = this.zoneFor(this.state.branch) || [50, 50, 10];
+    const cp = this.state.coPin || [cz[0], cz[1]];
+    return {
+      hasZone: !!mz,
+      showLocPin: this.state.orderMode !== 'Delivery',
+      zoneTransform: mz ? 'translate(' + (50 - mz[0]) + '%,' + (50 - mz[1]) + '%) scale(' + Z + ')' : 'none',
+      locPickLabel: this.state.locPick || '',
+      zoneOrigin: mz ? mz[0] + '% ' + mz[1] + '%' : '50% 50%',
+      zoneX: mz ? mz[0] + '%' : '50%', zoneY: mz ? mz[1] + '%' : '50%', zoneW: mz ? mz[2] * 2 + '%' : '0%',
+      coZoneTransform: 'translate(' + (50 - cz[0]) + '%,' + (50 - cz[1]) + '%) scale(' + Z + ')', coZoneOrigin: cz[0] + '% ' + cz[1] + '%',
+      coZoneX: cz[0] + '%', coZoneY: cz[1] + '%', coZoneW: cz[2] * 2 + '%',
+      coPinX: cp[0] + '%', coPinY: cp[1] + '%', pinCounter: 1 / Z,
+      pinInnerRef: this.pinInnerRef,
+    };
+  }
+  locPin() {
+    const list = this.deliveryPlaces.concat(this.pickupPlaces);
+    const p = list.find(x => x.name === (this.state.locPick || this.state.branch));
+    return p && p.pin ? p.pin : (p && p.zone ? [p.zone[0], p.zone[1]] : [50, 55]);
+  }
+
+  addonList = [
+    { id: 'fdl', name: 'Extra fior di latte', price: 250 },
+    { id: 'nduja', name: 'Nduja', price: 300 },
+    { id: 'rocket', name: 'Rocket & Parmesan', price: 250 },
+    { id: 'honey', name: 'Chilli honey', price: 150 }
+  ];
+  priceOf(item) {
+    const n = parseInt(String(item.price).replace(/[^0-9]/g, ''), 10);
+    return isNaN(n) ? 0 : n;
+  }
+  money(n) {
+    return 'Rs ' + n.toLocaleString('en-US');
+  }
+
+  openCard(item, ev) {
+    const card = ev && ev.currentTarget ? ev.currentTarget.getBoundingClientRect() : null;
+    this.setState({ openId: item.id, origin: card, shown: false, modalQty: Math.max(1, this.state.qty[item.id] || 1), picked: {}, note: '' }, () => {
+      requestAnimationFrame(() => requestAnimationFrame(() => this.setState({ shown: true })));
+    });
+  }
+  closeCard() {
+    this.setState({ shown: false }, () => {
+      setTimeout(() => this.setState({ openId: null, origin: null }), 220);
+    });
+  }
+  detailTransform() {
+    const o = this.state.origin;
+    if (!o || this.state.shown) return 'translate(0px,0px) scale(1)';
+    const cx = o.left + o.width / 2, cy = o.top + o.height / 2;
+    const dx = Math.round(cx - window.innerWidth / 2);
+    const dy = Math.round(cy - window.innerHeight / 2);
+    const modalW = Math.min(520, window.innerWidth * 0.92);
+    const scale = Math.max(0.4, Math.min(1, o.width / modalW));
+    return 'translate(' + dx + 'px,' + dy + 'px) scale(' + scale.toFixed(3) + ')';
+  }
+
+  menu = [
+    { label: 'Pizza', items: [
+      { id: 'pz-margherita', hhL: 'assets/hh-margherita-R.png', hhR: 'assets/hh-margherita-L.png', name: 'Margherita', price: 'Rs 1800', desc: 'San Marzano, fior di latte, basil', img: 'assets/rf-product.png', badge: 'Classic', badgeBg: '#FFBB0E', badgeFg: '#252422' },
+      { id: 'pz-pepperoni', hhL: 'assets/hh-pepperoni-R.png', hhR: 'assets/hh-pepperoni-L.png', name: 'Pepperoni + Hot Honey', price: 'Rs 2250', desc: 'Cup pepperoni, fior di latte, chilli honey', img: 'assets/rf-product.png', badge: 'Hot', badgeBg: '#C24200', badgeFg: '#FFBB0E' },
+      { id: 'pz-firecracker', hhL: 'assets/hh-firecracker-R.png', hhR: 'assets/hh-firecracker-L.png', name: 'The Firecracker', price: 'Rs 2250', desc: 'Nduja, green chilli, red onion, fior di latte', img: 'assets/rf-product.png', badge: '', badgeBg: '#C24200', badgeFg: '#FFBB0E' },
+      { id: 'pz-marinara', hhL: 'assets/hh-marinara-R.png', hhR: 'assets/hh-marinara-L.png', name: 'Marinara', price: 'Rs 1600', desc: 'San Marzano, garlic, oregano, no cheese', img: 'assets/rf-product.png', badge: '', badgeBg: '#FFFCF2', badgeFg: '#252422' },
+      { id: 'pz-halfhalf', name: 'Half & Half', price: 'From Rs 1600', desc: 'One base, two flavours. Pick a pizza for each side.', img: 'assets/pizza-halfhalf-board.png', badge: 'Build your own', isHH: true }
+    ]},
+    { label: 'Pasta', items: [
+      { id: 'ps-pesto', name: 'Pesto Gnocchi', price: 'Rs 1750', desc: 'Ricotta gnocchi in pesto cream, Parmesan and pepper', img: 'assets/rf-pesto-gnocchi.png', badge: '', badgeBg: '#FFBB0E', badgeFg: '#252422' },
+      { id: 'ps-carbone', name: 'The Carbone', price: 'Rs 1850', desc: 'Ricotta & roast beef raviolo, creamy spicy tomato sauce', img: 'assets/rf-carbone.png', badge: '', badgeBg: '#FFBB0E', badgeFg: '#252422' },
+      { id: 'ps-lasagna', name: 'Two-Sheet Lasagna', price: 'Rs 1850', desc: 'Bechamel & beef bolognese between spinach pasta sheets', img: 'assets/rf-lasagna.png', badge: '', badgeBg: '#FFBB0E', badgeFg: '#252422' }
+    ]},
+    { label: 'Desserts', items: [
+      { id: 'ds-tiramisu', name: 'Tiramisu', price: 'Rs 1200', desc: 'Espresso ladyfingers, mascarpone cream & cocoa powder', img: 'assets/dessert-tiramisu-board.png', badge: 'Made this morning', badgeBg: '#FFFCF2', badgeFg: '#252422' },
+      { id: 'ds-eclairs', name: 'Chocolate & Pistachio Eclairs', price: 'Rs 650', desc: 'Choux pastry, glossy chocolate shell, pistachio cream', img: 'assets/dessert-eclairs-board.png', badge: '', badgeBg: '#FFFCF2', badgeFg: '#252422' }
+    ]},
+    { label: 'Drinks', items: [
+      { id: 'dr-lemon', name: 'Lemon Iced Tea', price: 'Rs 550', desc: 'Brewed black tea, lemon, poured over ice', img: 'assets/drink-peach-board.png', badge: '', badgeBg: '#252422', badgeFg: '#FFBB0E' },
+      { id: 'dr-peach', name: 'Peach Iced Tea', price: 'Rs 750', desc: 'Brewed black tea, peach, poured over ice', img: 'assets/drink-peach-board.png', badge: '', badgeBg: '#252422', badgeFg: '#FFBB0E' },
+      { id: 'dr-soft', name: 'Soft Drink', price: 'Rs 200', desc: 'Canned, ask the counter what is cold', img: 'assets/drink-peach-board.png', badge: '', badgeBg: '#252422', badgeFg: '#FFBB0E' }
+    ]}
+  ];
+
+  scrollTo(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.pageYOffset - 24;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+  bump(id, d) {
+    this.setState(s => {
+      const q = { ...s.qty };
+      const next = (q[id] || 0) + d;
+      if (next <= 0) delete q[id]; else q[id] = next;
+      return { qty: q };
+    });
+  }
+
+  cartLinesSnapshot(lines, qty) {
+    return lines.map(it => ({ name: it.name, qty: qty[it.id], unit: this.money(this.priceOf(it)), lineTotal: this.money(this.priceOf(it) * qty[it.id]) }));
+  }
+  componentDidMount() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    this._heroTimer = setInterval(() => this.setState(s => ({ heroStep: (s.heroStep || 0) + 1 })), 3000);
+  }
+  componentWillUnmount() { clearInterval(this._stageTimer); clearInterval(this._heroTimer); }
+  checkoutReady() {
+    const s = this.state;
+    return ['coEmail', 'coName', 'coPhone', 'coFullAddr'].every(k => (s[k] || '').trim().length > 0) && !!s.branch;
+  }
+  renderVals() {
+    const qty = this.state.qty;
+    const all = this.menu.reduce((acc, g) => acc.concat(g.items), []).filter(it => !it.isHH).concat(Object.values(this.state.customItems || {}));
+    const pizzas = this.menu[0].items.filter(it => !it.isHH);
+    const hhL = pizzas.find(p => p.id === this.state.hhLeft) || null;
+    const hhR = pizzas.find(p => p.id === this.state.hhRight) || null;
+    const hhIncomplete = !hhL || !hhR;
+    const hhUnit = Math.max(hhL ? this.priceOf(hhL) : 0, hhR ? this.priceOf(hhR) : 0);
+    const hhQty = this.state.hhQty || 1;
+    const shortName = n => n.split(/\s|\+/)[0].replace(/^The$/, n.split(' ')[1] || n);
+    const hhOpts = side => pizzas.map(p => ({
+      name: p.name,
+      price: p.price,
+      bg: ((side === 'L' ? hhL : hhR) || {}).id === p.id ? '#FFC5A3' : '#FFFCF2',
+      select: (ev) => { ev.stopPropagation(); this.setState(side === 'L' ? { hhLeft: p.id } : { hhRight: p.id }); }
+    }));
+    const open = all.filter(it => it.id === this.state.openId)[0] || all[0];
+    const lines = all.filter(it => qty[it.id]);
+    const sub = lines.reduce((s, it) => s + this.priceOf(it) * qty[it.id], 0);
+    const delivery = lines.length ? 150 : 0;
+    const locSrc = this.state.orderMode === 'Delivery' ? this.deliveryPlaces : this.pickupPlaces;
+    const lq = (this.state.locQuery || '').trim().toLowerCase();
+    const locMatches = lq ? locSrc.filter(p => p.name.toLowerCase().includes(lq)) : locSrc;
+    const pin = this.locPin();
+    return {
+      hhOpen: !!this.state.hhOpen,
+      openHH: (ev) => { if (ev) ev.stopPropagation(); this.setState({ hhOpen: true, hhQty: 1, hhLeft: null, hhRight: null }); },
+      closeHH: () => this.setState({ hhOpen: false }),
+      hhLeftImg: hhL ? hhL.hhL : 'none',
+      hhRightImg: hhR ? hhR.hhR : 'none',
+      hhLeftBg: hhL ? 'transparent' : '#EB5E28',
+      hhRightBg: hhR ? 'transparent' : '#FFBB0E',
+      hhIncomplete,
+      hhHint: 'Pick a pizza for each half to continue',
+      hhHintVis: hhIncomplete ? 'visible' : 'hidden',
+      hhCtaBg: hhIncomplete ? 'rgba(64,61,57,.18)' : '#EB5E28',
+      hhCtaFg: hhIncomplete ? '#403D39' : '#FFFCF2',
+      hhCtaBorder: '#252422',
+      hhShadow: '3px 3px 0 #252422',
+      hhCtaOpacity: 1,
+      hhCursor: hhIncomplete ? 'not-allowed' : 'pointer',
+      hhCtaLabel: hhIncomplete ? 'Select both halves' : 'Add to cart',
+      hhLeftShort: hhL ? shortName(hhL.name) : '',
+      hhRightShort: hhR ? shortName(hhR.name) : '',
+      hhFromLabel: 'From ' + this.money(Math.min(...pizzas.map(p => this.priceOf(p)))),
+      hhLeftOpts: hhOpts('L'),
+      hhRightOpts: hhOpts('R'),
+      hhQty,
+      hhInc: (ev) => { ev.stopPropagation(); if (hhIncomplete) return; this.setState({ hhQty: hhQty + 1 }); },
+      hhDec: (ev) => { ev.stopPropagation(); if (hhIncomplete) return; this.setState({ hhQty: Math.max(1, hhQty - 1) }); },
+      hhTotalLabel: hhIncomplete ? '' : this.money(hhUnit * hhQty),
+      hhAdd: (ev) => {
+        ev.stopPropagation();
+        if (hhIncomplete) return;
+        const id = 'hh-' + [hhL.id, hhR.id].sort().join('-');
+        const item = { id, name: 'Half ' + shortName(hhL.name) + ' / Half ' + shortName(hhR.name), price: this.money(hhUnit), desc: hhL.name + ' one side, ' + hhR.name + ' the other', img: 'assets/pizza-halfhalf-board.png' };
+        this.setState(s => ({ customItems: { ...(s.customItems || {}), [id]: item }, qty: { ...s.qty, [id]: (s.qty[id] || 0) + hhQty }, hhOpen: false }));
+      },
+      orderMode: this.state.orderMode,
+      branchLabel: this.state.branch || 'Select location',
+      locOpen: this.state.locOpen,
+      openLoc: () => this.setState({ locOpen: true, locFromCheckout: false, locPick: this.state.branch, locQuery: this.state.branch, locDropOpen: false }),
+      openLocFromCheckout: () => this.setState({ locOpen: true, locFromCheckout: true, locPick: this.state.branch, locQuery: this.state.branch, locDropOpen: false }),
+      locShowMode: !this.state.locFromCheckout,
+      locTitle: this.state.locFromCheckout ? (this.state.orderMode === 'Delivery' ? 'Select your delivery area' : 'Select a branch') : 'Select your order type',
+      closeLoc: () => this.setState({ locOpen: false }),
+      pickDelivery: () => this.setState({ orderMode: 'Delivery', locPick: '', locQuery: '', locDropOpen: false }),
+      pickPickup: () => this.setState({ orderMode: 'Pick up', locPick: '', locQuery: '', locDropOpen: false }),
+      locDropOpen: !!this.state.locDropOpen && !this.state.locPick,
+      openLocDrop: () => this.setState({ locDropOpen: true }),
+      closeLocDrop: () => this.setState({ locDropOpen: false }),
+      locQuery: this.state.locQuery || '',
+      setLocQuery: (ev) => this.setState({ locQuery: ev.target.value, locPick: '', locDropOpen: true }),
+      locSearchPlaceholder: this.state.orderMode === 'Delivery' ? 'Search your area, e.g. DHA Phase 6' : 'Search branches',
+      locNoMatch: locMatches.length === 0,
+      ...this.zoneVals(),
+      ...this.addrVals(),
+      locPinX: pin[0] + '%',
+      locPinY: pin[1] + '%',
+      deliveryBg: this.state.orderMode === 'Delivery' ? '#EB5E28' : 'transparent',
+      deliveryFg: this.state.orderMode === 'Delivery' ? '#FFFCF2' : '#252422',
+      pickupBg: this.state.orderMode === 'Pick up' ? '#EB5E28' : 'transparent',
+      pickupFg: this.state.orderMode === 'Pick up' ? '#FFFCF2' : '#252422',
+      destLabel: this.state.orderMode === 'Delivery' ? 'Select your area' : 'Collect from',
+      locPlaces: locMatches.map(p => ({
+        name: p.name,
+        distance: p.distance,
+        bg: this.state.locPick === p.name ? '#FFBB0E' : '#FFFCF2',
+        select: () => this.setState({ locPick: p.name, locQuery: p.name, locDropOpen: false })
+      })),
+      confirmDisabled: !this.state.locPick,
+      confirmBg: this.state.locPick ? '#EB5E28' : 'rgba(64,61,57,.18)',
+      confirmFg: this.state.locPick ? '#FFFCF2' : '#403D39',
+      confirmCursor: this.state.locPick ? 'pointer' : 'not-allowed',
+      confirmLoc: () => { if (this.state.locPick) this.setState(s => ({ branch: s.locPick, coPin: null, locOpen: false, locDropOpen: false, locFromCheckout: false })); },
+      coAreaLabel: this.state.branch || 'Select your delivery area',
+      coAreaColor: this.state.branch ? '#252422' : 'rgba(37,36,34,.45)',
+      coHouse: this.state.coHouse || '',
+      coFloor: this.state.coFloor || '',
+      coBuilding: this.state.coBuilding || '',
+      setCoHouse: (ev) => this.setState({ coHouse: ev.target.value }),
+      setCoFloor: (ev) => this.setState({ coFloor: ev.target.value }),
+      setCoBuilding: (ev) => this.setState({ coBuilding: ev.target.value }),
+      cartOpen: this.state.cartOpen,
+      openCart: () => this.setState({ cartOpen: true }),
+      closeCart: () => this.setState({ cartOpen: false }),
+      checkoutOpen: !!this.state.checkoutOpen,
+      orderConfirmed: !!this.state.orderConfirmed,
+      closeOrder: () => { clearInterval(this._stageTimer); this.setState({ orderConfirmed: false, qty: {} }); },
+      placeOrder: () => {
+        if (!this.checkoutReady()) { this.setState({ coTried: true }); return; }
+        const now = new Date();
+        const date = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) + ', ' +
+          now.toLocaleTimeString('en-GB', { hour: 'numeric', minute: '2-digit' });
+        this.setState({
+          checkoutOpen: false,
+          orderConfirmed: true,
+          stage: 0,
+          orderNo: '#BRC-' + Math.random().toString(36).slice(2, 6).toUpperCase(),
+          orderSnapshot: { lines: this.cartLinesSnapshot(lines, qty), subtotal: this.money(sub), delivery: this.money(delivery), total: this.money(sub + delivery) },
+          orderDate: date
+        });
+        clearInterval(this._stageTimer);
+        this._stageTimer = setInterval(() => {
+          this.setState(s => {
+            if ((s.stage || 0) >= 3) { clearInterval(this._stageTimer); return {}; }
+            return { stage: (s.stage || 0) + 1 };
+          });
+        }, 5000);
+      },
+      stageTitle: ['Thank you!', 'Hang tight!', 'Coming soon!', 'Delivered!'][this.state.stage || 0],
+      stageDesc: ['Your order has been placed successfully.', 'Your order is being prepared.', 'Your order is on the way.', 'Your order has been delivered successfully.'][this.state.stage || 0],
+      stageEta: ['10–15 mins', '10–15 mins', '5–7 mins', 'Enjoy'][this.state.stage || 0],
+      stageIllustration: ['assets/rf-stage-1.png', 'assets/rf-stage-2.png', 'assets/rf-stage-3.png', 'assets/rf-stage-4.png'][this.state.stage || 0],
+      stageBars: [0, 1, 2, 3].map(i => ({ bg: i <= (this.state.stage || 0) ? '#EB5E28' : 'transparent' })),
+      orderNo: this.state.orderNo || '',
+      orderDate: this.state.orderDate || '',
+      orderName: this.state.coName || '',
+      orderAddr: [this.state.coFullAddr, this.state.coHouse, this.state.coFloor ? 'Floor ' + this.state.coFloor : '', this.state.coBuilding, this.state.branch].filter(Boolean).join(', '),
+      orderPhone: this.state.coPhone || '',
+      orderLines: (this.state.orderSnapshot || {}).lines || [],
+      orderDeliveryFee: (this.state.orderSnapshot || {}).delivery || 'Rs 0',
+      orderSubtotal: (this.state.orderSnapshot || {}).subtotal || 'Rs 0',
+      receiptOpen: !!this.state.receiptOpen,
+      openReceipt: () => this.setState({ receiptOpen: true }),
+      closeReceipt: () => this.setState({ receiptOpen: false }),
+      orderTotal: (this.state.orderSnapshot || {}).total || 'Rs 0',
+      orderPayMethod: (this.state.payMethod || 'Cash on delivery'),
+      promo: this.state.promo || '',
+      setPromo: (ev) => this.setState({ promo: ev.target.value }),
+      promoDisabled: !(this.state.promo || '').trim(),
+      promoBg: (this.state.promo || '').trim() ? '#FFBB0E' : 'rgba(37,36,34,.12)',
+      promoFg: (this.state.promo || '').trim() ? '#252422' : '#403D39',
+      promoCursor: (this.state.promo || '').trim() ? 'pointer' : 'not-allowed',
+      coEmail: this.state.coEmail || '',
+      coName: this.state.coName || '',
+      coPhone: this.state.coPhone || '',
+      coAddr: this.state.coAddr || '',
+      setCoEmail: (ev) => this.setState({ coEmail: ev.target.value }),
+      setCoName: (ev) => this.setState({ coName: ev.target.value }),
+      setCoPhone: (ev) => this.setState({ coPhone: ev.target.value }),
+      setCoAddr: (ev) => this.setState({ coAddr: ev.target.value }),
+      ...(() => {
+        const s = this.state, o = {};
+        [['Email', 'coEmail'], ['Name', 'coName'], ['Phone', 'coPhone'], ['Addr', 'coFullAddr']].forEach(([k, f]) => {
+          const bad = !!s.coTried && !(s[f] || '').trim();
+          o['err' + k + 'Show'] = bad;
+          o['err' + k + 'Border'] = bad ? '#B3261E' : 'rgba(37,36,34,.28)';
+        });
+        return o;
+      })(),
+      orderLabel: 'Place order',
+      orderBg: '#EB5E28',
+      orderFg: '#FFFCF2',
+      orderCursor: 'pointer',
+      openCheckout: () => { if (lines.length) this.setState({ cartOpen: false, checkoutOpen: true }); },
+      closeCheckout: () => this.setState({ checkoutOpen: false }),
+      backToCart: () => this.setState({ checkoutOpen: false, cartOpen: true }),
+      payMethods: [
+        { label: 'Cash on delivery', icon: 'assets/rf-pay-cod.png' },
+        { label: 'Bank transfer', icon: 'assets/rf-pay-bank.png' },
+        { label: 'Online payment', icon: 'assets/rf-pay-card.png' }
+      ].map(({ label, icon }) => ({
+        label,
+        icon,
+        bg: (this.state.payMethod || 'Cash on delivery') === label ? '#FFC5A3' : '#FFFCF2',
+        select: () => this.setState({ payMethod: label })
+      })),
+      cartCount: lines.reduce((s, it) => s + qty[it.id], 0),
+      cartEmpty: lines.length === 0,
+      addMore: () => this.setState({ cartOpen: false }, () => this.scrollTo('rf-menu')),
+      suggestions: all.filter(it => !qty[it.id] && (it.id.indexOf('ds-') === 0 || it.id.indexOf('dr-') === 0)).slice(0, 2).map(it => ({
+        name: it.name,
+        img: it.img,
+        price: it.price,
+        add: () => this.bump(it.id, 1)
+      })),
+      hasCart: lines.length > 0,
+      cartSubtotal: this.money(sub),
+      cartDelivery: this.money(delivery),
+      checkoutBg: lines.length ? '#EB5E28' : 'rgba(37,36,34,.12)',
+      checkoutFg: lines.length ? '#FFFCF2' : '#403D39',
+      checkoutCursor: lines.length ? 'pointer' : 'not-allowed',
+      cartTotal: this.money(sub + delivery),
+      cartLines: lines.map(it => ({
+        name: it.name,
+        img: it.img,
+        qty: qty[it.id],
+        lineTotal: this.money(this.priceOf(it) * qty[it.id]),
+        inc: () => this.bump(it.id, 1),
+        dec: () => this.bump(it.id, -1)
+      })),
+      detailOpen: !!this.state.openId,
+      detailOpacity: this.state.shown ? 1 : 0,
+      detailTransform: this.detailTransform(),
+      closeDetail: () => this.closeCard(),
+      stopClick: (ev) => ev.stopPropagation(),
+      detail: { ...open },
+      modalQty: this.state.modalQty,
+      note: this.state.note,
+      setNote: (ev) => this.setState({ note: ev.target.value }),
+      incQty: (ev) => { ev.stopPropagation(); this.setState(s => ({ modalQty: s.modalQty + 1 })); },
+      decQty: (ev) => { ev.stopPropagation(); this.setState(s => ({ modalQty: Math.max(1, s.modalQty - 1) })); },
+      addons: this.addonList.map(a => ({
+        name: a.name,
+        priceLabel: this.money(a.price),
+        bg: this.state.picked[a.id] ? '#FFC5A3' : '#FFFCF2',
+        toggle: (ev) => {
+          ev.stopPropagation();
+          this.setState(s => {
+            const p = { ...s.picked };
+            if (p[a.id]) delete p[a.id]; else p[a.id] = true;
+            return { picked: p };
+          });
+        }
+      })),
+      totalLabel: this.money((this.priceOf(open) + this.addonList.reduce((sum, a) => sum + (this.state.picked[a.id] ? a.price : 0), 0)) * this.state.modalQty),
+      addToCart: (ev) => {
+        ev.stopPropagation();
+        const id = open.id, q = this.state.modalQty;
+        this.setState(s => ({ qty: { ...s.qty, [id]: q } }), () => this.closeCard());
+      },
+      orangeInk: { White: '#FFFFFF', Black: '#252422', Cream: '#FFFCF2' }[this.props.orangeInk ?? 'Black'] || '#252422',
+      heroRot: (this.state.heroStep || 0) * 180,
+      heroOpacityA: (this.state.heroStep || 0) % 2 === 0 ? 1 : 0,
+      heroOpacityB: (this.state.heroStep || 0) % 2 === 0 ? 0 : 1,
+      heroName: (this.state.heroStep || 0) % 2 === 0 ? 'Margherita' : 'Pepperoni + Hot Honey',
+      heroPrice: (this.state.heroStep || 0) % 2 === 0 ? '1800' : '2250',
+      toMenu: () => this.scrollTo('rf-menu'),
+      toOven: () => this.scrollTo('rf-oven'),
+      toPizza: () => this.scrollTo('rf-cat-Pizza'),
+      toPasta: () => this.scrollTo('rf-cat-Pasta'),
+      toDesserts: () => this.scrollTo('rf-cat-Desserts'),
+      toDrinks: () => this.scrollTo('rf-cat-Drinks'),
+      groups: this.menu.map((g, gi) => ({
+        label: g.label,
+        anchorId: 'rf-cat-' + g.label,
+        topGap: gi === 0 ? '0px' : '56px',
+        isPizza: g.label === 'Pizza',
+        items: g.items.map(it => ({
+          ...it,
+          hasBadge: !!it.badge,
+          isHH: !!it.isHH,
+          notHH: !it.isHH,
+          qty: qty[it.id] || 0,
+          none: !qty[it.id],
+          some: !!qty[it.id],
+          open: (ev) => it.isHH ? this.setState({ hhOpen: true, hhQty: 1, hhLeft: null, hhRight: null }) : this.openCard(it, ev),
+          add: (ev) => { ev.stopPropagation(); if (it.isHH) { this.setState({ hhOpen: true, hhQty: 1, hhLeft: null, hhRight: null }); return; } this.bump(it.id, 1); },
+          inc: (ev) => { ev.stopPropagation(); this.bump(it.id, 1); },
+          dec: (ev) => { ev.stopPropagation(); this.bump(it.id, -1); }
+        }))
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!-- @dsCard group="Components" viewport="700x330" name="Feedback" subtitle="Dialog, toast, tooltip" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:20px;background:var(--surface-page)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;margin-bottom:16px}.lbl{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);width:100%;margin-bottom:2px}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const {Dialog,Toast,Tooltip,Button,Badge}=window.BraciDesignSystem_8fd649;
+function Demo(){return <>
+<div className="row" style={{alignItems:'center',gap:24}}>
+<div style={{position:'relative',width:330,height:250,borderRadius:18,overflow:'hidden',border:'1px solid var(--border-hairline)',background:'var(--surface-inset)'}}>
+<Dialog open title="Margherita" onClose={()=>{}} footer={<><Button variant="ghost" size="sm">Cancel</Button><Button variant="primary" size="sm">Add — £11.50</Button></>}>Pick your extras before it goes in the oven.</Dialog>
+</div>
+<div style={{display:'flex',flexDirection:'column',gap:14}}>
+<Toast tone="success" title="In the oven" onClose={()=>{}}>We'll text you when it's boxed.</Toast>
+<Toast tone="error" title="That one's sold out" onClose={()=>{}}>Try the Diavola instead.</Toast>
+<div style={{paddingTop:22}}><Tooltip label="Contains dairy"><Badge tone="outline">D</Badge></Tooltip></div>
+</div>
+</div>
+</>}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>
