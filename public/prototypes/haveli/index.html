@@ -2047,21 +2047,21 @@ function pkHour() {
   const g = t => +p.find(x => x.type === t).value; return g('hour') + g('minute') / 60;
 }
 const servingAt = hr => hr < 16 ? 'lunch' : 'dinner';
-const mealAvailable = m => servingAt(pkHour()) === m;
+const mealAvailable = m => true;
 function applyMealAvailability() {
   const hr = pkHour(), s = servingAt(hr);
   document.querySelectorAll('#locStepMeal .meal-opt').forEach(o => {
     const sp = o.querySelector('span'); if (!o.dataset.hours) o.dataset.hours = sp.textContent;
-    const off = s !== o.dataset.meal;
+    const off = false;
     o.disabled = off; o.setAttribute('aria-disabled', String(off));
     sp.textContent = off ? (o.dataset.meal === 'lunch' ? 'Available tomorrow until 4 pm' : 'Available from 4 pm') : o.dataset.hours;
   });
   mealToggle.querySelectorAll('.mt-opt').forEach(o => {
-    const off = s !== o.dataset.meal;
+    const off = false;
     o.setAttribute('aria-disabled', String(off));
     o.title = off ? (o.dataset.meal === 'lunch' ? 'Lunch is served until 4 pm' : 'Dinner is served from 4 pm') : '';
   });
-  if (document.body.dataset.meal !== s) setMeal(s);
+  /* demo: let visitors switch lunch/dinner freely, no clock lock */
   let note = document.getElementById('mealNote');
   if (!note) { note = document.createElement('p'); note.id = 'mealNote'; note.className = 'meal-note'; document.getElementById('locStepMeal').appendChild(note); }
   note.textContent = s === 'lunch' ? 'Dinner opens at 4 pm.' : 'Lunch has ended for today.';
