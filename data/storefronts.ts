@@ -161,6 +161,21 @@ export const STOREFRONTS: Storefront[] = [
     mockGlow:
       "radial-gradient(circle,rgba(194,66,0,0.16),rgba(194,66,0,0) 70%)",
   },
+  {
+    slug: "haveli",
+    name: "Haveli",
+    tagline: "Kebabs, karahi and charcoal grill.",
+    category: "Grill",
+    location: "Karachi",
+    modules: "Ordering · Payments · Delivery",
+    tags: ["Grill"],
+    shot: "/shots/haveli.jpg",
+    prototypePath: "/prototypes/haveli/",
+    liveUrl: null,
+    mockBg: "linear-gradient(160deg,#F3E7DD 0%,#E0A98C 100%)",
+    mockGlow:
+      "radial-gradient(circle,rgba(206,69,39,0.18),rgba(206,69,39,0) 70%)",
+  },
 ];
 
 export type StatusFilter = "all" | "live" | "concept";
