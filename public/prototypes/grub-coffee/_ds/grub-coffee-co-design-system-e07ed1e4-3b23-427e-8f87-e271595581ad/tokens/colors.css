@@ -1,0 +1,27 @@
+:root{
+--green-900:#0B2211;
+--green-700:#265130;
+--green-500:#3C5D44;
+--cream-50:#FFF8F0;
+--orange-500:#CF5B30;
+--white:#FFFFFF;
+--black:#000000;
+--text-body:var(--green-900);
+--text-heading:var(--green-700);
+--text-muted:var(--green-500);
+--text-inverse:var(--cream-50);
+--text-link:var(--green-700);
+--text-link-hover:var(--orange-500);
+--surface-page:var(--cream-50);
+--surface-brand:var(--green-700);
+--surface-card:var(--white);
+--surface-muted:color-mix(in oklch, var(--green-500) 12%, var(--cream-50));
+--border-default:color-mix(in oklch, var(--green-700) 30%, transparent);
+--border-strong:var(--green-700);
+--border-hover:var(--green-700);
+--cta-bg:var(--orange-500);
+--cta-bg-hover:color-mix(in oklch, var(--orange-500) 85%, black);
+--cta-bg-active:color-mix(in oklch, var(--orange-500) 72%, black);
+--error:var(--orange-500);
+--focus-ring:var(--orange-500);
+}

@@ -131,6 +131,21 @@ export const STOREFRONTS: Storefront[] = [
     mockGlow:
       "radial-gradient(circle,rgba(145,75,76,0.16),rgba(145,75,76,0) 70%)",
   },
+  {
+    slug: "grub-coffee",
+    name: "Grub Coffee Co",
+    tagline: "Bold brews, frappes and coolers — grabbed to go.",
+    category: "Coffee ordering",
+    location: "Karachi",
+    modules: "Ordering · Payments · Delivery",
+    tags: ["Coffee ordering"],
+    shot: "/shots/grub-coffee.jpg",
+    prototypePath: "/prototypes/grub-coffee/",
+    liveUrl: null,
+    mockBg: "linear-gradient(160deg,#FBF7EF 0%,#D8E3D2 100%)",
+    mockGlow:
+      "radial-gradient(circle,rgba(38,81,48,0.16),rgba(38,81,48,0) 70%)",
+  },
 ];
 
 export type StatusFilter = "all" | "live" | "concept";
