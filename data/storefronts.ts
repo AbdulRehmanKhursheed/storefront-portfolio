@@ -95,8 +95,8 @@ export const STOREFRONTS: Storefront[] = [
     modules: "Ordering · Pickup",
     tags: ["Coffee ordering"],
     shot: "/shots/down-south.jpg",
-    prototypePath: "/prototypes/down-south/",
-    liveUrl: null,
+    prototypePath: null,
+    liveUrl: "https://www.downsouth.coffee/",
     mockBg: "linear-gradient(160deg,#EAF3FE 0%,#BFD9F7 100%)",
     mockGlow:
       "radial-gradient(circle,rgba(34,71,95,0.16),rgba(34,71,95,0) 70%)",
@@ -175,6 +175,21 @@ export const STOREFRONTS: Storefront[] = [
     mockBg: "linear-gradient(160deg,#F3E7DD 0%,#E0A98C 100%)",
     mockGlow:
       "radial-gradient(circle,rgba(206,69,39,0.18),rgba(206,69,39,0) 70%)",
+  },
+  {
+    slug: "purple-cow",
+    name: "Purple Cow",
+    tagline: "Tarts, cakes and puddings.",
+    category: "Dessert",
+    location: "Karachi",
+    modules: "Ordering · Payments · Delivery",
+    tags: ["Dessert"],
+    shot: "/shots/purple-cow.jpg",
+    prototypePath: null,
+    liveUrl: "https://www.purplecowpk.com/",
+    mockBg: "linear-gradient(160deg,#F3EFFB 0%,#D9CBF2 100%)",
+    mockGlow:
+      "radial-gradient(circle,rgba(124,58,237,0.16),rgba(124,58,237,0) 70%)",
   },
 ];
 
