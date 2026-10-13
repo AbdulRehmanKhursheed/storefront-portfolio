@@ -125,8 +125,8 @@ export const STOREFRONTS: Storefront[] = [
     modules: "Ordering · Payments · Cart",
     tags: ["Café ordering"],
     shot: "/shots/praha.jpg",
-    prototypePath: "/prototypes/praha/",
-    liveUrl: null,
+    prototypePath: null,
+    liveUrl: "https://www.caffepraha.com/",
     mockBg: "linear-gradient(160deg,#F5EFEC 0%,#E7C9CC 100%)",
     mockGlow:
       "radial-gradient(circle,rgba(145,75,76,0.16),rgba(145,75,76,0) 70%)",
