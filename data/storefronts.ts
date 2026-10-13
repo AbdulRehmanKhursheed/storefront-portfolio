@@ -191,6 +191,36 @@ export const STOREFRONTS: Storefront[] = [
     mockGlow:
       "radial-gradient(circle,rgba(124,58,237,0.16),rgba(124,58,237,0) 70%)",
   },
+  {
+    slug: "cantina",
+    name: "Cantina",
+    tagline: "Burgers, grill and BBQ.",
+    category: "Grill",
+    location: "Karachi",
+    modules: "Ordering · Payments · Delivery",
+    tags: ["Grill"],
+    shot: "/shots/cantina.jpg",
+    prototypePath: null,
+    liveUrl: "https://www.cantinapk.com/",
+    mockBg: "linear-gradient(160deg,#EAF0FB 0%,#C3D2EE 100%)",
+    mockGlow:
+      "radial-gradient(circle,rgba(26,46,122,0.18),rgba(26,46,122,0) 70%)",
+  },
+  {
+    slug: "drop",
+    name: "Drop",
+    tagline: "The finest speciality coffee.",
+    category: "Coffee",
+    location: "Karachi",
+    modules: "Ordering · Payments · Delivery",
+    tags: ["Coffee"],
+    shot: "/shots/drop.jpg",
+    prototypePath: "/prototypes/drop/",
+    liveUrl: null,
+    mockBg: "linear-gradient(160deg,#EAF8FD 0%,#BBE6F6 100%)",
+    mockGlow:
+      "radial-gradient(circle,rgba(82,196,233,0.18),rgba(82,196,233,0) 70%)",
+  },
 ];
 
 export type StatusFilter = "all" | "live" | "concept";
